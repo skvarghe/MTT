@@ -1,0 +1,7 @@
+---
+applications:
+- name: MSPoc
+  host: MSPoc
+  memory: 256M
+  env:
+    NODE_ENV: cloud-foundry

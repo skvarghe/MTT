@@ -1,0 +1,48 @@
+<!--customer.html-->
+<div class="whitewalker">
+  <loading></loading>
+  <div id="sErrDiv" class="alert alert-warning" role="alert" >
+    <button id="btnsErr" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <span id="servicemsg"></span>
+  </div>
+  <div class="row">
+      <div class="col-md-12">
+          <div class="page-header">
+              <h2>Raise Customer Service Request</h2>
+          </div>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-md-12">
+          <h5></h5>
+          <form class="form-horizontal" novalidate ng-submit="submitCsrForm()" name="csrForm">
+              <fieldset>
+                <div class="form-group-sm row">
+                  <label for="reqCaseId" class="col-md-3 control-label">Case ID</label>
+                  <div class="col-md-4">
+                    <input type="text" class="form-control" id="reqCaseId" ng-model="csrForm.reqCaseId" required  />
+                  </div>
+                </div>
+                <div class="form-group-sm row">
+                  <label for="reqSummary" class="col-md-3 control-label">Request Summary</label>
+                  <div class="col-md-4">
+                    <input type="text" class="form-control" id="reqSummary" ng-model="csrForm.reqSummary" required  />
+                  </div>
+                </div>
+                <div class="form-group-sm row">
+                  <label for="reqDetails" class="col-md-3 control-label">Request Details</label>
+                  <div class="col-md-4">
+                    <textarea  rows="5" class="form-control" id="reqDetails" ng-model="csrForm.reqDetails" required></textarea>
+                  </div>
+                </div>
+                <div class="form-group-sm row">
+                  <div class="col-md-4 col-md-offset-3">
+                    <input id="btnSubmit" class="btn btn-sm btn-primary pull-right pd btns" type="submit" value="Submit" >
+                  </div>
+                </div>
+              </fieldset>
+          </form>
+      </div>
+  </div>
+</div>
+<!--/customer.html-->

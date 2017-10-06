@@ -1,0 +1,752 @@
+<div class="whitewalker">
+  <loading></loading>
+  <div id="rErrDiv" class="alert alert-warning" role="alert" >
+    <button id="btnrErr" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <span id="reviewmsg"></span>
+  </div>
+  <div class="row">
+      <div class="col-md-12">
+          <div class="page-header">
+              <h2>Review Declaration</h2>
+          </div>
+      </div>
+  </div>
+  <form class="form-horizontal" novalidate ng-submit="submitReviewForm()" name="reviewForm">
+      <fieldset>
+  <div class="form-group-sm row">
+    <div class="col-md-4">
+      <div class="btn-group">
+        <input id="btnSave" class="btn btn-sm btn-primary pull-right btns pd" type="submit" value="Save" ng-show="saveShow" ng-click="SubmitStatusType='Draft'">
+        <input id="btnSubmit" class="btn btn-sm btn-primary pull-right btns pd" type="submit"  value="Submit" ng-show="submitShow" ng-click="SubmitStatusType='Submitted'">
+        <input id="btnReturn" class="btn btn-sm btn-primary pull-right btns pd" type="button" value="Return" ng-show="returnShow" ng-click="StatusChange(SubmitStatusType='Returned')">
+        <input id="btnReject" class="btn btn-sm btn-primary pull-right btns pd" type="button"  value="Reject" ng-show="rejectShow" ng-click="StatusChange(SubmitStatusType='Rejected')">
+        <input id="btnInspect" class="btn btn-sm btn-primary pull-right btns pd" type="button"  value="Inspect" ng-show="inspectShow" ng-click="StatusChange(SubmitStatusType='Inspect')">
+        <input id="btnApprove" class="btn btn-sm btn-primary pull-right btns pd" type="button"  value="Approve" ng-show="approveShow" ng-click="StatusChange(SubmitStatusType='Approved')">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-md-4">
+                  <div class="form-group">
+                      <div id="exTab3" class="container" data-tabs="tabs">
+                        <ul  class="nav nav-pills">
+                          <li class="active">
+                            <a  data-target="#1b" data-toggle="tab" role="tab">General Details</a>
+                          </li>
+                          <li><a data-target="#2b" data-toggle="tab"  role="tab">Shipping Details</a>
+                          </li>
+                          <li><a data-target="#3b" data-toggle="tab"  role="tab">Invoice Details</a>
+                          </li>
+                          <li><a data-target="#4b" data-toggle="tab"  role="tab" ng-show="haveComments">Review Comments</a>
+                          </li>
+                        </ul>
+                        <div class="tab-content clearfix">
+                          <div class="tab-pane active" id="1b" role="tabpanel">
+                            <div class="form-group-sm row">
+                              <label for="regimeType" class="col-md-3 control-label">Regime Type</label>
+                              <div class="col-md-4">
+                                  <div class="selectContainer" >
+                                    <select id="regimeType" class="form-control custom-select prg1" name="regimeType" ng-model="reviewForm.regimeType" ng-disabled="disable" >
+                                      <option value=""></option>
+                                      <option value="Transfer">Transfer</option>
+                                      <option value="Transit">Transit</option>
+                                      <option value="Import">Import</option>
+                                      <option value="Export">Export</option>
+                                      <option value="Temporary Admission">Temporary Admission</option>
+                                    </select>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="form-group-sm row">
+                              <label for="declarationType" class="col-md-3 control-label">Declaration Type</label>
+                              <div class="col-md-4">
+                                  <div class="selectContainer" >
+                                    <select id="declarationType" class="form-control custom-select prg1" name="declarationType" ng-model="reviewForm.declarationType" ng-disabled="disable"  >
+                                      <option value=""></option>
+                                      <option value="Import to Local from GCC (statistical Import)">Import to Local from GCC (statistical Import)</option>
+                                       <option value="Import to CW from ROW">Import to CW from ROW</option>
+                                       <option value="Import to Local from ROW (Rest of the World)">Import to Local from ROW (Rest of the World)</option>
+                                       <option value="Import to Local from FZ (Free Zone)">Import to Local from FZ (Free Zone)</option>
+                                       <option value="Import to CW from Local (after temporary admission)">Import to CW from Local (after temporary admission)</option>
+                                       <option value="Import to Local After Temporary Admission">Import to Local After Temporary Admission</option>
+                                       <option value="Import to Local from GCC (statistical Import)">Import to Local from GCC (statistical Import)</option>
+                                       <option value="Import to Local from CW (Customs Warehouse)">Import to Local from CW (Customs Warehouse)</option>
+                                       <option value="Courier Transit">Courier Transit</option>
+                                       <option value="Import for Re Export to Local from ROW">Import for Re Export to Local from ROW</option>
+                                       <option value="Import for Re Export to Local from CW">Import for Re Export to Local from CW</option>
+                                       <option value="Import for Re Export to Local from FZ">Import for Re Export to Local from FZ</option>
+                                       <option value="Import to CW from FZ">Import to CW from FZ</option>
+                                    </select>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="form-group-sm row">
+                              <label for="cargoChannel" class="col-md-3 control-label">Cargo Channel</label>
+                              <div class="col-md-4">
+                                  <div class="selectContainer" >
+                                      <select id="cargoChannel" class="form-control custom-select prg1" name="cargoChannel" ng-model="reviewForm.cargoChannel" ng-disabled="disable">
+                                          <option value=""></option>
+                                          <option value="air">Air</option>
+                                          <option value="sea">Sea</option>
+                                          <option value="coastal">Coastal</option>
+                                          <option value="courierair">Courier Air</option>
+                                          <option value="courierland">Courier Land</option>
+                                      </select>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="form-group-sm row">
+                              <label for="clientDecRefNo" class="col-md-3 control-label">Client's Dec. Ref. No</label>
+                              <div class="col-md-4">
+                                <input type="text" class="form-control prg1" autocomplete="off" spellcheck="false" id="clientDecRefNo" ng-model="reviewForm.clientDecRefNo" ng-disabled="disable"  />
+                              </div>
+                            </div>
+                            <div class="form-group-sm row">
+                              <label for="exporterCode" class="col-md-3 control-label">Exporter Code</label>
+                              <div class="col-md-4">
+                                <input type="text" class="form-control prg1" id="exporterCode" ng-model="reviewForm.exporterCode" ng-disabled="disable"  />
+                              </div>
+                            </div>
+                            <div class="form-group-sm row">
+                              <label for="importerCode" class="col-md-3 control-label">Importer Code</label>
+                              <div class="col-md-4">
+                                <input type="text" class="form-control prg1" id="importerCode" ng-model="reviewForm.importerCode" ng-disabled="disable"  />
+                              </div>
+                            </div>
+                            <div class="form-group-sm row">
+                              <label for="cargoHandlerCode" class="col-md-3 control-label">Cargo Handler Code</label>
+                              <div class="col-md-4">
+                                <input type="text" class="form-control prg1" id="cargoHandlerCode" ng-model="reviewForm.cargoHandlerCode" ng-disabled="disable"  />
+                              </div>
+                            </div>
+                            <div class="form-group-sm row">
+                              <label for="agentCode" class="col-md-3 control-label">Agent Code</label>
+                              <div class="col-md-4">
+                                <input type="text" class="form-control prg1" id="agentCode" ng-model="reviewForm.agentCode" ng-disabled="disable" />
+                              </div>
+                            </div>
+                            <div class="form-group-sm row">
+                              <div class="col-md-4 col-md-offset-3">
+                                <input id="btnNext1" class="btn-sm btn-primary pull-right" type="button" href="#2b" value="Next">
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="tab-pane" id="2b" role="tabpanel">
+                            <div class="form-group-sm row">
+                              <label for="carrierRegNo" class="col-md-3 control-label">Carrier Reg. No</label>
+                              <div class="col-md-4">
+                                <input type="text" class="form-control prg2" id="carrierRegNo" ng-model="reviewForm.carrierRegNo" ng-disabled="disable"  />
+                              </div>
+                            </div>
+                            <div class="form-group-sm row">
+                              <label for="mawbmbol" class="col-md-3 control-label">MAWB / MBOL</label>
+                              <div class="col-md-4">
+                                <input type="text" class="form-control prg2" id="mawbmbol" ng-model="reviewForm.mawbmbol" ng-disabled="disable"  />
+                              </div>
+                            </div>
+                            <div class="form-group-sm row">
+                              <label for="hawbhbol" class="col-md-3 control-label">HAWB / HBOL</label>
+                              <div class="col-md-4">
+                                <input type="text" class="form-control prg2" id="hawbhbol" ng-model="reviewForm.hawbhbol" ng-disabled="disable"  />
+                              </div>
+                            </div>
+                            <div class="form-group-sm row">
+                              <label for="portLoad" class="col-md-3 control-label">Port of Load</label>
+                              <div class="col-md-4">
+                                  <div  class="selectContainer"  >
+                                      <select id="portLoad" class="form-control custom-select prg2" name="portLoad" ng-model="reviewForm.portLoad" ng-disabled="disable">
+                                        <option value=""></option>
+                                        <option value="Algerciras Bay, Spain">Algerciras Bay, Spain</option>
+                                        <option value="Ambarli, Turkey">Ambarli, Turkey</option>
+                                        <option value="Antwerp, Belgium">Antwerp, Belgium</option>
+                                        <option value="Balboa, Panama">Balboa, Panama</option>
+                                        <option value="Bremen/Bremerhaven, Germany">Bremen/Bremerhaven, Germany</option>
+                                        <option value="Busan, South Korea">Busan, South Korea</option>
+                                        <option value="Colombo, Sri Lanka">Colombo, Sri Lanka</option>
+                                        <option value="Colon, Panama">Colon, Panama</option>
+                                        <option value="Dalian, China">Dalian, China</option>
+                                        <option value="Felixstowe, U.K.">Felixstowe, U.K.</option>
+                                        <option value="Georgia Ports,  U.S.A.">Georgia Ports,  U.S.A.</option>
+                                        <option value="Guangzhou Harbor, China">Guangzhou Harbor, China</option>
+                                        <option value="Haiphong, Vietnam">Haiphong, Vietnam</option>
+                                        <option value="Hamburg, Germany">Hamburg, Germany</option>
+                                        <option value="Hanshin Ports, Japan">Hanshin Ports, Japan</option>
+                                        <option value="Ho Chi Minh, Vietnam">Ho Chi Minh, Vietnam</option>
+                                        <option value="Hong Kong, S.A.R., China">Hong Kong, S.A.R., China</option>
+                                        <option value="Jawaharlal Nehru, India">Jawaharlal Nehru, India</option>
+                                        <option value="Jebel Ali, Dubai, United Arab Emirates">Jebel Ali, Dubai, United Arab Emirates</option>
+                                        <option value="Jeddah, Saudi Arabia">Jeddah, Saudi Arabia</option>
+                                        <option value="Kaohsiung, Taiwan, China">Kaohsiung, Taiwan, China</option>
+                                        <option value="Keihin Ports, Japan">Keihin Ports, Japan</option>
+                                        <option value="Laem Chabang, Thailand">Laem Chabang, Thailand</option>
+                                        <option value="Lianyungun, China">Lianyungun, China</option>
+                                        <option value="Long Beach, U.S.A.">Long Beach, U.S.A.</option>
+                                        <option value="Los Angeles, U.S.A.">Los Angeles, U.S.A.</option>
+                                        <option value="Manila, Philippines">Manila, Philippines</option>
+                                        <option value="Marsaxlokk, Malta">Marsaxlokk, Malta</option>
+                                        <option value="New York-New Jersey, U.S.A.">New York-New Jersey, U.S.A.</option>
+                                        <option value="Ningbo-Zhoushan, China">Ningbo-Zhoushan, China</option>
+                                        <option value="Piraeus, Greece">Piraeus, Greece</option>
+                                        <option value="Port Klang, Malaysia">Port Klang, Malaysia</option>
+                                        <option value="Port Said East, Egypt">Port Said East, Egypt</option>
+                                        <option value="Qingdao, China">Qingdao, China</option>
+                                        <option value="Rotterdam, Netherlands">Rotterdam, Netherlands</option>
+                                        <option value="Santos, Brazil">Santos, Brazil</option>
+                                      </select>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="form-group-sm row">
+                              <label for="portDischarge" class="col-md-3 control-label">Port of Discharge</label>
+                              <div class="col-md-4">
+                                  <div class="selectContainer"  >
+                                      <select id="portDischarge" class="form-control custom-select prg2" name="portDischarge" ng-model="reviewForm.portDischarge" ng-disabled="disable">
+                                        <option value=""></option>
+                                        <option value="Algerciras Bay, Spain">Algerciras Bay, Spain</option>
+                                        <option value="Ambarli, Turkey">Ambarli, Turkey</option>
+                                        <option value="Antwerp, Belgium">Antwerp, Belgium</option>
+                                        <option value="Balboa, Panama">Balboa, Panama</option>
+                                        <option value="Bremen/Bremerhaven, Germany">Bremen/Bremerhaven, Germany</option>
+                                        <option value="Busan, South Korea">Busan, South Korea</option>
+                                        <option value="Colombo, Sri Lanka">Colombo, Sri Lanka</option>
+                                        <option value="Colon, Panama">Colon, Panama</option>
+                                        <option value="Dalian, China">Dalian, China</option>
+                                        <option value="Felixstowe, U.K.">Felixstowe, U.K.</option>
+                                        <option value="Georgia Ports,  U.S.A.">Georgia Ports,  U.S.A.</option>
+                                        <option value="Guangzhou Harbor, China">Guangzhou Harbor, China</option>
+                                        <option value="Haiphong, Vietnam">Haiphong, Vietnam</option>
+                                        <option value="Hamburg, Germany">Hamburg, Germany</option>
+                                        <option value="Hanshin Ports, Japan">Hanshin Ports, Japan</option>
+                                        <option value="Ho Chi Minh, Vietnam">Ho Chi Minh, Vietnam</option>
+                                        <option value="Hong Kong, S.A.R., China">Hong Kong, S.A.R., China</option>
+                                        <option value="Jawaharlal Nehru, India">Jawaharlal Nehru, India</option>
+                                        <option value="Jebel Ali, Dubai, United Arab Emirates">Jebel Ali, Dubai, United Arab Emirates</option>
+                                        <option value="Jeddah, Saudi Arabia">Jeddah, Saudi Arabia</option>
+                                        <option value="Kaohsiung, Taiwan, China">Kaohsiung, Taiwan, China</option>
+                                        <option value="Keihin Ports, Japan">Keihin Ports, Japan</option>
+                                        <option value="Laem Chabang, Thailand">Laem Chabang, Thailand</option>
+                                        <option value="Lianyungun, China">Lianyungun, China</option>
+                                        <option value="Long Beach, U.S.A.">Long Beach, U.S.A.</option>
+                                        <option value="Los Angeles, U.S.A.">Los Angeles, U.S.A.</option>
+                                        <option value="Manila, Philippines">Manila, Philippines</option>
+                                        <option value="Marsaxlokk, Malta">Marsaxlokk, Malta</option>
+                                        <option value="New York-New Jersey, U.S.A.">New York-New Jersey, U.S.A.</option>
+                                        <option value="Ningbo-Zhoushan, China">Ningbo-Zhoushan, China</option>
+                                        <option value="Piraeus, Greece">Piraeus, Greece</option>
+                                        <option value="Port Klang, Malaysia">Port Klang, Malaysia</option>
+                                        <option value="Port Said East, Egypt">Port Said East, Egypt</option>
+                                        <option value="Qingdao, China">Qingdao, China</option>
+                                        <option value="Rotterdam, Netherlands">Rotterdam, Netherlands</option>
+                                        <option value="Santos, Brazil">Santos, Brazil</option>
+                                     </select>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="form-group-sm row">
+                              <label for="originalPortLoad" class="col-md-3 control-label">Original Load Port</label>
+                              <div class="col-md-4">
+                                  <div class="selectContainer" >
+                                      <select id="originalPortLoad" class="form-control custom-select prg2" name="originalPortLoad" ng-model="reviewForm.originalPortLoad" ng-disabled="disable" >
+                                        <option value=""></option>
+                                        <option value="Algerciras Bay, Spain">Algerciras Bay, Spain</option>
+                                        <option value="Ambarli, Turkey">Ambarli, Turkey</option>
+                                        <option value="Antwerp, Belgium">Antwerp, Belgium</option>
+                                        <option value="Balboa, Panama">Balboa, Panama</option>
+                                        <option value="Bremen/Bremerhaven, Germany">Bremen/Bremerhaven, Germany</option>
+                                        <option value="Busan, South Korea">Busan, South Korea</option>
+                                        <option value="Colombo, Sri Lanka">Colombo, Sri Lanka</option>
+                                        <option value="Colon, Panama">Colon, Panama</option>
+                                        <option value="Dalian, China">Dalian, China</option>
+                                        <option value="Felixstowe, U.K.">Felixstowe, U.K.</option>
+                                        <option value="Georgia Ports,  U.S.A.">Georgia Ports,  U.S.A.</option>
+                                        <option value="Guangzhou Harbor, China">Guangzhou Harbor, China</option>
+                                        <option value="Haiphong, Vietnam">Haiphong, Vietnam</option>
+                                        <option value="Hamburg, Germany">Hamburg, Germany</option>
+                                        <option value="Hanshin Ports, Japan">Hanshin Ports, Japan</option>
+                                        <option value="Ho Chi Minh, Vietnam">Ho Chi Minh, Vietnam</option>
+                                        <option value="Hong Kong, S.A.R., China">Hong Kong, S.A.R., China</option>
+                                        <option value="Jawaharlal Nehru, India">Jawaharlal Nehru, India</option>
+                                        <option value="Jebel Ali, Dubai, United Arab Emirates">Jebel Ali, Dubai, United Arab Emirates</option>
+                                        <option value="Jeddah, Saudi Arabia">Jeddah, Saudi Arabia</option>
+                                        <option value="Kaohsiung, Taiwan, China">Kaohsiung, Taiwan, China</option>
+                                        <option value="Keihin Ports, Japan">Keihin Ports, Japan</option>
+                                        <option value="Laem Chabang, Thailand">Laem Chabang, Thailand</option>
+                                        <option value="Lianyungun, China">Lianyungun, China</option>
+                                        <option value="Long Beach, U.S.A.">Long Beach, U.S.A.</option>
+                                        <option value="Los Angeles, U.S.A.">Los Angeles, U.S.A.</option>
+                                        <option value="Manila, Philippines">Manila, Philippines</option>
+                                        <option value="Marsaxlokk, Malta">Marsaxlokk, Malta</option>
+                                        <option value="New York-New Jersey, U.S.A.">New York-New Jersey, U.S.A.</option>
+                                        <option value="Ningbo-Zhoushan, China">Ningbo-Zhoushan, China</option>
+                                        <option value="Piraeus, Greece">Piraeus, Greece</option>
+                                        <option value="Port Klang, Malaysia">Port Klang, Malaysia</option>
+                                        <option value="Port Said East, Egypt">Port Said East, Egypt</option>
+                                        <option value="Qingdao, China">Qingdao, China</option>
+                                        <option value="Rotterdam, Netherlands">Rotterdam, Netherlands</option>
+                                        <option value="Santos, Brazil">Santos, Brazil</option>
+                                    </select>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="form-group-sm row">
+                              <label for="destCountry" class="col-md-3 control-label">Destination Country</label>
+                              <div class="col-md-4">
+                                  <div class="selectContainer"  >
+                                      <select id="destCountry" class="form-control custom-select prg2" name="destCountry" ng-model="reviewForm.destCountry" ng-disabled="disable">
+                                        <option value=""></option>
+                                        <option value="Andorra">Andorra</option>
+                                        <option value="Australia">Australia</option>
+                                        <option value="Austria">Austria</option>
+                                        <option value="Belgium">Belgium</option>
+                                        <option value="Bermuda">Bermuda</option>
+                                        <option value="Canada">Canada</option>
+                                        <option value="Chile">Chile</option>
+                                        <option value="Denmark">Denmark</option>
+                                        <option value="FaroeIslands">FaroeIslands</option>
+                                        <option value="Finland">Finland</option>
+                                        <option value="France">France</option>
+                                        <option value="Germany">Germany</option>
+                                        <option value="Greece">Greece</option>
+                                        <option value="HolySee">HolySee</option>
+                                        <option value="Hungary">Hungary</option>
+                                        <option value="Iceland">Iceland</option>
+                                        <option value="India">India</option>
+                                        <option value="Ireland">Ireland</option>
+                                        <option value="Israel">Israel</option>
+                                        <option value="Italy">Italy</option>
+                                        <option value="Japan">Japan</option>
+                                        <option value="Liechtenstein">Liechtenstein</option>
+                                        <option value="Luxembourg">Luxembourg</option>
+                                        <option value="Malta">Malta</option>
+                                        <option value="Monaco">Monaco</option>
+                                        <option value="Netherlands">Netherlands</option>
+                                        <option value="NewZealand">NewZealand</option>
+                                        <option value="Norway">Norway</option>
+                                        <option value="Portugal">Portugal</option>
+                                        <option value="SanMarino">SanMarino</option>
+                                        <option value="Spain">Spain</option>
+                                        <option value="Sweden">Sweden</option>
+                                        <option value="Switzerland">Switzerland</option>
+                                        <option value="Taiwan">Taiwan</option>
+                                        <option value="UnitedKingdom">UnitedKingdom</option>
+                                        <option value="UnitedStates">UnitedStates</option>
+                                      </select>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="form-group-sm row">
+                              <label for="netWeight" class="col-md-3 control-label">Net Weight</label>
+                              <div class="col-md-4">
+                                <input type="text" class="form-control prg2" id="netWeight" ng-model="reviewForm.netWeight" ng-disabled="disable" />
+                              </div>
+                            </div>
+                            <div class="form-group-sm row">
+                              <label for="netWeightUnit" class="col-md-3 control-label">Net Weight Unit</label>
+                              <div class="col-md-4">
+                                  <div class="selectContainer"  >
+                                      <select id="netWeightUnit" class="form-control custom-select prg2" name="netWeightUnit" ng-model="reviewForm.netWeightUnit" ng-disabled="disable">
+                                        <option value=""></option>
+                                        <option value="Kilograms">Kilograms</option>
+                                        <option value="Pounds">Pounds</option>
+                                      </select>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="form-group-sm row">
+                              <label for="grossWeight" class="col-md-3 control-label">Gross Weight</label>
+                              <div class="col-md-4">
+                                <input type="text" class="form-control prg2" id="grossWeight" ng-model="reviewForm.grossWeight" ng-disabled="disable"  />
+                              </div>
+                            </div>
+                            <div class="form-group-sm row">
+                              <label for="grossWeightUnit" class="col-md-3 control-label">Gross Weight Unit</label>
+                              <div class="col-md-4">
+                                  <div class="selectContainer" >
+                                      <select id="grossWeightUnit" class="form-control custom-select prg2" name="grossWeightUnit" ng-model="reviewForm.grossWeightUnit" ng-disabled="disable" >
+                                          <option value=""></option>
+                                          <option value="Kilograms">Kilograms</option>
+                                          <option value="Pounds">Pounds</option>
+                                      </select>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="form-group-sm row">
+                              <label for="volume" class="col-md-3 control-label">Volume</label>
+                              <div class="col-md-4">
+                                <input type="text" class="form-control prg2" id="volume" ng-model="reviewForm.volume" ng-disabled="disable" />
+                              </div>
+                            </div>
+                            <div class="form-group-sm row">
+                              <label for="noofPackages" class="col-md-3 control-label">No. of Packages</label>
+                              <div class="col-md-4">
+                                <input type="text" class="form-control prg2" id="noofPackages" ng-model="reviewForm.noofPackages" ng-disabled="disable"  />
+                              </div>
+                            </div>
+                            <div class="form-group-sm row">
+                              <label for="packageType" class="col-md-3 control-label">Package Type</label>
+                              <div class="col-md-4">
+                                  <div class="selectContainer" >
+                                      <select id="packageType" class="form-control custom-select prg2" name="packageType" ng-model="reviewForm.packageType" ng-disabled="disable">
+                                          <option value=""></option>
+                                          <option value="Bags">Bags</option>
+                                          <option value="Bales">Bales</option>
+                                      </select>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="form-group-sm row">
+                              <label for="shippingMarks" class="col-md-3 control-label">Shipping Marks</label>
+                              <div class="col-md-4">
+                                  <input type="text" class="form-control prg2" id="shippingMarks" ng-model="reviewForm.shippingMarks" ng-disabled="disable"  />
+                              </div>
+                            </div>
+                            <div class="form-group-sm row">
+                              <label for="containerNo" class="col-md-3 control-label">Container No.</label>
+                              <div class="col-md-4">
+                                <input type="text" class="form-control prg2" id="containerNo" ng-model="reviewForm.containerNo" ng-disabled="disable"  />
+                              </div>
+                            </div>
+                            <div class="form-group-sm row">
+                              <label for="containerSealNo" class="col-md-3 control-label">Container Seal No.</label>
+                              <div class="col-md-4">
+                                <input type="text" class="form-control prg2" id="containerSealNo" ng-model="reviewForm.containerSealNo" ng-disabled="disable" />
+                              </div>
+                            </div>
+                            <div class="form-group-sm row">
+                              <label for="containerSize" class="col-md-3 control-label">Container Size</label>
+                              <div class="col-md-4">
+                                  <div class="selectContainer" >
+                                      <select id="containerSize" class="form-control custom-select prg2" name="containerSize" ng-model="reviewForm.containerSize" ng-disabled="disable" >
+                                        <option value=""></option>
+                                        <option value="20">20</option>
+                                        <option value="40">40</option>
+                                      </select>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="form-group-sm row">
+                              <label for="containerType" class="col-md-3 control-label">Container Type</label>
+                              <div class="col-md-4">
+                                  <div class="selectContainer"  >
+                                      <select id="containerType" class="form-control custom-select prg2" name="containerType" ng-model="reviewForm.containerType" ng-disabled="disable">
+                                        <option value=""></option>
+                                        <option value="Reefer">Reefer</option>
+                                        <option value="Dry">Dry</option>
+                                      </select>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="form-group-sm row">
+                              <div class="col-md-4 col-md-offset-3">
+                                <input id="btnNext2" class="btn-sm btn-primary pull-right" type="button" href="#3b" value="Next">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="tab-pane" id="3b" role="tabpanel">
+                            <div class="form-group-sm row">
+                              <label for="invoiceNo" class="col-md-3 control-label">Invoice No.</label>
+                              <div class="col-md-4">
+                                <input type="text" class="form-control prg3" id="invoiceNo" ng-model="reviewForm.invoiceNo" ng-disabled="disable"  />
+                              </div>
+                            </div>
+                            <div class="form-group-sm row">
+                              <label for="invoiceDate" class="col-md-3 control-label">Invoice Date</label>
+                              <div class="input-group-sm date col-md-4" data-provide="datepicker">
+                                  <input type="text" class="form-control prg3" id="invoiceDate" placeholder="mm/dd/yyyy" ng-model="reviewForm.invoiceDate" ng-disabled="disable" />
+                                  <div class="input-group-addon">
+                                      <span class="glyphicon glyphicon-calendar"></span>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="form-group-sm row">
+                                <label for="seller" class="col-md-3 control-label">Seller</label>
+                                <div class="col-md-4">
+                                  <input type="text" class="form-control prg3" id="seller" ng-model="reviewForm.seller" ng-disabled="disable" />
+                                </div>
+                            </div>
+                            <div class="form-group-sm row">
+                                <label for="noofpages" class="col-md-3 control-label">No. of Pages</label>
+                                <div class="col-md-4">
+                                  <input type="text" class="form-control prg3" id="noofpages" ng-model="reviewForm.noofpages" ng-disabled="disable"  />
+                                </div>
+                            </div>
+                            <div class="form-group-sm row">
+                              <label for="invoiceType" class="col-md-3 control-label">Invoice Type</label>
+                              <div class="col-md-4">
+                                  <div class="selectContainer" >
+                                      <select id="invoiceType" class="form-control custom-select prg3" name="invoiceType" ng-model="reviewForm.invoiceType" ng-disabled="disable" >
+                                        <option value=""></option>
+                                        <option value="Commercial">Commercial</option>
+                                        <option value="Sales">Sales</option>
+                                        <option value="Tax">Tax</option>
+                                      </select>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="form-group-sm row">
+                                <label for="invoiceValue" class="col-md-3 control-label">Value</label>
+                                <div class="col-md-4">
+                                  <input type="text" class="form-control prg3" id="invoiceValue" ng-model="reviewForm.invoiceValue" ng-disabled="disable" />
+                                </div>
+                            </div>
+
+                            <div class="form-group-sm row">
+                              <label for="invoiceCurrency" class="col-md-3 control-label">Currency</label>
+                              <div class="col-md-4">
+                                  <div class="selectContainer">
+                                      <select id="invoiceCurrency" class="form-control custom-select prg3" name="invoiceCurrency"  ng-model="reviewForm.invoiceCurrency" ng-disabled="disable" >
+                                        <option value=""></option>
+                                        <option value="AUD">AUD</option>
+                                        <option value="BRL">BRL</option>
+                                        <option value="CAD">CAD</option>
+                                        <option value="CHF">CHF</option>
+                                        <option value="CNY">CNY</option>
+                                        <option value="DKK">DKK</option>
+                                        <option value="EUR">EUR</option>
+                                        <option value="GBP">GBP</option>
+                                        <option value="HKD">HKD</option>
+                                        <option value="INR">INR</option>
+                                        <option value="JPY">JPY</option>
+                                        <option value="KRW">KRW</option>
+                                        <option value="MXN">MXN</option>
+                                        <option value="MYR">MYR</option>
+                                        <option value="NOK">NOK</option>
+                                        <option value="NZD">NZD</option>
+                                        <option value="PLN">PLN</option>
+                                        <option value="RUB">RUB</option>
+                                        <option value="SEK">SEK</option>
+                                        <option value="SGD">SGD</option>
+                                        <option value="THB">THB</option>
+                                        <option value="TRY">TRY</option>
+                                        <option value="TWD">TWD</option>
+                                        <option value="USD">USD</option>
+                                        <option value="ZAR">ZAR</option>
+                                      </select>
+                                  </div>
+                              </div>
+                            </div>
+
+                            <div class="form-group-sm row">
+                                <label for="freightCost" class="col-md-3 control-label">Freight Cost</label>
+                                <div class="col-md-4">
+                                  <input type="text" class="form-control prg3" id="freightCost" ng-model="reviewForm.freightCost" ng-disabled="disable"  />
+                                </div>
+                            </div>
+                            <div class="form-group-sm row">
+                              <label for="freightCostCurrency" class="col-md-3 control-label">Freight Cost Currency</label>
+                              <div class="col-md-4">
+                                  <div class="selectContainer">
+                                      <select id="freightCostCurrency" class="form-control custom-select prg3" name="freightCostCurrency"  ng-model="reviewForm.freightCostCurrency" ng-disabled="disable" >
+                                        <option value=""></option>
+                                        <option value="AUD">AUD</option>
+                                        <option value="BRL">BRL</option>
+                                        <option value="CAD">CAD</option>
+                                        <option value="CHF">CHF</option>
+                                        <option value="CNY">CNY</option>
+                                        <option value="DKK">DKK</option>
+                                        <option value="EUR">EUR</option>
+                                        <option value="GBP">GBP</option>
+                                        <option value="HKD">HKD</option>
+                                        <option value="INR">INR</option>
+                                        <option value="JPY">JPY</option>
+                                        <option value="KRW">KRW</option>
+                                        <option value="MXN">MXN</option>
+                                        <option value="MYR">MYR</option>
+                                        <option value="NOK">NOK</option>
+                                        <option value="NZD">NZD</option>
+                                        <option value="PLN">PLN</option>
+                                        <option value="RUB">RUB</option>
+                                        <option value="SEK">SEK</option>
+                                        <option value="SGD">SGD</option>
+                                        <option value="THB">THB</option>
+                                        <option value="TRY">TRY</option>
+                                        <option value="TWD">TWD</option>
+                                        <option value="USD">USD</option>
+                                        <option value="ZAR">ZAR</option>
+                                      </select>
+                                  </div>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="3b" role="tabpanel">
+                          <div class="form-group-sm row">
+                            <label for="invoiceNo" class="col-md-3 control-label">Invoice No.</label>
+                            <div class="col-md-4">
+                              <input type="text" class="form-control prg3" id="invoiceNo" ng-model="reviewForm.invoiceNo" ng-disabled="disable"  />
+                            </div>
+                          </div>
+                          <div class="form-group-sm row">
+                            <label for="invoiceDate" class="col-md-3 control-label">Invoice Date</label>
+                            <div class="input-group-sm date col-md-4" data-provide="datepicker">
+                                <input type="text" class="form-control prg3" id="invoiceDate" placeholder="mm/dd/yyyy" ng-model="reviewForm.invoiceDate" ng-disabled="disable" />
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="form-group-sm row">
+                              <label for="seller" class="col-md-3 control-label">Seller</label>
+                              <div class="col-md-4">
+                                <input type="text" class="form-control prg3" id="seller" ng-model="reviewForm.seller" ng-disabled="disable" />
+                              </div>
+                          </div>
+                          <div class="form-group-sm row">
+                              <label for="noofpages" class="col-md-3 control-label">No. of Pages</label>
+                              <div class="col-md-4">
+                                <input type="text" class="form-control prg3" id="noofpages" ng-model="reviewForm.noofpages" ng-disabled="disable"  />
+                              </div>
+                          </div>
+                          <div class="form-group-sm row">
+                            <label for="invoiceType" class="col-md-3 control-label">Invoice Type</label>
+                            <div class="col-md-4">
+                                <div class="selectContainer" >
+                                    <select id="invoiceType" class="form-control custom-select prg3" name="invoiceType" ng-model="reviewForm.invoiceType" ng-disabled="disable" >
+                                      <option value=""></option>
+                                      <option value="Commercial">Commercial</option>
+                                      <option value="Sales">Sales</option>
+                                      <option value="Tax">Tax</option>
+                                    </select>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="form-group-sm row">
+                              <label for="invoiceValue" class="col-md-3 control-label">Value</label>
+                              <div class="col-md-4">
+                                <input type="text" class="form-control prg3" id="invoiceValue" ng-model="reviewForm.invoiceValue" ng-disabled="disable" />
+                              </div>
+                          </div>
+
+                          <div class="form-group-sm row">
+                            <label for="invoiceCurrency" class="col-md-3 control-label">Currency</label>
+                            <div class="col-md-4">
+                                <div class="selectContainer">
+                                    <select id="invoiceCurrency" class="form-control custom-select prg3" name="invoiceCurrency"  ng-model="reviewForm.invoiceCurrency" ng-disabled="disable" >
+                                      <option value=""></option>
+                                      <option value="AUD">AUD</option>
+                                      <option value="BRL">BRL</option>
+                                      <option value="CAD">CAD</option>
+                                      <option value="CHF">CHF</option>
+                                      <option value="CNY">CNY</option>
+                                      <option value="DKK">DKK</option>
+                                      <option value="EUR">EUR</option>
+                                      <option value="GBP">GBP</option>
+                                      <option value="HKD">HKD</option>
+                                      <option value="INR">INR</option>
+                                      <option value="JPY">JPY</option>
+                                      <option value="KRW">KRW</option>
+                                      <option value="MXN">MXN</option>
+                                      <option value="MYR">MYR</option>
+                                      <option value="NOK">NOK</option>
+                                      <option value="NZD">NZD</option>
+                                      <option value="PLN">PLN</option>
+                                      <option value="RUB">RUB</option>
+                                      <option value="SEK">SEK</option>
+                                      <option value="SGD">SGD</option>
+                                      <option value="THB">THB</option>
+                                      <option value="TRY">TRY</option>
+                                      <option value="TWD">TWD</option>
+                                      <option value="USD">USD</option>
+                                      <option value="ZAR">ZAR</option>
+                                    </select>
+                                </div>
+                            </div>
+                          </div>
+
+                          <div class="form-group-sm row">
+                              <label for="freightCost" class="col-md-3 control-label">Freight Cost</label>
+                              <div class="col-md-4">
+                                <input type="text" class="form-control prg3" id="freightCost" ng-model="reviewForm.freightCost" ng-disabled="disable"  />
+                              </div>
+                          </div>
+                          <div class="form-group-sm row">
+                            <label for="freightCostCurrency" class="col-md-3 control-label">Freight Cost Currency</label>
+                            <div class="col-md-4">
+                                <div class="selectContainer">
+                                    <select id="freightCostCurrency" class="form-control custom-select prg3" name="freightCostCurrency"  ng-model="reviewForm.freightCostCurrency" ng-disabled="disable" >
+                                      <option value=""></option>
+                                      <option value="AUD">AUD</option>
+                                      <option value="BRL">BRL</option>
+                                      <option value="CAD">CAD</option>
+                                      <option value="CHF">CHF</option>
+                                      <option value="CNY">CNY</option>
+                                      <option value="DKK">DKK</option>
+                                      <option value="EUR">EUR</option>
+                                      <option value="GBP">GBP</option>
+                                      <option value="HKD">HKD</option>
+                                      <option value="INR">INR</option>
+                                      <option value="JPY">JPY</option>
+                                      <option value="KRW">KRW</option>
+                                      <option value="MXN">MXN</option>
+                                      <option value="MYR">MYR</option>
+                                      <option value="NOK">NOK</option>
+                                      <option value="NZD">NZD</option>
+                                      <option value="PLN">PLN</option>
+                                      <option value="RUB">RUB</option>
+                                      <option value="SEK">SEK</option>
+                                      <option value="SGD">SGD</option>
+                                      <option value="THB">THB</option>
+                                      <option value="TRY">TRY</option>
+                                      <option value="TWD">TWD</option>
+                                      <option value="USD">USD</option>
+                                      <option value="ZAR">ZAR</option>
+                                    </select>
+                                </div>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="tab-pane" id="4b" role="tabpanel" ng-show="haveComments">
+                        <div class="form-group-sm row">
+                          <label for="comments" class="col-md-2 control-label">Review Comments</label>
+                          <div class="col-md-10">
+                            <textarea type="text" rows="15" class="form-control" id="comments" ng-model="reviewForm.comments" ng-disabled="true"></textarea>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+        </div>
+  </div>
+  </fieldset>
+  </form>
+  <div class="modal fade" id="addReviewComments" tabindex="-1" role="dialog" aria-labelledby="addReviewComments" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addComments"><strong>Change status of {{reviewForm.caseID}} to {{reviewForm.status}}</strong></h5>
+          <button type="button" class="close trigbtn" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form class="form-horizontal" novalidate ng-submit="updateReviewComm()" name="updateReviewForm">
+          <fieldset>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <h5></h5>
+                  <div class="form-group-sm row">
+                    <label for="comSummary" class="col-md-12 control-label lft">Summary</label>
+                  </div>
+                  <div class="form-group-sm row">
+                    <input type="text" class="form-control prg3" id="comSummary" ng-model="updateReviewForm.comSummary"  required/>
+                  </div>
+                  <div class="form-group-sm row">
+                    <label for="comComments" class="col-md-12 control-label lft">Details</label>
+                  </div>
+                  <div class="form-group-sm row">
+                    <textarea class="form-control" rows="5" id="comComments"  ng-model="updateReviewForm.comComments" required></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button id="btnCancel" type="button" class="btn btn-sm btn-primary trigbtn" data-dismiss="modal">Cancel</button>
+              <input id="btnSubComments" class="btn btn-sm btn-primary btns" type="submit" value="Submit" >
+            </div>
+          </fieldset>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>

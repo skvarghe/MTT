@@ -1,0 +1,128 @@
+<!--account.html-->
+<div class="whitewalker">
+  <loading></loading>
+  <div id="tErrDiv" class="alert alert-warning" role="alert" >
+    <button id="btntErr" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <span id="trackmsg"></span>
+  </div>
+  <div class="row">
+      <div class="col-md-12">
+          <div class="page-header">
+              <h2>Track Declaration</h2>
+          </div>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-md-12">
+          <h5></h5>
+          <form class="form-horizontal" novalidate ng-submit="getTrackForm()" name="trackForm">
+              <fieldset>
+                  <div class="form-group-sm">
+                      <div class="col-md-3">
+                          <input type="text" class="form-control" id="caseID" ng-model="trackForm.caseId"  placeholder="Case ID" />
+                      </div>
+                      <div class="col-md-3">
+                          <div id="casetype" class="selectContainer"  >
+                              <select class="custom-select" name="casetype" ng-model="trackForm.caseType">
+                                  <option value="">Choose Case Type</option>
+                                  <option value="declaration">Declaration</option>
+                                  <option value="service request">Service Request</option>
+                              </select>
+                          </div>
+                      </div>
+                      <div class="col-md-3">
+                          <input type="text" class="form-control" id="agentID" ng-model="trackForm.agentId"  placeholder="Agent ID" />
+                      </div>
+                      <div class="col-md-3">
+                          <div id="status" class="selectContainer"   >
+                              <select class="custom-select" name="status" ng-model="trackForm.caseStatus">
+                                  <option value="">Choose Status</option>
+                                  <option value="draft">Draft</option>
+                                  <option value="submitted">Submitted</option>
+                                  <option value="rejected">Rejected</option>
+                                  <option value="hold">Hold</option>
+                                  <option value="returned">Returned</option>
+                                  <option value="inspect">Inspect</option>
+                                  <option value="approved">Approved</option>
+                                  <option value="closed">Closed</option>
+                              </select>
+                          </div>
+                      </div>
+                  </div>
+              </fieldset>
+          </form>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-md-12">
+        <div class="tblContainer">
+          <h4>Search Results</h4>
+          <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Case ID</th>
+                <th>Case Type</th>
+                <th>Agent ID</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="i in tracks.caseList">
+                <td>{{ i.caseId }}</td>
+                <td>{{ i.caseType }}</td>
+                <td>{{ i.agentId }}</td>
+                <td>{{ i.caseStatus }}</td>
+                <td>
+                  <button class="btn btn-sm btn-primary btns" ng-click="GetDeclaration(i.caseId,i.caseStatus)" ng-show="i.caseType=='declaration'">View</button>
+                  <button class="btn btn-sm btn-primary btns" ng-show="user.role=='Agent' && (i.caseStatus=='Hold' || i.caseStatus=='Returned' || i.caseStatus=='Rejected') && i.caseType=='declaration'" ng-click="RaiseRequest(i.caseId,i.caseStatus)">Raise Request</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div class="modal fade" id="addServiceRequest" tabindex="-1" role="dialog" aria-labelledby="addServiceRequest" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"><strong>Raise Service Request for {{serviceRequestForm.caseid}} in {{serviceRequestForm.casestatus}} status</strong></h5>
+          <button type="button" class="close trigbtn" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form class="form-horizontal" novalidate ng-submit="submitServiceRequest()" name="serviceRequestForm">
+          <fieldset>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <h5></h5>
+                  <div class="form-group-sm row">
+                    <label for="comSummary" class="col-md-12 control-label lft">Request Summary</label>
+                  </div>
+                  <div class="form-group-sm row">
+                    <input type="text" class="form-control prg3" id="reqSummary" ng-model="serviceRequestForm.reqSummary"  required/>
+                  </div>
+                  <div class="form-group-sm row">
+                    <label for="comComments" class="col-md-12 control-label lft">Request Details</label>
+                  </div>
+                  <div class="form-group-sm row">
+                    <textarea class="form-control" rows="5" id="reqComments"  ng-model="serviceRequestForm.reqComments" required></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button id="btnCancel" type="button" class="btn btn-sm btn-primary trigbtn" data-dismiss="modal">Cancel</button>
+              <input id="btnSubComments" class="btn btn-sm btn-primary btns" type="submit" value="Submit" >
+            </div>
+          </fieldset>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!--/account.html-->
