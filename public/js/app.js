@@ -577,10 +577,17 @@ app.controller('CustomerController', function($scope, $localStorage, $location, 
     }
 });
 */
-app.controller('AdminController', function($scope, $localStorage, $sessionStorage, $http, $location){
+app.controller('LoginController', function($scope, $localStorage, $sessionStorage, $http, $location){
   $scope.user = $localStorage;
+  $http({ method: 'GET', url: '/getusers')
+    .success(function (data, status, headers, config) {
+      $scope.loading = false;
+    })
+    .error(function (data, status, headers, config) {
+      $scope.loading = false;
+    });
 
-}); //Review Controller END
+}); //Login Controller END
 
 app.controller('DashboardController', function($scope, $localStorage, $sessionStorage, $http, $location){
   $scope.user = $localStorage;

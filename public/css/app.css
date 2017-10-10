@@ -17,7 +17,7 @@ input.ng-invalid.ng-touched {
   position: relative;
 }
 
-.imagecards, .nm{
+.imagecard {
   z-index: 2;
   display: block;
   position: relative;

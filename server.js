@@ -15,17 +15,27 @@ var express = require('express'),// server middleware
     appEnv = cfenv.getAppEnv(),// Grab environment variables
     User = require('./server/models/user.model'),
     request = require('request'),
-    dbOps = require('./server/routes/dbOperation.js');
-
+    dbOps = require('./server/routes/dbOperation.js'),
+    mysql = require('mysql');
 var app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(expressValidator()); // must go directly after bodyParser
 
-if(appEnv.isLocal){
-    require('dotenv').load();// Loads .env file into environment
-}
+//if(appEnv.isLocal){
+//    require('dotenv').load();// Loads .env file into environment
+//}
+
+var pool      =    mysql.createPool({
+    connectionLimit : 100, //important
+    host     : 'au-cdbr-sl-syd-01.cleardb.net',
+    port     : '3306',
+    user     : 'b57f89cb8a87b8',
+    password : 'dfa08984',
+    database : 'ibmx_6ffa3de40a923fc',
+    debug    :  false
+});
 
 app.enable('trust proxy');
 // Use SSL connection provided by Bluemix. No setup required besides redirecting all HTTP requests to HTTPS
@@ -50,6 +60,31 @@ app.use(session({
     cookie: { secure: true }
 }));
 
+
+function handle_database(req,res) {
+
+    pool.getConnection(function(err,connection){
+        if (err) {
+          connection.release();
+          res.json({"code" : 100, "status" : "Error in connection database"});
+          return;
+        }
+
+        console.log('connected as id ' + connection.threadId);
+
+        connection.query("select * from users",function(err,rows){
+            connection.release();
+            if(!err) {
+                res.json(rows);
+            }
+        });
+        connection.on('error', function(err) {
+              res.json({"code" : 100, "status" : "Error in connection database"});
+              return;
+        });
+  });
+}
+
 /********************************
  Routing
  ********************************/
@@ -59,10 +94,11 @@ app.get('/', function (req, res){
     res.sendfile('index.html');
 });
 
-app.get('/getUUID', function (req, res){
-    res.send(uuid.v4());
+app.get("/getusers",function(req,res){
+  handle_database(req,res);
 });
 
+/*
 // Home
 app.get('/query/dropdowns', dbOps.dropdowns());
 app.get('/query/codes', dbOps.codes());
@@ -222,7 +258,7 @@ function authorizeRequest(req, res, next) {
 app.get('/protected', authorizeRequest, function(req, res){
     res.send("This is a protected route only visible to authenticated users.");
 });
-
+*/
 /********************************
 Ports
 ********************************/
