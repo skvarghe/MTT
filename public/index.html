@@ -1,43 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Microservices PoC</title>
+    <title>Migration Time Tracker</title>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" type="text/css"/>
     <link rel="stylesheet" href="//bootswatch.com/cosmo/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/app.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="shortcut icon" href="img/favicon.ico" />
     <meta name="viewport" content="user-scalable=yes">
 </head>
-<body ng-app="MSPoc">
+<body ng-app="MTTApp">
   <div ng-controller="HeaderController">
     <nav class="navbar navbar-default" >
         <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
                 <img id="logo" src="img/logo.png" />
-                <a class="navbar-brand" href="#">Microservices PoC</a>
+                <a class="navbar-brand" href="#">Migration Time Tracker</a>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <!--<li><a href="#/">Home</a></li>
-                    <li><a href="#/protected" ng-show="user.status">User Content</a></li>-->
-                </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#/" ng-show="user.status">Home</a></li>
-                    <li><a href="#/create" ng-show="user.showdecl">Create</a></li>
-                    <li><a href="#/track" ng-show="user.showtrack">Track</a></li>
-                    <li><a href="#/login" ng-hide="user.status">Login</a></li>
-                    <li><a href="#/customer" ng-show="user.showcsr">Customer Support</a></li>
-                    <li><a href='' data-toggle="modal" data-target="#viewDoco" ng-show="user.status">About</a></li>
-                    <li><a href='' ng-click="logout()" ng-show="user.status">Logout</a></li>
+                    <li><a href="#/" ng-show="user.normal">Dashboard</a></li>
+                    <li><a href="#/create" ng-show="user.normal">Timesheet</a></li>
+                    <li><a href="#/track" ng-show="user.admin">Admin</a></li>
+                    <li><a href="#/login" ng-hide="user.normal">Login</a></li>
+                    <li><a href='' ng-click="logout()" ng-show="user.normal">Logout</a></li>
                 </ul>
             </div>
         </div>
@@ -48,24 +34,14 @@
     <div class="container" ng-view>
         <!--Views loaded here via $routeProvider in app.js-->
     </div>
-    <div class="modal fade diag" id="viewDoco" tabindex="-1" role="dialog" aria-labelledby="viewDoco" aria-hidden="true">
-      <div class="imgdiv">
-        <img class="docoimg" src="../img/flow2.3.jpg" />
-      </div>
-    </div>
     <!--Angular Scripts-->
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.3/angular.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.3/angular-route.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.js"></script>
-
     <!--Bootstrap Features-->
     <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
     <!--Your Scripts-->
     <script src="js/app.js"></script>
-
-    <script type="text/javascript" src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="js/typeahead.js"></script>
 </body>
 </html>

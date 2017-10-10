@@ -1,7 +1,7 @@
 ---
 applications:
-- name: MSPoc
-  host: MSPoc
+- name: timetrack
+  host: timetrack
   memory: 256M
   env:
     NODE_ENV: cloud-foundry

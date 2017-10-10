@@ -1,6 +1,6 @@
 // See LICENSE.MD for license information.
 
-var app = angular.module('MSPoc', ['ngRoute', 'ngStorage']);
+var app = angular.module('MTTApp', ['ngRoute', 'ngStorage']);
 
 app.directive('loading', function () {
       return {
