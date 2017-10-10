@@ -32,7 +32,8 @@
     "express-validator": "^2.18.0",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
-    "cloudant": "1.4.x"
+    "cloudant": "1.4.x",
+    "mysql": "^2.5.4"
   },
   "devDependencies": {},
   "repository": {
