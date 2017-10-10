@@ -14,7 +14,6 @@ var express = require('express'),// server middleware
     cfenv = require('cfenv'),// Cloud Foundry Environment Variables
     appEnv = cfenv.getAppEnv(),// Grab environment variables
     User = require('./server/models/user.model'),
-    uuid = require('node-uuid'),
     request = require('request'),
     dbOps = require('./server/routes/dbOperation.js');
 

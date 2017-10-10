@@ -20,8 +20,8 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#/" ng-show="user.normal">Dashboard</a></li>
-                    <li><a href="#/create" ng-show="user.normal">Timesheet</a></li>
-                    <li><a href="#/track" ng-show="user.admin">Admin</a></li>
+                    <li><a href="#/timesheet" ng-show="user.normal">Timesheet</a></li>
+                    <li><a href="#/admin" ng-show="user.admin">Admin</a></li>
                     <li><a href="#/login" ng-hide="user.normal">Login</a></li>
                     <li><a href='' ng-click="logout()" ng-show="user.normal">Logout</a></li>
                 </ul>

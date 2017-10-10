@@ -34,5 +34,13 @@
     "passport-local": "^1.0.0",
     "cloudant": "1.4.x"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skvarghe/MTT.git"
+  },
+  "bugs": {
+    "url": "https://github.com/skvarghe/MTT/issues"
+  },
+  "homepage": "https://github.com/skvarghe/MTT#readme"
 }
