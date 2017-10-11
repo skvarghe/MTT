@@ -66,7 +66,7 @@ function login(req,res) {
     pool.getConnection(function(err,connection){
         if (err) {
           connection.release();
-          console.log('~~~~~~conn failed~~~~~~~~~~~~~~~~~~~~'
+          console.log('~~~~~~conn failed~~~~~~~~~~~~~~~~~~~~');
           res.end(JSON({
             "appcode":"900",
             "appmsg":"Connection to database failed",
@@ -99,7 +99,7 @@ function login(req,res) {
                   }
               }
               else {
-                console.log('~~~~~~not found  failed~~~~~~~~~~~~~~~~~~~~'
+                console.log('~~~~~~not found  failed~~~~~~~~~~~~~~~~~~~~');
                 res.end(JSON({
                   "appcode":"102",
                   "appmsg":"User not found / inactive",
