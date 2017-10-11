@@ -108,15 +108,15 @@ function login() {
                 res.send(JSON({
                   "appcode":"102",
                   "appmsg":"User not found / inactive",
-                }));
+                }))
               }
             }
-        });
+        })
         connection.on('error', function(err) {
             res.send(JSON({
               "appcode":"900",
               "appmsg":"Connection to database failed",
-            }));
+            }))
         });
   });
  }
