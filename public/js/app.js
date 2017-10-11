@@ -579,7 +579,7 @@ app.controller('CustomerController', function($scope, $localStorage, $location, 
 */
 app.controller('LoginController', function($scope, $localStorage, $sessionStorage, $http, $location){
   $scope.user = $localStorage;
-  $http({ method: 'GET', url: '/getusers')
+  $http({ method: 'GET', url: '/getusers'})
     .success(function (data, status, headers, config) {
       $scope.loading = false;
     })

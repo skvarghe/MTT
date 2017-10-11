@@ -9,6 +9,7 @@ var express = require('express'),// server middleware
     bodyParser = require('body-parser'),// parse HTTP requests
     expressValidator = require('express-validator'), // validation tool for processing user input
     cookieParser = require('cookie-parser'),
+    bcrypt = require('bcrypt'),
     session = require('express-session'),
     https = require('http'),
     cfenv = require('cfenv'),// Cloud Foundry Environment Variables
@@ -72,10 +73,26 @@ function handle_database(req,res) {
 
         console.log('connected as id ' + connection.threadId);
 
-        connection.query("select * from users",function(err,rows){
+        connection.query("select id, fullname, userrole, status, email, password from users where userid='"+req.headers.username,function(err,rows){
             connection.release();
             if(!err) {
-                res.json(rows);
+              if (req.headers.password=rows[0].password){
+                //if (bcrypt.compareSync(req.headers.password, 10)){
+                  res.status(200).send({
+                    "appcode":"100",
+                    "appstatus":"OK",
+                    "body":[{
+                      "id": rows[0].id,
+                      "fullname": rows[0].fullname,
+                      "userrole": rows[0].userrole,
+                      "status": rows[0].status,
+                      "email": rows[0].email
+                    }]
+                  });
+                }
+                else {
+
+                }
             }
         });
         connection.on('error', function(err) {

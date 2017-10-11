@@ -33,7 +33,9 @@
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "cloudant": "1.4.x",
-    "mysql": "^2.5.4"
+    "mysql": "^2.5.4",
+    "nan": "2.6.2",
+    "node-pre-gyp": "0.6.36"
   },
   "devDependencies": {},
   "repository": {
