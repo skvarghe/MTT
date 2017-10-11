@@ -130,8 +130,36 @@ function login() {
 app.get('/', function (req, res){
     res.sendfile('index.html');
 });
-
-app.get('/validate', login());
+var resp = {};
+app.get('/validate', function (req, res){
+  pool.getConnection(function(err,connection){
+    if (err) {
+      connection.release();
+      resp.appcode="900";
+      resp.appmsg="Connection to database failed";
+      res.status(500).send(resp);
+    } // End of if (err)
+    connection.query("select id, fullname, userrole, email, password from users where status=1 AND userid='"+req.headers.username+"'",function(err,rows){
+      connection.release();
+      if (!err) {
+        resp.appcode="100";
+        resp.appmsg="OK";
+        res.status(200).send(resp);
+      } //End of if (!err)
+      else {
+        resp.appcode="901";
+        resp.appmsg="DB query returned error";
+        res.status(500).send(resp);
+      } //End of else (!err)
+    }) //End of connection.query
+    connection.on('error', function(err) {
+      connection.release();
+      resp.appcode="900";
+      resp.appmsg="Connection to database failed";
+      res.status(500).send(resp);
+    }) //End of connection.on('error')
+  }) // End of getConnection
+}); // End of app.Get
 
 /*
 // Home
