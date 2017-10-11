@@ -24,34 +24,34 @@
 13 silly mapToRegistry uri https://registry.npmjs.org/bcrypt
 14 verbose request uri https://registry.npmjs.org/bcrypt
 15 verbose request no auth needed
-16 info attempt registry request try #1 at 4:09:22 PM
-17 verbose request id 199b016a9de21206
+16 info attempt registry request try #1 at 4:33:37 PM
+17 verbose request id 74647c775810ba73
 18 verbose etag W/"59dbf723-17fc7"
 19 verbose lastModified Mon, 09 Oct 2017 22:24:35 GMT
 20 http request GET https://registry.npmjs.org/bcrypt
 21 http 304 https://registry.npmjs.org/bcrypt
-22 verbose headers { date: 'Wed, 11 Oct 2017 10:39:24 GMT',
+22 verbose headers { date: 'Wed, 11 Oct 2017 11:03:39 GMT',
 22 verbose headers   via: '1.1 varnish',
 22 verbose headers   'cache-control': 'max-age=300',
 22 verbose headers   etag: 'W/"59dbf723-17fc7"',
-22 verbose headers   age: '63',
+22 verbose headers   age: '0',
 22 verbose headers   connection: 'keep-alive',
-22 verbose headers   'x-served-by': 'cache-sin18021-SIN',
+22 verbose headers   'x-served-by': 'cache-sin18025-SIN',
 22 verbose headers   'x-cache': 'HIT',
 22 verbose headers   'x-cache-hits': '1',
-22 verbose headers   'x-timer': 'S1507718364.405067,VS0,VE0',
+22 verbose headers   'x-timer': 'S1507719819.363513,VS0,VE165',
 22 verbose headers   vary: 'Accept-Encoding, Accept' }
 23 silly get cb [ 304,
-23 silly get   { date: 'Wed, 11 Oct 2017 10:39:24 GMT',
+23 silly get   { date: 'Wed, 11 Oct 2017 11:03:39 GMT',
 23 silly get     via: '1.1 varnish',
 23 silly get     'cache-control': 'max-age=300',
 23 silly get     etag: 'W/"59dbf723-17fc7"',
-23 silly get     age: '63',
+23 silly get     age: '0',
 23 silly get     connection: 'keep-alive',
-23 silly get     'x-served-by': 'cache-sin18021-SIN',
+23 silly get     'x-served-by': 'cache-sin18025-SIN',
 23 silly get     'x-cache': 'HIT',
 23 silly get     'x-cache-hits': '1',
-23 silly get     'x-timer': 'S1507718364.405067,VS0,VE0',
+23 silly get     'x-timer': 'S1507719819.363513,VS0,VE165',
 23 silly get     vary: 'Accept-Encoding, Accept' } ]
 24 verbose etag https://registry.npmjs.org/bcrypt from cache
 25 verbose get saving bcrypt to C:\Users\IBM_ADMIN\AppData\Roaming\npm-cache\registry.npmjs.org\bcrypt\.cache.json
@@ -167,39 +167,39 @@
 72 silly mapToRegistry uri https://registry.npmjs.org/nan
 73 verbose request uri https://registry.npmjs.org/bindings
 74 verbose request no auth needed
-75 info attempt registry request try #1 at 4:09:23 PM
+75 info attempt registry request try #1 at 4:33:38 PM
 76 verbose etag W/"59b28ad4-4c18"
 77 verbose lastModified Fri, 08 Sep 2017 12:19:32 GMT
 78 http request GET https://registry.npmjs.org/bindings
 79 verbose request uri https://registry.npmjs.org/nan
 80 verbose request no auth needed
-81 info attempt registry request try #1 at 4:09:23 PM
+81 info attempt registry request try #1 at 4:33:38 PM
 82 verbose etag W/"59c33594-20237"
 83 verbose lastModified Thu, 21 Sep 2017 03:44:20 GMT
 84 http request GET https://registry.npmjs.org/nan
 85 http 304 https://registry.npmjs.org/bindings
-86 verbose headers { date: 'Wed, 11 Oct 2017 10:39:24 GMT',
+86 verbose headers { date: 'Wed, 11 Oct 2017 11:03:39 GMT',
 86 verbose headers   via: '1.1 varnish',
 86 verbose headers   'cache-control': 'max-age=300',
 86 verbose headers   etag: 'W/"59b28ad4-4c18"',
-86 verbose headers   age: '147',
+86 verbose headers   age: '162',
 86 verbose headers   connection: 'keep-alive',
-86 verbose headers   'x-served-by': 'cache-sin18021-SIN',
+86 verbose headers   'x-served-by': 'cache-sin18025-SIN',
 86 verbose headers   'x-cache': 'HIT',
-86 verbose headers   'x-cache-hits': '503',
-86 verbose headers   'x-timer': 'S1507718365.709245,VS0,VE0',
+86 verbose headers   'x-cache-hits': '1',
+86 verbose headers   'x-timer': 'S1507719820.869193,VS0,VE0',
 86 verbose headers   vary: 'Accept-Encoding, Accept' }
 87 silly get cb [ 304,
-87 silly get   { date: 'Wed, 11 Oct 2017 10:39:24 GMT',
+87 silly get   { date: 'Wed, 11 Oct 2017 11:03:39 GMT',
 87 silly get     via: '1.1 varnish',
 87 silly get     'cache-control': 'max-age=300',
 87 silly get     etag: 'W/"59b28ad4-4c18"',
-87 silly get     age: '147',
+87 silly get     age: '162',
 87 silly get     connection: 'keep-alive',
-87 silly get     'x-served-by': 'cache-sin18021-SIN',
+87 silly get     'x-served-by': 'cache-sin18025-SIN',
 87 silly get     'x-cache': 'HIT',
-87 silly get     'x-cache-hits': '503',
-87 silly get     'x-timer': 'S1507718365.709245,VS0,VE0',
+87 silly get     'x-cache-hits': '1',
+87 silly get     'x-timer': 'S1507719820.869193,VS0,VE0',
 87 silly get     vary: 'Accept-Encoding, Accept' } ]
 88 verbose etag https://registry.npmjs.org/bindings from cache
 89 verbose get saving bindings to C:\Users\IBM_ADMIN\AppData\Roaming\npm-cache\registry.npmjs.org\bindings\.cache.json
@@ -236,28 +236,28 @@
 106 verbose correctMkdir C:\Users\IBM_ADMIN\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
 107 verbose afterAdd C:\Users\IBM_ADMIN\AppData\Roaming\npm-cache\bindings\1.2.1\package\package.json written
 108 http 304 https://registry.npmjs.org/nan
-109 verbose headers { date: 'Wed, 11 Oct 2017 10:39:24 GMT',
+109 verbose headers { date: 'Wed, 11 Oct 2017 11:03:40 GMT',
 109 verbose headers   via: '1.1 varnish',
 109 verbose headers   'cache-control': 'max-age=300',
 109 verbose headers   etag: 'W/"59c33594-20237"',
-109 verbose headers   age: '199',
+109 verbose headers   age: '143',
 109 verbose headers   connection: 'keep-alive',
-109 verbose headers   'x-served-by': 'cache-sin18030-SIN',
+109 verbose headers   'x-served-by': 'cache-sin18025-SIN',
 109 verbose headers   'x-cache': 'HIT',
-109 verbose headers   'x-cache-hits': '6',
-109 verbose headers   'x-timer': 'S1507718365.907636,VS0,VE0',
+109 verbose headers   'x-cache-hits': '3',
+109 verbose headers   'x-timer': 'S1507719820.065449,VS0,VE0',
 109 verbose headers   vary: 'Accept-Encoding, Accept' }
 110 silly get cb [ 304,
-110 silly get   { date: 'Wed, 11 Oct 2017 10:39:24 GMT',
+110 silly get   { date: 'Wed, 11 Oct 2017 11:03:40 GMT',
 110 silly get     via: '1.1 varnish',
 110 silly get     'cache-control': 'max-age=300',
 110 silly get     etag: 'W/"59c33594-20237"',
-110 silly get     age: '199',
+110 silly get     age: '143',
 110 silly get     connection: 'keep-alive',
-110 silly get     'x-served-by': 'cache-sin18030-SIN',
+110 silly get     'x-served-by': 'cache-sin18025-SIN',
 110 silly get     'x-cache': 'HIT',
-110 silly get     'x-cache-hits': '6',
-110 silly get     'x-timer': 'S1507718365.907636,VS0,VE0',
+110 silly get     'x-cache-hits': '3',
+110 silly get     'x-timer': 'S1507719820.065449,VS0,VE0',
 110 silly get     vary: 'Accept-Encoding, Accept' } ]
 111 verbose etag https://registry.npmjs.org/nan from cache
 112 verbose get saving nan to C:\Users\IBM_ADMIN\AppData\Roaming\npm-cache\registry.npmjs.org\nan\.cache.json
@@ -719,88 +719,88 @@
 175 silly extract nan@2.3.5
 176 silly extract bindings@1.2.1
 177 silly extract bcrypt@0.8.7
-178 verbose unbuild node_modules\.staging\nan-d56191a2
-179 verbose unbuild node_modules\.staging\bcrypt-139b1311
-180 verbose unbuild node_modules\.staging\bindings-b9bb9da5
-181 silly gentlyRm C:\Dev\TimeTrack\node_modules\.staging\nan-d56191a2 is being purged from base C:\Dev\TimeTrack
-182 verbose gentlyRm don't care about contents; nuking C:\Dev\TimeTrack\node_modules\.staging\nan-d56191a2
-183 silly gentlyRm C:\Dev\TimeTrack\node_modules\.staging\bcrypt-139b1311 is being purged from base C:\Dev\TimeTrack
-184 verbose gentlyRm don't care about contents; nuking C:\Dev\TimeTrack\node_modules\.staging\bcrypt-139b1311
-185 silly gentlyRm C:\Dev\TimeTrack\node_modules\.staging\bindings-b9bb9da5 is being purged from base C:\Dev\TimeTrack
-186 verbose gentlyRm don't care about contents; nuking C:\Dev\TimeTrack\node_modules\.staging\bindings-b9bb9da5
-187 verbose tar unpack C:\Users\IBM_ADMIN\AppData\Roaming\npm-cache\nan\2.3.5\package.tgz
-188 verbose tar unpacking to C:\Dev\TimeTrack\node_modules\.staging\nan-d56191a2
-189 silly gentlyRm C:\Dev\TimeTrack\node_modules\.staging\nan-d56191a2 is being purged
-190 verbose gentlyRm don't care about contents; nuking C:\Dev\TimeTrack\node_modules\.staging\nan-d56191a2
-191 verbose tar unpack C:\Users\IBM_ADMIN\AppData\Roaming\npm-cache\bcrypt\0.8.7\package.tgz
-192 verbose tar unpacking to C:\Dev\TimeTrack\node_modules\.staging\bcrypt-139b1311
-193 silly gentlyRm C:\Dev\TimeTrack\node_modules\.staging\bcrypt-139b1311 is being purged
-194 verbose gentlyRm don't care about contents; nuking C:\Dev\TimeTrack\node_modules\.staging\bcrypt-139b1311
-195 verbose tar unpack C:\Users\IBM_ADMIN\AppData\Roaming\npm-cache\bindings\1.2.1\package.tgz
-196 verbose tar unpacking to C:\Dev\TimeTrack\node_modules\.staging\bindings-b9bb9da5
-197 silly gentlyRm C:\Dev\TimeTrack\node_modules\.staging\bindings-b9bb9da5 is being purged
-198 verbose gentlyRm don't care about contents; nuking C:\Dev\TimeTrack\node_modules\.staging\bindings-b9bb9da5
+178 verbose unbuild node_modules\.staging\bindings-b9bb9da5
+179 verbose unbuild node_modules\.staging\nan-d56191a2
+180 verbose unbuild node_modules\.staging\bcrypt-139b1311
+181 silly gentlyRm C:\Dev\TimeTrack\node_modules\.staging\bindings-b9bb9da5 is being purged from base C:\Dev\TimeTrack
+182 verbose gentlyRm don't care about contents; nuking C:\Dev\TimeTrack\node_modules\.staging\bindings-b9bb9da5
+183 silly gentlyRm C:\Dev\TimeTrack\node_modules\.staging\nan-d56191a2 is being purged from base C:\Dev\TimeTrack
+184 verbose gentlyRm don't care about contents; nuking C:\Dev\TimeTrack\node_modules\.staging\nan-d56191a2
+185 silly gentlyRm C:\Dev\TimeTrack\node_modules\.staging\bcrypt-139b1311 is being purged from base C:\Dev\TimeTrack
+186 verbose gentlyRm don't care about contents; nuking C:\Dev\TimeTrack\node_modules\.staging\bcrypt-139b1311
+187 verbose tar unpack C:\Users\IBM_ADMIN\AppData\Roaming\npm-cache\bindings\1.2.1\package.tgz
+188 verbose tar unpacking to C:\Dev\TimeTrack\node_modules\.staging\bindings-b9bb9da5
+189 silly gentlyRm C:\Dev\TimeTrack\node_modules\.staging\bindings-b9bb9da5 is being purged
+190 verbose gentlyRm don't care about contents; nuking C:\Dev\TimeTrack\node_modules\.staging\bindings-b9bb9da5
+191 verbose tar unpack C:\Users\IBM_ADMIN\AppData\Roaming\npm-cache\nan\2.3.5\package.tgz
+192 verbose tar unpacking to C:\Dev\TimeTrack\node_modules\.staging\nan-d56191a2
+193 silly gentlyRm C:\Dev\TimeTrack\node_modules\.staging\nan-d56191a2 is being purged
+194 verbose gentlyRm don't care about contents; nuking C:\Dev\TimeTrack\node_modules\.staging\nan-d56191a2
+195 verbose tar unpack C:\Users\IBM_ADMIN\AppData\Roaming\npm-cache\bcrypt\0.8.7\package.tgz
+196 verbose tar unpacking to C:\Dev\TimeTrack\node_modules\.staging\bcrypt-139b1311
+197 silly gentlyRm C:\Dev\TimeTrack\node_modules\.staging\bcrypt-139b1311 is being purged
+198 verbose gentlyRm don't care about contents; nuking C:\Dev\TimeTrack\node_modules\.staging\bcrypt-139b1311
 199 silly gunzTarPerm modes [ '777', '666' ]
 200 silly gunzTarPerm modes [ '777', '666' ]
 201 silly gunzTarPerm modes [ '777', '666' ]
 202 silly gunzTarPerm extractEntry package.json
-203 silly gunzTarPerm modified mode [ 'package.json', 420, 438 ]
+203 silly gunzTarPerm modified mode [ 'package.json', 436, 438 ]
 204 silly gunzTarPerm extractEntry package.json
-205 silly gunzTarPerm modified mode [ 'package.json', 436, 438 ]
+205 silly gunzTarPerm modified mode [ 'package.json', 420, 438 ]
 206 silly gunzTarPerm extractEntry package.json
 207 silly gunzTarPerm modified mode [ 'package.json', 420, 438 ]
 208 silly gunzTarPerm extractEntry README.md
-209 silly gunzTarPerm modified mode [ 'README.md', 420, 438 ]
-210 silly gunzTarPerm extractEntry bindings.js
-211 silly gunzTarPerm modified mode [ 'bindings.js', 420, 438 ]
-212 silly gunzTarPerm extractEntry README.md
-213 silly gunzTarPerm modified mode [ 'README.md', 436, 438 ]
-214 silly gunzTarPerm extractEntry include_dirs.js
-215 silly gunzTarPerm modified mode [ 'include_dirs.js', 436, 438 ]
-216 silly gunzTarPerm extractEntry .npmignore
-217 silly gunzTarPerm modified mode [ '.npmignore', 420, 438 ]
-218 silly gunzTarPerm extractEntry README.md
-219 silly gunzTarPerm modified mode [ 'README.md', 420, 438 ]
-220 silly gunzTarPerm extractEntry nan_converters.h
-221 silly gunzTarPerm modified mode [ 'nan_converters.h', 436, 438 ]
-222 silly gunzTarPerm extractEntry LICENSE.md
-223 silly gunzTarPerm modified mode [ 'LICENSE.md', 436, 438 ]
-224 silly gunzTarPerm extractEntry doc/node_misc.md
-225 silly gunzTarPerm modified mode [ 'doc/node_misc.md', 436, 438 ]
-226 silly gunzTarPerm extractEntry LICENSE
-227 silly gunzTarPerm modified mode [ 'LICENSE', 420, 438 ]
-228 silly gunzTarPerm extractEntry bcrypt.js
-229 silly gunzTarPerm modified mode [ 'bcrypt.js', 420, 438 ]
-230 silly gunzTarPerm extractEntry Makefile
-231 silly gunzTarPerm modified mode [ 'Makefile', 420, 438 ]
-232 silly gunzTarPerm extractEntry .travis.yml
-233 silly gunzTarPerm modified mode [ '.travis.yml', 420, 438 ]
-234 silly gunzTarPerm extractEntry CHANGELOG.md
-235 silly gunzTarPerm modified mode [ 'CHANGELOG.md', 420, 438 ]
-236 silly gunzTarPerm extractEntry binding.gyp
-237 silly gunzTarPerm modified mode [ 'binding.gyp', 420, 438 ]
-238 silly gunzTarPerm extractEntry examples/async_compare.js
-239 silly gunzTarPerm modified mode [ 'examples/async_compare.js', 420, 438 ]
-240 silly gunzTarPerm extractEntry examples/forever_gen_salt.js
-241 silly gunzTarPerm modified mode [ 'examples/forever_gen_salt.js', 420, 438 ]
-242 silly gunzTarPerm extractEntry test/async.js
-243 silly gunzTarPerm modified mode [ 'test/async.js', 420, 438 ]
-244 silly gunzTarPerm extractEntry test/repetitions.js
-245 silly gunzTarPerm modified mode [ 'test/repetitions.js', 420, 438 ]
-246 silly gunzTarPerm extractEntry test/sync.js
-247 silly gunzTarPerm modified mode [ 'test/sync.js', 420, 438 ]
-248 silly gunzTarPerm extractEntry ISSUE_TEMPLATE.md
-249 silly gunzTarPerm modified mode [ 'ISSUE_TEMPLATE.md', 420, 438 ]
-250 silly gunzTarPerm extractEntry src/bcrypt.cc
-251 silly gunzTarPerm modified mode [ 'src/bcrypt.cc', 420, 438 ]
-252 silly gunzTarPerm extractEntry src/bcrypt_node.cc
-253 silly gunzTarPerm modified mode [ 'src/bcrypt_node.cc', 420, 438 ]
-254 silly gunzTarPerm extractEntry src/blowfish.cc
-255 silly gunzTarPerm modified mode [ 'src/blowfish.cc', 420, 438 ]
-256 silly gunzTarPerm extractEntry src/node_blf.h
-257 silly gunzTarPerm modified mode [ 'src/node_blf.h', 420, 438 ]
-258 silly gunzTarPerm extractEntry werker.yml
-259 silly gunzTarPerm modified mode [ 'werker.yml', 420, 438 ]
+209 silly gunzTarPerm modified mode [ 'README.md', 436, 438 ]
+210 silly gunzTarPerm extractEntry include_dirs.js
+211 silly gunzTarPerm modified mode [ 'include_dirs.js', 436, 438 ]
+212 silly gunzTarPerm extractEntry .npmignore
+213 silly gunzTarPerm modified mode [ '.npmignore', 420, 438 ]
+214 silly gunzTarPerm extractEntry README.md
+215 silly gunzTarPerm modified mode [ 'README.md', 420, 438 ]
+216 silly gunzTarPerm extractEntry README.md
+217 silly gunzTarPerm modified mode [ 'README.md', 420, 438 ]
+218 silly gunzTarPerm extractEntry bindings.js
+219 silly gunzTarPerm modified mode [ 'bindings.js', 420, 438 ]
+220 silly gunzTarPerm extractEntry LICENSE
+221 silly gunzTarPerm modified mode [ 'LICENSE', 420, 438 ]
+222 silly gunzTarPerm extractEntry bcrypt.js
+223 silly gunzTarPerm modified mode [ 'bcrypt.js', 420, 438 ]
+224 silly gunzTarPerm extractEntry Makefile
+225 silly gunzTarPerm modified mode [ 'Makefile', 420, 438 ]
+226 silly gunzTarPerm extractEntry .travis.yml
+227 silly gunzTarPerm modified mode [ '.travis.yml', 420, 438 ]
+228 silly gunzTarPerm extractEntry CHANGELOG.md
+229 silly gunzTarPerm modified mode [ 'CHANGELOG.md', 420, 438 ]
+230 silly gunzTarPerm extractEntry binding.gyp
+231 silly gunzTarPerm modified mode [ 'binding.gyp', 420, 438 ]
+232 silly gunzTarPerm extractEntry examples/async_compare.js
+233 silly gunzTarPerm modified mode [ 'examples/async_compare.js', 420, 438 ]
+234 silly gunzTarPerm extractEntry examples/forever_gen_salt.js
+235 silly gunzTarPerm modified mode [ 'examples/forever_gen_salt.js', 420, 438 ]
+236 silly gunzTarPerm extractEntry test/async.js
+237 silly gunzTarPerm modified mode [ 'test/async.js', 420, 438 ]
+238 silly gunzTarPerm extractEntry test/repetitions.js
+239 silly gunzTarPerm modified mode [ 'test/repetitions.js', 420, 438 ]
+240 silly gunzTarPerm extractEntry test/sync.js
+241 silly gunzTarPerm modified mode [ 'test/sync.js', 420, 438 ]
+242 silly gunzTarPerm extractEntry ISSUE_TEMPLATE.md
+243 silly gunzTarPerm modified mode [ 'ISSUE_TEMPLATE.md', 420, 438 ]
+244 silly gunzTarPerm extractEntry src/bcrypt.cc
+245 silly gunzTarPerm modified mode [ 'src/bcrypt.cc', 420, 438 ]
+246 silly gunzTarPerm extractEntry src/bcrypt_node.cc
+247 silly gunzTarPerm modified mode [ 'src/bcrypt_node.cc', 420, 438 ]
+248 silly gunzTarPerm extractEntry src/blowfish.cc
+249 silly gunzTarPerm modified mode [ 'src/blowfish.cc', 420, 438 ]
+250 silly gunzTarPerm extractEntry src/node_blf.h
+251 silly gunzTarPerm modified mode [ 'src/node_blf.h', 420, 438 ]
+252 silly gunzTarPerm extractEntry werker.yml
+253 silly gunzTarPerm modified mode [ 'werker.yml', 420, 438 ]
+254 silly gunzTarPerm extractEntry nan_converters.h
+255 silly gunzTarPerm modified mode [ 'nan_converters.h', 436, 438 ]
+256 silly gunzTarPerm extractEntry LICENSE.md
+257 silly gunzTarPerm modified mode [ 'LICENSE.md', 436, 438 ]
+258 silly gunzTarPerm extractEntry doc/node_misc.md
+259 silly gunzTarPerm modified mode [ 'doc/node_misc.md', 436, 438 ]
 260 silly gunzTarPerm extractEntry doc/asyncworker.md
 261 silly gunzTarPerm modified mode [ 'doc/asyncworker.md', 436, 438 ]
 262 silly gunzTarPerm extractEntry doc/callback.md

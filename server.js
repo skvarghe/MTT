@@ -73,7 +73,7 @@ function login() {
             "appmsg":"Connection to database failed",
           }));
         }
-        connection.query("select id, fullname, userrole, email, password from users where status=1 AND userid='"+req.headers.username,function(err,rows){
+        connection.query("select id, fullname, userrole, email, password from users where status=1 AND userid='"+req.headers.username+"'",function(err,rows){
             connection.release();
             if(!err) {
               if(rows.length>0){
