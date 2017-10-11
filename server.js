@@ -112,7 +112,7 @@ app.get('/validate', function (req, res){
       connection.release();
       if (!err) {
         if (rows.length>0) {
-          bcrypt.compare(myPlaintextPassword, hash).then(function(val) {
+          bcrypt.compare(req.headers.password, rows[0].password).then(function(val) {
             if (val==true) {
               req.session.user = rows[0];
               resp.appcode="100";
