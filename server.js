@@ -71,7 +71,7 @@ function login() {
           console.log('~~~~~~conn failed~~~~~~~~~~~~~~~~~~~~');
           res.send(JSON.parse({
             "appcode":"900",
-            "appmsg":"Connection to database failed",
+            "appmsg":"Connection to database failed"
           }));
         }
         connection.query("select id, fullname, userrole, email, password from users where status=1 AND userid='"+req.headers.username+"'",function(err,rows){
@@ -99,7 +99,7 @@ function login() {
                       console.log('~~~~~~no match failed~~~~~~~~~~~~~~~~~~~~');
                     res.send(JSON.parse({
                       "appcode":"101",
-                      "appmsg":"Username and password not matched",
+                      "appmsg":"Username and password not matched"
                     }));
                   }
               }
@@ -107,7 +107,7 @@ function login() {
                 console.log('~~~~~~not found  failed~~~~~~~~~~~~~~~~~~~~');
                 res.send(JSON.parse({
                   "appcode":"102",
-                  "appmsg":"User not found / inactive",
+                  "appmsg":"User not found / inactive"
                 }))
               }
             }
@@ -115,7 +115,7 @@ function login() {
         connection.on('error', function(err) {
             res.send(JSON.parse({
               "appcode":"900",
-              "appmsg":"Connection to database failed",
+              "appmsg":"Connection to database failed"
             }))
         });
   });
