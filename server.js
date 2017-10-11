@@ -62,41 +62,56 @@ app.use(session({
 }));
 
 
-function handle_database(req,res) {
-
+function login(req,res) {
     pool.getConnection(function(err,connection){
         if (err) {
           connection.release();
-          res.json({"code" : 100, "status" : "Error in connection database"});
+          res.JSON({
+            "appcode":"900",
+            "appmsg":"Connection to database failed",
+          });
           return;
         }
-
-        console.log('connected as id ' + connection.threadId);
-
-        connection.query("select id, fullname, userrole, status, email, password from users where userid='"+req.headers.username,function(err,rows){
+        connection.query("select id, fullname, userrole, email, password from users where status=1 AND userid='"+req.headers.username,function(err,rows){
             connection.release();
             if(!err) {
-              if (req.headers.password=rows[0].password){
-                //if (bcrypt.compareSync(req.headers.password, 10)){
-                  res.status(200).send({
-                    "appcode":"100",
-                    "appstatus":"OK",
-                    "body":[{
-                      "id": rows[0].id,
-                      "fullname": rows[0].fullname,
-                      "userrole": rows[0].userrole,
-                      "status": rows[0].status,
-                      "email": rows[0].email
-                    }]
-                  });
-                }
-                else {
-
-                }
+              if(rows.length>0){
+                if (req.headers.password=rows[0].password){
+                  console.log(bcrypt.hashSync(req.headers.password, 10););
+                  //if (bcrypt.compareSync(req.headers.password, 10)){
+                    res.JSON({
+                      "appcode":"100",
+                      "appmsg":"OK",
+                      "body":[{
+                        "id": rows[0].id,
+                        "fullname": rows[0].fullname,
+                        "userrole": rows[0].userrole,
+                        "email": rows[0].email
+                      }]
+                    });
+                    return;
+                  }
+                  else {
+                    res.JSON({
+                      "appcode":"101",
+                      "appmsg":"Username and password not matched",
+                    });
+                    return;
+                  }
+              }
+              else {
+                res.JSON({
+                  "appcode":"102",
+                  "appmsg":"User not found / inactive",
+                });
+              }
             }
         });
         connection.on('error', function(err) {
-              res.json({"code" : 100, "status" : "Error in connection database"});
+            res.JSON({
+              "appcode":"900",
+              "appmsg":"Connection to database failed",
+            });
               return;
         });
   });
@@ -112,7 +127,7 @@ app.get('/', function (req, res){
 });
 
 app.get("/getusers",function(req,res){
-  handle_database(req,res);
+  login(req,res);
 });
 
 /*

@@ -579,13 +579,24 @@ app.controller('CustomerController', function($scope, $localStorage, $location, 
 */
 app.controller('LoginController', function($scope, $localStorage, $sessionStorage, $http, $location){
   $scope.user = $localStorage;
-  $http({ method: 'GET', url: '/getusers'})
-    .success(function (data, status, headers, config) {
-      $scope.loading = false;
+  $scope.loading = true;
+  $scope.submitLogin = function(){
+    $http({
+      method: 'GET',
+      url: '/getusers',
+      headers:{
+        'username':$scope.loginForm.username,
+        'password':$scope.loginForm.username
+      }
+
     })
-    .error(function (data, status, headers, config) {
-      $scope.loading = false;
-    });
+      .success(function (data, status, headers, config) {
+        $scope.loading = false;
+      })
+      .error(function (data, status, headers, config) {
+        $scope.loading = false;
+      });
+  }
 
 }); //Login Controller END
 
