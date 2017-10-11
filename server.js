@@ -77,7 +77,7 @@ function login(req,res) {
             if(!err) {
               if(rows.length>0){
                 if (req.headers.password=rows[0].password){
-                  console.log(bcrypt.hashSync(req.headers.password, 10););
+                  console.log('~'+bcrypt.hashSync(req.headers.password, 10)+'~');
                   //if (bcrypt.compareSync(req.headers.password, 10)){
                     res.JSON({
                       "appcode":"100",
