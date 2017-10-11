@@ -108,11 +108,10 @@ function login(req,res) {
             }
         });
         connection.on('error', function(err) {
-            res.JSON({
+            res.end(JSON({
               "appcode":"900",
               "appmsg":"Connection to database failed",
-            });
-              return;
+            }));
         });
   });
 }
@@ -126,9 +125,7 @@ app.get('/', function (req, res){
     res.sendfile('index.html');
 });
 
-app.get("/getusers",function(req,res){
-  login(req,res);
-});
+app.get("/validate", login(req,res));
 
 /*
 // Home

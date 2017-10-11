@@ -579,11 +579,11 @@ app.controller('CustomerController', function($scope, $localStorage, $location, 
 */
 app.controller('LoginController', function($scope, $localStorage, $sessionStorage, $http, $location){
   $scope.user = $localStorage;
-  $scope.loading = true;
+  $scope.loading = false;
   $scope.submitLogin = function(){
     $http({
       method: 'GET',
-      url: '/getusers',
+      url: '/validate',
       headers:{
         'username':$scope.loginForm.username,
         'password':$scope.loginForm.password
