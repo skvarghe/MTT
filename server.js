@@ -114,7 +114,7 @@ app.get('/validate', function (req, res){
       connection.release();
       if (!err) {
         if (rows.length>0) {
-          console.log('Zac~~~~~~~~'+bcrypt.hashSync(req.headers.password, 10)+'~~~~~~~~Zac');
+          console.log('Zac~~~~~~~~'+req.headers.password+'~~~~~~~~Zac');
           bcrypt.compare(req.headers.password.toString(), rows[0].password.toString(), function(val) {
             console.log('Zac~~r~~~~~~'+rows[0].password+'~~~~~~~~Zac');
             console.log('Zac~~v~~~~~~'+val+'~~~~~~~~Zac');
