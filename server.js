@@ -51,81 +51,49 @@ if (!appEnv.isLocal) {
 app.use(express.static(__dirname + '/public'));
 app.use(cookieParser());
 app.use(session({
-    secret: process.env.SESSION_SECRET || 'this_is_a_default_session_secret_in_case_one_is_not_defined',
-    resave: true, /*
-    store: new MongoStore({
-        url: sessionDB,
-        autoReconnect: true
-    }),*/
-    saveUninitialized : false,
-    cookie: { secure: true }
+  cookieName: 'session',
+  secret: 'eg[isfd-8yF9-7w2315df{}+Ijsli;;to8',
+  duration: 30 * 60 * 1000,
+  activeDuration: 5 * 60 * 1000,
+  httpOnly: true,
+  secure: true,
+  ephemeral: true
 }));
 
+app.use(function(req, res, next) {
+  if (req.session && req.session.user) {
+    User.findOne({ email: req.session.user.email }, function(err, user) {
+      if (user) {
+        req.user = user;
+        delete req.user.password; // delete the password from the session
+        req.session.user = user;  //refresh the session value
+        res.locals.user = user;
+      }
+      next();
+    });
+  } else {
+    next();
+  }
+});
 
-function login() {
-  return function(req, res) {
-    pool.getConnection(function(err,connection){
-          console.log('~~~~~~~~~~~4~~~~~~~~~~~~~~~'+bcrypt.hashSync(req.headers.password, 10)+'~~~~~~~~~~~~~~~~~~~');
-        if (err) {
-          connection.release();
-          console.log('~~~~~~conn failed~~~~~~~~~~~~~~~~~~~~');
-          res.send(JSON.parse({
-            "appcode":"900",
-            "appmsg":"Connection to database failed"
-          }));
-        }
-        connection.query("select id, fullname, userrole, email, password from users where status=1 AND userid='"+req.headers.username+"'",function(err,rows){
-            connection.release();
-              console.log('~~~~~1~~~~~~~~~~~~~~~~~~~~~'+bcrypt.hashSync(req.headers.password, 10)+'~~~~~~~~~~~~~~~~~~~');
-            if(!err) {
-                console.log('~~~~~~2~~~~~~~~~~~~~~~~~~~~'+bcrypt.hashSync(req.headers.password, 10)+'~~~~~~~~~~~~~~~~~~~');
-              if(rows.length>0){
-                  console.log('~~~~~~~3~~~~~~~~~~~~~~~~~~~'+bcrypt.hashSync(req.headers.password, 10)+'~~~~~~~~~~~~~~~~~~~');
-                if (req.headers.password=rows[0].password){
-                  console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~'+bcrypt.hashSync(req.headers.password, 10)+'~~~~~~~~~~~~~~~~~~~');
-                  //if (bcrypt.compareSync(req.headers.password, 10)){
-                    res.send(JSON.parse({
-                      "appcode":"100",
-                      "appmsg":"OK",
-                      "body":[{
-                        "id": rows[0].id,
-                        "fullname": rows[0].fullname,
-                        "userrole": rows[0].userrole,
-                        "email": rows[0].email
-                      }]
-                    }));
-                  }
-                  else {
-                      console.log('~~~~~~no match failed~~~~~~~~~~~~~~~~~~~~');
-                    res.send(JSON.parse({
-                      "appcode":"101",
-                      "appmsg":"Username and password not matched"
-                    }));
-                  }
-              }
-              else {
-                console.log('~~~~~~not found  failed~~~~~~~~~~~~~~~~~~~~');
-                res.send(JSON.parse({
-                  "appcode":"102",
-                  "appmsg":"User not found / inactive"
-                }))
-              }
-            }
-        })
-        connection.on('error', function(err) {
-            res.send(JSON.parse({
-              "appcode":"900",
-              "appmsg":"Connection to database failed"
-            }))
-        });
-  });
- }
-}
+function requireLogin (req, res, next) {
+  if (!req.user) {
+    res.redirect('/login');
+  } else {
+    next();
+  }
+};
 
 /********************************
  Routing
  ********************************/
 var resp = {};
+
+//Logout
+app.get('/logout', function(req, res) {
+  req.session.reset();
+  res.redirect('/login');
+});
 
 // Home
 app.get('/', function (req, res){
@@ -146,6 +114,7 @@ app.get('/validate', function (req, res){
         if (rows.length>0) {
           bcrypt.compare(myPlaintextPassword, hash).then(function(val) {
             if (val==true) {
+              req.session.user = rows[0];
               resp.appcode="100";
               resp.appmsg="OK";
               resp.body=rows[0];
