@@ -125,12 +125,13 @@ function login() {
 /********************************
  Routing
  ********************************/
+var resp = {};
 
 // Home
 app.get('/', function (req, res){
     res.sendfile('index.html');
 });
-var resp = {};
+
 app.get('/validate', function (req, res){
   pool.getConnection(function(err,connection){
     if (err) {
@@ -143,17 +144,19 @@ app.get('/validate', function (req, res){
       connection.release();
       if (!err) {
         if (rows.length>0) {
-          if (req.headers.password==rows[0].password) {
-            resp.appcode="100";
-            resp.appmsg="OK";
-            resp.body=rows[0];
-            res.status(200).send(resp);
-          } //End of If (compare passwords)
-          else {
-            resp.appcode="200";
-            resp.appmsg="Username and password not matched";
-            res.status(200).send(resp);
-          } //End of else (compare passwords)
+          bcrypt.compare(myPlaintextPassword, hash).then(function(val) {
+            if (val==true) {
+              resp.appcode="100";
+              resp.appmsg="OK";
+              resp.body=rows[0];
+              res.status(200).send(resp);
+            } //End of If (compare passwords)
+            else {
+              resp.appcode="200";
+              resp.appmsg="Username and password not matched";
+              res.status(200).send(resp);
+            } //End of else (compare passwords)
+          }); // End of async bcrypt
         } //End of if (rows.length>0)
         else {
           resp.appcode="202";
