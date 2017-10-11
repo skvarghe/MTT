@@ -69,7 +69,7 @@ function login() {
         if (err) {
           connection.release();
           console.log('~~~~~~conn failed~~~~~~~~~~~~~~~~~~~~');
-          res.send(JSON({
+          res.send(JSON.parse({
             "appcode":"900",
             "appmsg":"Connection to database failed",
           }));
@@ -84,7 +84,7 @@ function login() {
                 if (req.headers.password=rows[0].password){
                   console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~'+bcrypt.hashSync(req.headers.password, 10)+'~~~~~~~~~~~~~~~~~~~');
                   //if (bcrypt.compareSync(req.headers.password, 10)){
-                    res.send(JSON({
+                    res.send(JSON.parse({
                       "appcode":"100",
                       "appmsg":"OK",
                       "body":[{
@@ -97,7 +97,7 @@ function login() {
                   }
                   else {
                       console.log('~~~~~~no match failed~~~~~~~~~~~~~~~~~~~~');
-                    res.send(JSON({
+                    res.send(JSON.parse({
                       "appcode":"101",
                       "appmsg":"Username and password not matched",
                     }));
@@ -105,7 +105,7 @@ function login() {
               }
               else {
                 console.log('~~~~~~not found  failed~~~~~~~~~~~~~~~~~~~~');
-                res.send(JSON({
+                res.send(JSON.parse({
                   "appcode":"102",
                   "appmsg":"User not found / inactive",
                 }))
@@ -113,7 +113,7 @@ function login() {
             }
         })
         connection.on('error', function(err) {
-            res.send(JSON({
+            res.send(JSON.parse({
               "appcode":"900",
               "appmsg":"Connection to database failed",
             }))
