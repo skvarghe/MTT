@@ -586,7 +586,7 @@ app.controller('LoginController', function($scope, $localStorage, $sessionStorag
       url: '/getusers',
       headers:{
         'username':$scope.loginForm.username,
-        'password':$scope.loginForm.username
+        'password':$scope.loginForm.password
       }
 
     })

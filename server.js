@@ -66,20 +66,20 @@ function login(req,res) {
     pool.getConnection(function(err,connection){
         if (err) {
           connection.release();
-          res.JSON({
+          console.log('~~~~~~conn failed~~~~~~~~~~~~~~~~~~~~'
+          res.end(JSON({
             "appcode":"900",
             "appmsg":"Connection to database failed",
-          });
-          return;
+          }));
         }
         connection.query("select id, fullname, userrole, email, password from users where status=1 AND userid='"+req.headers.username,function(err,rows){
             connection.release();
             if(!err) {
               if(rows.length>0){
                 if (req.headers.password=rows[0].password){
-                  console.log('~'+bcrypt.hashSync(req.headers.password, 10)+'~');
+                  console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~'+bcrypt.hashSync(req.headers.password, 10)+'~~~~~~~~~~~~~~~~~~~');
                   //if (bcrypt.compareSync(req.headers.password, 10)){
-                    res.JSON({
+                    res.end(JSON({
                       "appcode":"100",
                       "appmsg":"OK",
                       "body":[{
@@ -88,22 +88,22 @@ function login(req,res) {
                         "userrole": rows[0].userrole,
                         "email": rows[0].email
                       }]
-                    });
-                    return;
+                    }));
                   }
                   else {
-                    res.JSON({
+                      console.log('~~~~~~no match failed~~~~~~~~~~~~~~~~~~~~'
+                    res.end(JSON({
                       "appcode":"101",
                       "appmsg":"Username and password not matched",
-                    });
-                    return;
+                    }));
                   }
               }
               else {
-                res.JSON({
+                console.log('~~~~~~not found  failed~~~~~~~~~~~~~~~~~~~~'
+                res.end(JSON({
                   "appcode":"102",
                   "appmsg":"User not found / inactive",
-                });
+                }));
               }
             }
         });
