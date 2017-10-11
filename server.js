@@ -91,7 +91,7 @@ function login(req,res) {
                     }));
                   }
                   else {
-                      console.log('~~~~~~no match failed~~~~~~~~~~~~~~~~~~~~'
+                      console.log('~~~~~~no match failed~~~~~~~~~~~~~~~~~~~~');
                     res.end(JSON({
                       "appcode":"101",
                       "appmsg":"Username and password not matched",
