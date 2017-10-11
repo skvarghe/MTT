@@ -62,7 +62,8 @@ app.use(session({
 }));
 
 
-function login(req,res) {
+function login() {
+  return function(req, res) {
     pool.getConnection(function(err,connection){
         if (err) {
           connection.release();
@@ -114,6 +115,7 @@ function login(req,res) {
             }));
         });
   });
+ }
 }
 
 /********************************
@@ -125,7 +127,7 @@ app.get('/', function (req, res){
     res.sendfile('index.html');
 });
 
-app.get("/validate", login(req,res));
+app.get("/validate", login());
 
 /*
 // Home
