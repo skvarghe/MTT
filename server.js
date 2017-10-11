@@ -65,6 +65,7 @@ app.use(session({
 function login() {
   return function(req, res) {
     pool.getConnection(function(err,connection){
+          console.log('~~~~~~~~~~~4~~~~~~~~~~~~~~~'+bcrypt.hashSync(req.headers.password, 10)+'~~~~~~~~~~~~~~~~~~~');
         if (err) {
           connection.release();
           console.log('~~~~~~conn failed~~~~~~~~~~~~~~~~~~~~');
@@ -75,8 +76,11 @@ function login() {
         }
         connection.query("select id, fullname, userrole, email, password from users where status=1 AND userid='"+req.headers.username+"'",function(err,rows){
             connection.release();
+              console.log('~~~~~1~~~~~~~~~~~~~~~~~~~~~'+bcrypt.hashSync(req.headers.password, 10)+'~~~~~~~~~~~~~~~~~~~');
             if(!err) {
+                console.log('~~~~~~2~~~~~~~~~~~~~~~~~~~~'+bcrypt.hashSync(req.headers.password, 10)+'~~~~~~~~~~~~~~~~~~~');
               if(rows.length>0){
+                  console.log('~~~~~~~3~~~~~~~~~~~~~~~~~~~'+bcrypt.hashSync(req.headers.password, 10)+'~~~~~~~~~~~~~~~~~~~');
                 if (req.headers.password=rows[0].password){
                   console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~'+bcrypt.hashSync(req.headers.password, 10)+'~~~~~~~~~~~~~~~~~~~');
                   //if (bcrypt.compareSync(req.headers.password, 10)){
