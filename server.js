@@ -139,12 +139,27 @@ app.get('/validate', function (req, res){
       resp.appmsg="Connection to database failed";
       res.status(500).send(resp);
     } // End of if (err)
-    connection.query("select id, fullname, userrole, email, password from users where status=1 AND userid='"+req.headers.username+"'",function(err,rows){
+    connection.query("select id, fullname, userrole, email, password from users where status=1 AND username='"+req.headers.username+"'",function(err,rows){
       connection.release();
       if (!err) {
-        resp.appcode="100";
-        resp.appmsg="OK";
-        res.status(200).send(resp);
+        if (rows.length>0) {
+          if (req.headers.password==rows[0].password) {
+            resp.appcode="100";
+            resp.appmsg="OK";
+            resp.body=rows[0];
+            res.status(200).send(resp);
+          } //End of If (compare passwords)
+          else {
+            resp.appcode="200";
+            resp.appmsg="Username and password not matched";
+            res.status(200).send(resp);
+          } //End of else (compare passwords)
+        } //End of if (rows.length>0)
+        else {
+          resp.appcode="202";
+          resp.appmsg="User not found / inactive";
+          res.status(200).send(resp);
+        }
       } //End of if (!err)
       else {
         resp.appcode="901";
