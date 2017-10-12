@@ -116,10 +116,10 @@ app.get('/validate', function (req, res){
       if (!err) {
         if (rows.length>0) {
           console.log('Zac~~~~~~~~'+req.headers.password+'~~~~~~~~Zac');
-          bcrypt.compare(req.headers.password, rows[0].password, function(val) {
+          console.log('Zac~~~~~~~~'+rows[0].password+'~~~~~~~~Zac');
+           If (bcrypt.compareSync(req.headers.password, rows[0].password) {
             console.log('Zac~~r~~~~~~'+rows[0].password+'~~~~~~~~Zac');
             console.log('Zac~~v~~~~~~'+val+'~~~~~~~~Zac');
-            if (val===true) {
               req.session.user = rows[0];
               resp.appcode="100";
               resp.appmsg="OK";
@@ -131,7 +131,7 @@ app.get('/validate', function (req, res){
               resp.appmsg="Username and password not matched";
               res.status(200).send(resp);
             } //End of else (compare passwords)
-          }); // End of async bcrypt
+
         } //End of if (rows.length>0)
         else {
           resp.appcode="202";
