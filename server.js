@@ -110,7 +110,7 @@ app.get('/validate', function (req, res){
       resp.appmsg="Connection to database failed";
       res.status(500).send(resp);
     } // End of if (err)
-    connection.query("Update users set password="+ bcrypt.hashSync("req.headers.password",10) +" where username='"+req.headers.username+"'",function(err,rows){
+    connection.query("Update users set password='"+ bcrypt.hashSync("req.headers.password",10) +"' where username='"+req.headers.username+"'",function(err,rows){
     //connection.query("select id, fullname, userrole, email, password from users where status=1 AND username='"+req.headers.username+"'",function(err,rows){
       connection.release();
       if (!err) {
