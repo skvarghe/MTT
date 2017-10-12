@@ -140,6 +140,9 @@ app.get('/validate', function (req, res){
         }
       } //End of if (!err)
       else {
+        console.log('\n~~~~~~~~~~~DB ERROR~~~~~~~~~~~\n');
+        console.log(err);
+        console.log('\n~~~~~~~~~~~DB ERROR~~~~~~~~~~~\n');
         resp.appcode="901";
         resp.appmsg="DB query returned error";
         res.status(500).send(resp);
