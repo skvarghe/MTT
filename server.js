@@ -116,7 +116,7 @@ app.get('/validate', function (req, res){
       if (!err) {
         if (rows.length>0) {
           console.log('Zac~~~~~~~~'+req.headers.password+'~~~~~~~~Zac');
-          bcrypt.compare(req.headers.password.toString(), rows[0].password.toString(), function(val) {
+          bcrypt.compare(req.headers.password, rows[0].password, function(val) {
             console.log('Zac~~r~~~~~~'+rows[0].password+'~~~~~~~~Zac');
             console.log('Zac~~v~~~~~~'+val+'~~~~~~~~Zac');
             if (val===true) {
