@@ -110,14 +110,23 @@ app.get('/validate', function (req, res){
       resp.appmsg="Connection to database failed";
       res.status(500).send(resp);
     } // End of if (err)
-    //connection.query("Update users set password='"+ bcrypt.hashSync("req.headers.password",10) +"' where username='"+req.headers.username+"'",function(err,rows){
+    connection.query("Update users set password='"+ bcrypt.hashSync("req.headers.password",10) +"' where username='"+req.headers.username+"'",function(err,rows){
+      connection.release();
+      if (!err) {
+        console.log('~~~~~~~~~~~~~~~No error');
+      }
+      else {
+        console.log('~~~~~~~~~~~~Error ' + err);
+      }
+    });
     connection.query("select id, fullname, userrole, email, password from users where status=1 AND username='"+req.headers.username+"'",function(err,rows){
       connection.release();
       if (!err) {
         if (rows.length>0) {
           console.log('Zac~~~~~~~~'+req.headers.password+'~~~~~~~~Zac');
+          console.log('Zac~~~~~~~~'+rows[0].password+'~~~~~~~~Zac');
           console.log('Zac~~~~~~~~'+bcrypt.compareSync(req.headers.password, rows[0].password)+'~~~~~~~~Zac');
-           if (bcrypt.compareSync(req.headers.password, rows[0].password)===true) { 
+           if (bcrypt.compareSync(req.headers.password, rows[0].password)===true) {
             console.log('Zac~~r~~~~~~'+rows[0].password+'~~~~~~~~Zac');
             console.log('Zac~~v~~~~~~'+val+'~~~~~~~~Zac');
               req.session.user = rows[0];
