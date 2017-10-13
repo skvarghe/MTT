@@ -198,7 +198,7 @@ app.get('/validate', function (req, res){
   }) // End of getConnection
 }); // End of app.Get
 
-getNewID(tbl) {
+function getNewID(tbl) {
   pool.getConnection(function(err,connection){
     connection.query("SELECT count(*)+1 as id FROM " & tbl,function(err,rows){
       connection.release();
