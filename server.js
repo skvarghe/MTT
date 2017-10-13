@@ -110,26 +110,12 @@ app.get('/validate', function (req, res){
       resp.appmsg="Connection to database failed";
       res.status(500).send(resp);
     } // End of if (err)
-    /*
-    connection.query("Update users set password='"+ bcrypt.hashSync(req.headers.password,10) +"' where username='"+req.headers.username+"'",function(err,rows){
-      if (!err) {
-        console.log('~~~~~~~~~~~~~~~No error');
-        res.status(200).send(err);
-      }
-      else {
-        console.log('~~~~~~~~~~~~Error ' + err);
-        res.status(500).send(err);
-      }
-    });*/
     connection.query("select id, fullname, userrole, email, password from users where status=1 AND username='"+req.headers.username+"'",function(err,rows){
       connection.release();
       if (!err) {
         if (rows.length>0) {
-          console.log('Zac~~~~~~~~'+req.headers.password+'~~~~~~~~Zac');
-          console.log('Zac~~~~~~~~'+rows[0].password+'~~~~~~~~Zac');
           bcrypt.compare(req.headers.password,  rows[0].password, function(err, val) {
            if (val===true) {
-            console.log('Zac~~r~~~~~~'+rows[0].password+'~~~~~~~~Zac');
               req.session.user = rows[0];
               resp.appcode="100";
               resp.appmsg="OK";
@@ -150,9 +136,6 @@ app.get('/validate', function (req, res){
         }
       } //End of if (!err)
       else {
-        console.log('\n~~~~~~~~~~~DB ERROR~~~~~~~~~~~\n');
-        console.log(err);
-        console.log('\n~~~~~~~~~~~DB ERROR~~~~~~~~~~~\n');
         resp.appcode="901";
         resp.appmsg="DB query returned error";
         res.status(500).send(resp);
