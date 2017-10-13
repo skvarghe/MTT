@@ -112,11 +112,38 @@ app.post('/registration', function (req, res){
       res.status(500).send(resp);
     } // End of if (err)
     var id=-1;
-    connection.query("SELECT count(*)+1 as id FROM users",function(err,rows){
+    connection.query("SELECT count(*)+1 as id FROM users", function (err,rows) {
       if (!err) {
         if (rows.length>0) {
           console.log('~~~~~~~~~~~~~~rows.length'+rows.length);
           id=rows[0].id;
+          var email=req.headers.email;
+          var fname=req.headers.fullname;
+          var uname=req.headers.username;
+          var hash = bcrypt.hashSync(req.headers.password,2);
+          var role='user';
+          var status=1;
+
+          console.log('z~~~~~~SQL~~~~~~~~~~~\n');
+          console.log("INSERT INTO users VALUES ("+id+",'"+uname+"','"+hash+"','"+fname+"','"+role+"',"+status+",'"+email+"')");
+          console.log('\nz~~~~~~SQL~~~~~~~~~~~\n');
+          connection.query("INSERT INTO users VALUES ("+id+",'"+uname+"','"+hash+"','"+fname+"','"+role+"',"+status+",'"+email+"')",function(err,rows){
+            connection.release();
+            if (!err) {
+              resp.appcode="100";
+              resp.appmsg="OK";
+              res.status(200).send(resp);
+            } //End of if (!err)
+            else {
+              resp.appcode="902";
+              resp.appmsg="DB insert returned error";
+              res.status(500).send(resp);
+            } //End of else (!err)
+          }) //End of connection.query */
+
+
+
+
         } else {
           console.log('~~~~~~~~~~~~~~err1'+err);
           connection.release();
@@ -134,29 +161,6 @@ app.post('/registration', function (req, res){
       }
     })
 
-    var email=req.headers.email;
-    var fname=req.headers.fullname;
-    var uname=req.headers.username;
-    var hash = bcrypt.hashSync(req.headers.password,2);
-    var role='user';
-    var status=1;
-
-    console.log('z~~~~~~SQL~~~~~~~~~~~\n');
-    console.log("INSERT INTO users VALUES ("+id+",'"+uname+"','"+hash+"','"+fname+"','"+role+"',"+status+",'"+email+"')");
-    console.log('\nz~~~~~~SQL~~~~~~~~~~~\n');
-    connection.query("INSERT INTO users VALUES ("+id+",'"+uname+"','"+hash+"','"+fname+"','"+role+"',"+status+",'"+email+"')",function(err,rows){
-      connection.release();
-      if (!err) {
-        resp.appcode="100";
-        resp.appmsg="OK";
-        res.status(200).send(resp);
-      } //End of if (!err)
-      else {
-        resp.appcode="902";
-        resp.appmsg="DB insert returned error";
-        res.status(500).send(resp);
-      } //End of else (!err)
-    }) //End of connection.query */
     connection.on('error', function(err) {
       connection.release();
       resp.appcode="900";
