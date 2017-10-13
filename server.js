@@ -199,6 +199,7 @@ app.get('/validate', function (req, res){
 }); // End of app.Get
 
 function getNewID(tbl) {
+  console.log('~~~~~~~~~~~~~~tbl'+tbl);
   pool.getConnection(function(err,connection){
     connection.query("SELECT count(*)+1 as id FROM " & tbl,function(err,rows){
       connection.release();
@@ -207,11 +208,12 @@ function getNewID(tbl) {
           console.log('~~~~~~~~~~~~~~rows.length'+rows.length);
           return rows[0].id;
         } else {
+          console.log('~~~~~~~~~~~~~~err1'+err);
           return -1;
         }
       }
       else {
-        console.log(err);
+        console.log('~~~~~~~~~~~~~~err2'+err);
         return -1;
       }
     }) // END query
