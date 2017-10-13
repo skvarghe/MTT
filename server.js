@@ -103,52 +103,52 @@ app.get('/', function (req, res){
 });
 
 app.post('/registration', function (req, res){
-  pool.getConnection(function(err,connection){
-    if (err) {
-      connection.release();
-      resp.appcode="900";
-      resp.appmsg="Connection to database failed";
-      res.status(500).send(resp);
-    } // End of if (err)
-
-    var email=req.headers.email;
-    var fname=req.headers.fullname;
-    var uname=req.headers.username;
-    var hash = bcrypt.hashSync(req.headers.password,2);
-    var role='user';
-    var status=1;
-    var id=getNewID('users');
-
-    if (id==-1) {
-      connection.release();
-      resp.appcode="901";
-      resp.appmsg="Query for new ID returned error";
-      res.status(500).send(resp);
-    } //END id==-1
-    console.log('z~~~~~~SQL~~~~~~~~~~~\n');
-    console.log("INSERT INTO users VALUES ("+id+",'"+uname+"','"+hash+"','"+fname+"','"+role+"',"+status+",'"+email+"')");
-    console.log('\nz~~~~~~SQL~~~~~~~~~~~\n');
-    connection.query("INSERT INTO users VALUES ("+id+",'"+uname+"','"+hash+"','"+fname+"','"+role+"',"+status+",'"+email+"')",function(err,rows){
-      connection.release();
-      if (!err) {
-        resp.appcode="100";
-        resp.appmsg="OK";
-        res.status(200).send(resp);
-      } //End of if (!err)
-      else {
-        resp.appcode="902";
-        resp.appmsg="DB insert returned error";
+  var id = getNewID(users, function (req, res, id){
+    pool.getConnection(function(err,connection){
+      if (err) {
+        connection.release();
+        resp.appcode="900";
+        resp.appmsg="Connection to database failed";
         res.status(500).send(resp);
-      } //End of else (!err)
-    }) //End of connection.query */
-    connection.on('error', function(err) {
-      connection.release();
-      resp.appcode="900";
-      resp.appmsg="Connection to database failed";
-      res.status(500).send(resp);
-    }) //End of connection.on('error')
-  }) // End of getConnection
-})
+      } // End of if (err)
+
+      var email=req.headers.email;
+      var fname=req.headers.fullname;
+      var uname=req.headers.username;
+      var hash = bcrypt.hashSync(req.headers.password,2);
+      var role='user';
+      var status=1;
+      if (id==-1) {
+        connection.release();
+        resp.appcode="901";
+        resp.appmsg="Query for new ID returned error";
+        res.status(500).send(resp);
+      } //END id==-1
+      console.log('z~~~~~~SQL~~~~~~~~~~~\n');
+      console.log("INSERT INTO users VALUES ("+id+",'"+uname+"','"+hash+"','"+fname+"','"+role+"',"+status+",'"+email+"')");
+      console.log('\nz~~~~~~SQL~~~~~~~~~~~\n');
+      connection.query("INSERT INTO users VALUES ("+id+",'"+uname+"','"+hash+"','"+fname+"','"+role+"',"+status+",'"+email+"')",function(err,rows){
+        connection.release();
+        if (!err) {
+          resp.appcode="100";
+          resp.appmsg="OK";
+          res.status(200).send(resp);
+        } //End of if (!err)
+        else {
+          resp.appcode="902";
+          resp.appmsg="DB insert returned error";
+          res.status(500).send(resp);
+        } //End of else (!err)
+      }) //End of connection.query */
+      connection.on('error', function(err) {
+        connection.release();
+        resp.appcode="900";
+        resp.appmsg="Connection to database failed";
+        res.status(500).send(resp);
+      }) //End of connection.on('error')
+    }) // End of getConnection
+  })
+})// END ofregistration
 
 app.get('/validate', function (req, res){
   pool.getConnection(function(err,connection){
