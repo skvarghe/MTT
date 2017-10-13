@@ -131,7 +131,6 @@ app.get('/validate', function (req, res){
           console.log('Zac~~~~~~~~'+bcrypt.compareSync(req.headers.password, rows[0].password)+'~~~~~~~~Zac');
            if (bcrypt.compareSync(req.headers.password, rows[0].password)===true) {
             console.log('Zac~~r~~~~~~'+rows[0].password+'~~~~~~~~Zac');
-            console.log('Zac~~v~~~~~~'+val+'~~~~~~~~Zac');
               req.session.user = rows[0];
               resp.appcode="100";
               resp.appmsg="OK";
