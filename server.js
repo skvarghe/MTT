@@ -103,52 +103,69 @@ app.get('/', function (req, res){
 });
 
 app.post('/registration', function (req, res){
-  var id = getNewID('users', function (req, res, id){
-    pool.getConnection(function(err,connection){
-      if (err) {
-        connection.release();
-        resp.appcode="900";
-        resp.appmsg="Connection to database failed";
-        res.status(500).send(resp);
-      } // End of if (err)
 
-      var email=req.headers.email;
-      var fname=req.headers.fullname;
-      var uname=req.headers.username;
-      var hash = bcrypt.hashSync(req.headers.password,2);
-      var role='user';
-      var status=1;
-      if (id==-1) {
+  pool.getConnection(function(err,connection){
+    if (err) {
+      connection.release();
+      resp.appcode="900";
+      resp.appmsg="Connection to database failed";
+      res.status(500).send(resp);
+    } // End of if (err)
+    var id=;
+    connection.query("SELECT count(*)+1 as id FROM users",function(err,rows){
+      if (!err) {
+        if (rows.length>0) {
+          console.log('~~~~~~~~~~~~~~rows.length'+rows.length);
+          id=rows[0].id;
+        } else {
+          console.log('~~~~~~~~~~~~~~err1'+err);
+          connection.release();
+          resp.appcode="901";
+          resp.appmsg="Query for new ID returned error";
+          res.status(500).send(resp);
+        }
+      }
+      else {
+        console.log('~~~~~~~~~~~~~~err2'+err);
         connection.release();
         resp.appcode="901";
         resp.appmsg="Query for new ID returned error";
         res.status(500).send(resp);
-      } //END id==-1
-      console.log('z~~~~~~SQL~~~~~~~~~~~\n');
-      console.log("INSERT INTO users VALUES ("+id+",'"+uname+"','"+hash+"','"+fname+"','"+role+"',"+status+",'"+email+"')");
-      console.log('\nz~~~~~~SQL~~~~~~~~~~~\n');
-      connection.query("INSERT INTO users VALUES ("+id+",'"+uname+"','"+hash+"','"+fname+"','"+role+"',"+status+",'"+email+"')",function(err,rows){
-        connection.release();
-        if (!err) {
-          resp.appcode="100";
-          resp.appmsg="OK";
-          res.status(200).send(resp);
-        } //End of if (!err)
-        else {
-          resp.appcode="902";
-          resp.appmsg="DB insert returned error";
-          res.status(500).send(resp);
-        } //End of else (!err)
-      }) //End of connection.query */
-      connection.on('error', function(err) {
-        connection.release();
-        resp.appcode="900";
-        resp.appmsg="Connection to database failed";
+      }
+    })
+
+    var email=req.headers.email;
+    var fname=req.headers.fullname;
+    var uname=req.headers.username;
+    var hash = bcrypt.hashSync(req.headers.password,2);
+    var role='user';
+    var status=1;
+
+    console.log('z~~~~~~SQL~~~~~~~~~~~\n');
+    console.log("INSERT INTO users VALUES ("+id+",'"+uname+"','"+hash+"','"+fname+"','"+role+"',"+status+",'"+email+"')");
+    console.log('\nz~~~~~~SQL~~~~~~~~~~~\n');
+    connection.query("INSERT INTO users VALUES ("+id+",'"+uname+"','"+hash+"','"+fname+"','"+role+"',"+status+",'"+email+"')",function(err,rows){
+      connection.release();
+      if (!err) {
+        resp.appcode="100";
+        resp.appmsg="OK";
+        res.status(200).send(resp);
+      } //End of if (!err)
+      else {
+        resp.appcode="902";
+        resp.appmsg="DB insert returned error";
         res.status(500).send(resp);
-      }) //End of connection.on('error')
-    }) // End of getConnection
-  })
-})// END ofregistration
+      } //End of else (!err)
+    }) //End of connection.query */
+    connection.on('error', function(err) {
+      connection.release();
+      resp.appcode="900";
+      resp.appmsg="Connection to database failed";
+      res.status(500).send(resp);
+    }) //End of connection.on('error')
+  }) // End of getConnection
+
+})
 
 app.get('/validate', function (req, res){
   pool.getConnection(function(err,connection){
@@ -197,39 +214,6 @@ app.get('/validate', function (req, res){
     }) //End of connection.on('error')
   }) // End of getConnection
 }); // End of app.Get
-
-function getNewID(tbl) {
-  console.log('~~~~~~~~~~~~~~tbl'+tbl);
-  pool.getConnection(function(err,connection){
-    if (err) {
-      console.log('~~~~~~~~~~~~~~err0'+err);
-      return -1;
-    } // End of if (err)
-
-    connection.query("SELECT count(*)+1 as id FROM " & tbl,function(err,rows){
-      console.log("Z~~~~~~~~~Query~~~~~~"+"SELECT count(*)+1 as id FROM " & tbl);
-      connection.release();
-      if (!err) {
-        if (rows.length>0) {
-          console.log('~~~~~~~~~~~~~~rows.length'+rows.length);
-          return rows[0].id;
-        } else {
-          console.log('~~~~~~~~~~~~~~err1'+err);
-          return -1;
-        }
-      }
-      else {
-        console.log('~~~~~~~~~~~~~~err2'+err);
-        return -1;
-      }
-    }) // END query
-    connection.on('error', function(err) {
-      connection.release();
-      console.log('~~~~~~~~~~~~~~~~~~~~On ERROR'+err);
-      return -1;
-    }) //End of connection.on('error')
-  }) //END getConnection
-}// ENd getNewID
 
 /*
 // Home
