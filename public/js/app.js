@@ -532,7 +532,7 @@ app.controller('TrackController', function($scope, $localStorage, $sessionStorag
 app.controller('CustomerController', function($scope, $localStorage, $location, $http){
   $scope.user = $localStorage;
   if ($scope.user.status==false) {$location.path('/login');}
-  $('#sErrDiv').css("display","none");
+  $('#msgDiv').css("display","none");
   $('#btnsErr').click(function(){
     $('#servicemsg').text("");
     $('#sErrDiv').css("display","none");
@@ -596,14 +596,34 @@ app.controller('LoginController', function($scope, $localStorage, $sessionStorag
       .error(function (data, status, headers, config) {
         $scope.loading = false;
       });
-  }
+  } // Submit Login END
 
 }); //Login Controller END
 
 app.controller('RegisterController', function($scope, $localStorage, $sessionStorage, $http, $location){
   $scope.user = $localStorage;
+  $('#msgDiv').css("display","none");
+  $scope.loading = false;
+  $scope.submitRegister = function(){
+    $http({
+      method: 'POST',
+      url: '/registration',
+      headers:{
+        'username':$scope.loginForm.employeeID,
+        'password':$scope.loginForm.password,
+        'email':$scope.loginForm.email,
+        'fullname':$scope.loginForm.fullname
+      }
+    })
+      .success(function (data, status, headers, config) {
+        $scope.loading = false;
+      })
+      .error(function (data, status, headers, config) {
+        $scope.loading = false;
+      });
+  } // Submit Register END
 
-}); //Dashboard Controller END
+}); //Register Controller END
 
 app.controller('TimesheetController', function($scope, $localStorage, $sessionStorage, $http, $location){
   $scope.user = $localStorage;
@@ -623,7 +643,7 @@ app.config(function($routeProvider) {
     $routeProvider.
 
         //Root
-        when('/', {
+        when('/register', {
             templateUrl: 'views/register.html',
             controller: 'RegisterController'
         }).
