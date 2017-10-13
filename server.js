@@ -127,9 +127,8 @@ app.get('/validate', function (req, res){
         if (rows.length>0) {
           console.log('Zac~~~~~~~~'+req.headers.password+'~~~~~~~~Zac');
           console.log('Zac~~~~~~~~'+rows[0].password+'~~~~~~~~Zac');
-          console.log('Zac~~~~~~~~'+bcrypt.compareSync(req.headers.password, rows[0].password)+'~~~~~~~~Zac');
-          bcrypt.compare(req.headers.password,  rows[0].password, function(err, res) {
-           if (res===true) {
+          bcrypt.compare(req.headers.password,  rows[0].password, function(err, val) {
+           if (val===true) {
             console.log('Zac~~r~~~~~~'+rows[0].password+'~~~~~~~~Zac');
               req.session.user = rows[0];
               resp.appcode="100";
