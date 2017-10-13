@@ -201,6 +201,10 @@ app.get('/validate', function (req, res){
 function getNewID(tbl) {
   console.log('~~~~~~~~~~~~~~tbl'+tbl);
   pool.getConnection(function(err,connection){
+    if (err) {
+      console.log('~~~~~~~~~~~~~~err0'+err);
+      return -1;
+    } // End of if (err)
     connection.query("SELECT count(*)+1 as id FROM " & tbl,function(err,rows){
       connection.release();
       if (!err) {
