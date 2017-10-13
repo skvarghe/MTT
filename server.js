@@ -118,7 +118,7 @@ app.get('/validate', function (req, res){
         console.log('~~~~~~~~~~~~Error ' + err);
       }
     });
-    connection.query("select id, fullname, userrole, email, password from users where status=1 AND username='"+req.headers.username+"'",function(err,rows){
+  /*  connection.query("select id, fullname, userrole, email, password from users where status=1 AND username='"+req.headers.username+"'",function(err,rows){
       connection.release();
       if (!err) {
         if (rows.length>0) {
@@ -155,7 +155,7 @@ app.get('/validate', function (req, res){
         resp.appmsg="DB query returned error";
         res.status(500).send(resp);
       } //End of else (!err)
-    }) //End of connection.query
+    }) //End of connection.query */
     connection.on('error', function(err) {
       connection.release();
       resp.appcode="900";
