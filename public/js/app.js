@@ -609,10 +609,10 @@ app.controller('RegisterController', function($scope, $localStorage, $sessionSto
       method: 'POST',
       url: '/registration',
       headers:{
-        'username':$scope.loginForm.employeeID,
-        'password':$scope.loginForm.password,
-        'email':$scope.loginForm.email,
-        'fullname':$scope.loginForm.fullname
+        'username':$scope.registerForm.employeeID,
+        'password':$scope.registerForm.password,
+        'email':$scope.registerForm.email,
+        'fullname':$scope.registerForm.fullname
       }
     })
       .success(function (data, status, headers, config) {

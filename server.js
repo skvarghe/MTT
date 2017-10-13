@@ -114,7 +114,7 @@ app.post('/registration', function (req, res){
     var email=req.headers.email;
     var fname=req.headers.fullname;
     var uname=req.headers.username;
-    var hash = bcrypt.hashSync(req.headers.password);
+    var hash = bcrypt.hashSync(req.headers.password,2);
     var role='user';
     var status=1;
     var id=getNewID('users');
