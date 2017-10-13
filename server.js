@@ -205,6 +205,7 @@ function getNewID(tbl) {
       console.log('~~~~~~~~~~~~~~err0'+err);
       return -1;
     } // End of if (err)
+    console.log("Z~~~~~~~~~Query~~~~~~"+"SELECT count(*)+1 as id FROM " & tbl);
     connection.query("SELECT count(*)+1 as id FROM " & tbl,function(err,rows){
       connection.release();
       if (!err) {
