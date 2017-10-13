@@ -204,17 +204,20 @@ function getNewID(tbl) {
       connection.release();
       if (!err) {
         if (rows.length>0) {
+          console.log('~~~~~~~~~~~~~~rows.length'+rows.length);
           return rows[0].id;
         } else {
           return -1;
         }
       }
       else {
+        console.log(err);
         return -1;
       }
     }) // END query
     connection.on('error', function(err) {
       connection.release();
+      console.log('~~~~~~~~~~~~~~~~~~~~On ERROR'+err);
       return -1;
     }) //End of connection.on('error')
   }) //END getConnection
