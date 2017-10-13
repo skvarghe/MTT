@@ -111,7 +111,7 @@ app.post('/registration', function (req, res){
       resp.appmsg="Connection to database failed";
       res.status(500).send(resp);
     } // End of if (err)
-    var id=;
+    var id=-1;
     connection.query("SELECT count(*)+1 as id FROM users",function(err,rows){
       if (!err) {
         if (rows.length>0) {
