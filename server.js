@@ -217,7 +217,7 @@ function getNewID(tbl) {
       connection.release();
       return -1;
     }) //End of connection.on('error')
-  } //END getConnection
+  }) //END getConnection
 }// ENd getNewID
 
 /*
