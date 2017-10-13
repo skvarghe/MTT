@@ -121,7 +121,6 @@ app.get('/validate', function (req, res){
         res.status(500).send(err);
       }
     });*/
-
     connection.query("select id, fullname, userrole, email, password from users where status=1 AND username='"+req.headers.username+"'",function(err,rows){
       connection.release();
       if (!err) {
@@ -129,7 +128,8 @@ app.get('/validate', function (req, res){
           console.log('Zac~~~~~~~~'+req.headers.password+'~~~~~~~~Zac');
           console.log('Zac~~~~~~~~'+rows[0].password+'~~~~~~~~Zac');
           console.log('Zac~~~~~~~~'+bcrypt.compareSync(req.headers.password, rows[0].password)+'~~~~~~~~Zac');
-           if (bcrypt.compareSync(req.headers.password, rows[0].password)===true) {
+          bcrypt.compare(req.headers.password,  rows[0].password, function(err, res) {
+           if (res===true) {
             console.log('Zac~~r~~~~~~'+rows[0].password+'~~~~~~~~Zac');
               req.session.user = rows[0];
               resp.appcode="100";
@@ -142,7 +142,7 @@ app.get('/validate', function (req, res){
               resp.appmsg="Username and password not matched";
               res.status(200).send(resp);
             } //End of else (compare passwords)
-
+          }) // End of async bcrypt
         } //End of if (rows.length>0)
         else {
           resp.appcode="202";
