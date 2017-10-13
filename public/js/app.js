@@ -600,7 +600,7 @@ app.controller('LoginController', function($scope, $localStorage, $sessionStorag
 
 }); //Login Controller END
 
-app.controller('DashboardController', function($scope, $localStorage, $sessionStorage, $http, $location){
+app.controller('RegisterController', function($scope, $localStorage, $sessionStorage, $http, $location){
   $scope.user = $localStorage;
 
 }); //Dashboard Controller END
@@ -624,8 +624,8 @@ app.config(function($routeProvider) {
 
         //Root
         when('/', {
-            templateUrl: 'views/dashboard.html',
-            controller: 'HomeController'
+            templateUrl: 'views/register.html',
+            controller: 'RegisterController'
         }).
 
         //Root

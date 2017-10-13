@@ -2,10 +2,8 @@
 <html>
 <head>
     <title>Migration Time Tracker - Anthem</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- MDB -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" type="text/css"/>
     <link rel="stylesheet" href="//bootswatch.com/cosmo/bootstrap.min.css"/>
-    <link href="css/mdb.min.css" rel="stylesheet"> <!-- MDB -->
     <link rel="stylesheet" href="css/app.css">
     <link rel="shortcut icon" href="img/favicon.ico" />
     <meta name="viewport" content="user-scalable=yes">
@@ -31,6 +29,11 @@
         </div>
     </nav>
     <div class="greet" ng-show="user.status">Logged in as <span ng-bind="user.name"></span> - [<span ng-bind="user.role"></span>]</div>
+    <loading></loading>
+    <div id="msgDiv" class="alert alert-warning" role="alert" >
+      <button id="btnXMsgDiv" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <span id="msg"></span>
+    </div>
   </div>
 
     <div class="container" ng-view>
@@ -43,8 +46,6 @@
     <!--Bootstrap Features-->
     <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/popper.min.js"></script> <!-- MDB -->
-    <script type="text/javascript" src="js/mdb.min.js"></script> <!-- MDB -->
     <!--Your Scripts-->
     <script src="js/app.js"></script>
 </body>
