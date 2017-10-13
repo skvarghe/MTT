@@ -103,7 +103,7 @@ app.get('/', function (req, res){
 });
 
 app.post('/registration', function (req, res){
-  var id = getNewID(users, function (req, res, id){
+  var id = getNewID('users', function (req, res, id){
     pool.getConnection(function(err,connection){
       if (err) {
         connection.release();
