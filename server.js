@@ -49,6 +49,7 @@ if (!appEnv.isLocal) {
 }
 app.use(express.static(__dirname + '/public'));
 app.use(cookieParser());
+/*
 app.use(session({
   cookieName: 'session',
   secret: 'eg[isfd-8yF9-7w2315df{}+Ijsli;;to8',
@@ -61,29 +62,18 @@ app.use(session({
   resave: true
 }));
 
-app.use(function(req, res, next) {
+/*app.use(function(req, res, next) {
   if (req.session && req.session.user) {
-    user.findOne({ email: req.session.user.email }, function(err, user) {
       if (user) {
         req.user = user;
         delete req.user.password; // delete the password from the session
         req.session.user = user;  //refresh the session value
         res.locals.user = user;
       }
-      next();
-    });
   } else {
-    next();
+    res.redirect('/login');
   }
 });
-
-function requireLogin (req, res, next) {
-  if (!req.user) {
-    res.redirect('/login');
-  } else {
-    next();
-  }
-};
 
 /********************************
  Routing
@@ -114,7 +104,6 @@ app.post('/registration', function (req, res){
     connection.query("SELECT count(*)+1 as id FROM users", function (err,rows) {
       if (!err) {
         if (rows.length>0) {
-          console.log('~~~~~~~~~~~~~~rows.length'+rows.length);
           id=rows[0].id;
           var email=req.headers.email;
           var fname=req.headers.fullname;
@@ -122,10 +111,6 @@ app.post('/registration', function (req, res){
           var hash = bcrypt.hashSync(req.headers.password,2);
           var role='user';
           var status=1;
-
-          console.log('z~~~~~~SQL~~~~~~~~~~~\n');
-          console.log("INSERT INTO users VALUES ("+id+",'"+uname+"','"+hash+"','"+fname+"','"+role+"',"+status+",'"+email+"')");
-          console.log('\nz~~~~~~SQL~~~~~~~~~~~\n');
           connection.query("INSERT INTO users VALUES ("+id+",'"+uname+"','"+hash+"','"+fname+"','"+role+"',"+status+",'"+email+"')",function(err,rows){
             connection.release();
             if (!err) {
@@ -139,12 +124,7 @@ app.post('/registration', function (req, res){
               res.status(500).send(resp);
             } //End of else (!err)
           }) //End of connection.query */
-
-
-
-
         } else {
-          console.log('~~~~~~~~~~~~~~err1'+err);
           connection.release();
           resp.appcode="901";
           resp.appmsg="Query for new ID returned error";
@@ -152,7 +132,6 @@ app.post('/registration', function (req, res){
         }
       }
       else {
-        console.log('~~~~~~~~~~~~~~err2'+err);
         connection.release();
         resp.appcode="901";
         resp.appmsg="Query for new ID returned error";
