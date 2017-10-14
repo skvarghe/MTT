@@ -579,6 +579,7 @@ app.controller('CustomerController', function($scope, $localStorage, $location, 
 */
 app.controller('LoginController', function($scope, $localStorage, $sessionStorage, $http, $location){
   $scope.user = $localStorage;
+  $('#msgDiv').css("display","none");
   $scope.loading = false;
   $scope.submitLogin = function(){
     $http({
