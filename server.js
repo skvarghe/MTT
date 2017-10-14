@@ -14,7 +14,6 @@ var express = require('express'),// server middleware
     https = require('http'),
     cfenv = require('cfenv'),// Cloud Foundry Environment Variables
     appEnv = cfenv.getAppEnv(),// Grab environment variables
-    User = require('./server/models/user.model'),
     request = require('request'),
     dbOps = require('./server/routes/dbOperation.js'),
     mysql = require('mysql');
@@ -64,7 +63,7 @@ app.use(session({
 
 app.use(function(req, res, next) {
   if (req.session && req.session.user) {
-    User.findOne({ email: req.session.user.email }, function(err, user) {
+    user.findOne({ email: req.session.user.email }, function(err, user) {
       if (user) {
         req.user = user;
         delete req.user.password; // delete the password from the session
