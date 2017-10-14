@@ -14,24 +14,18 @@
               <fieldset>
                   <div class="form-group-xs">
                       <div class="col-xs-3">
-                        <input type="text" class="form-control" id="caseID" ng-model="timeForm.caseId"  placeholder="Case ID" />
-                      </div>
-                      <div class="col-xs-3">
-                          <div id="casetype" class="selectContainer"  >
-                              <select class="custom-select" name="casetype" ng-model="timeForm.caseType">
-                                  <option value="">Choose Case Type</option>
+                          <div id="lplatform" class="selectContainer"  >
+                              <select class="custom-select form-control-xs" name="casetype" ng-model="timeForm.lplatform">
+                                  <option value="">Legacy Platform</option>
                                   <option value="declaration">Declaration</option>
                                   <option value="service request">Service Request</option>
                               </select>
                           </div>
                       </div>
                       <div class="col-xs-3">
-                          <input type="text" class="form-control" id="agentID" ng-model="timeForm.agentId"  placeholder="Agent ID" />
-                      </div>
-                      <div class="col-xs-3">
-                          <div id="status" class="selectContainer"   >
-                              <select class="custom-select" name="status" ng-model="timeForm.caseStatus">
-                                  <option value="">Choose Status</option>
+                          <div id="workarea" class="selectContainer"   >
+                              <select class="custom-select form-control-xs" name="status" ng-model="timeForm.workarea">
+                                  <option value="">Work Area</option>
                                   <option value="draft">Draft</option>
                                   <option value="submitted">Submitted</option>
                                   <option value="rejected">Rejected</option>
@@ -42,6 +36,38 @@
                                   <option value="closed">Closed</option>
                               </select>
                           </div>
+                      </div>
+                      <div class="col-xs-3">
+                          <div id="workorder" class="selectContainer"   >
+                              <select class="custom-select form-control-xs" name="status" ng-model="timeForm.workorder">
+                                  <option value="">Work Area</option>
+                                  <option value="draft">Draft</option>
+                                  <option value="submitted">Submitted</option>
+                                  <option value="rejected">Rejected</option>
+                                  <option value="hold">Hold</option>
+                                  <option value="returned">Returned</option>
+                                  <option value="inspect">Inspect</option>
+                                  <option value="approved">Approved</option>
+                                  <option value="closed">Closed</option>
+                              </select>
+                          </div>
+                      </div>
+                      <div class="col-xs-3">
+                          <div id="funcarea" class="selectContainer"   >
+                              <select class="custom-select form-control-xs" name="status" ng-model="timeForm.funcarea">
+                                  <option value="">Functional Area</option>
+                                  <option value="draft">Draft</option>
+                              </select>
+                          </div>
+                      </div>
+                      <div class="col-xs-3">
+                          <input type="text" class="form-control-xs" id="other" ng-model="trackForm.other"  placeholder="Other Category" />
+                      </div>
+                      <div class="col-xs-3">
+                          <input type="text" class="form-control-xs" id="task" ng-model="trackForm.task"  placeholder="Task" />
+                      </div>
+                      <div class="col-xs-3">
+                          <input type="text" class="form-control-xs" id="hours" ng-model="trackForm.hours"  placeholder="Hours" />
                       </div>
                   </div>
               </fieldset>
