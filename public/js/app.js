@@ -628,6 +628,8 @@ app.controller('RegisterController', function($scope, $localStorage, $sessionSto
 
 app.controller('TimesheetController', function($scope, $localStorage, $sessionStorage, $http, $location){
   $scope.user = $localStorage;
+  $('#msgDiv').css("display","none");
+  $scope.loading = false;
 
 }); //Timesheet Controller END
 app.controller('AdminController', function($scope, $localStorage, $sessionStorage, $http, $location){
