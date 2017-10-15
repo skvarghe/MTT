@@ -22,7 +22,7 @@
           <form class="form-horizontal" novalidate ng-submit="getTimeForm()" name="timeForm">
               <fieldset>
                   <div class="form-group-xs">
-                      <div class="col-xs-3">
+                      <div class="col-xs-4">
                         <label for="lplatform">Legacy Platform</label>
                         <select class="form-control-xs" id="lplatform" name="lplatform" ng-model="timeForm.lplatform">
                           <option>Platform 1</option>
@@ -31,7 +31,7 @@
                           <option>Platform 4</option>
                         </select>
                       </div>
-                      <div class="col-xs-3">
+                      <div class="col-xs-4">
                         <label for="workarea">Work Area</label>
                         <select class="form-control-xs" id="workarea" name="workarea" ng-model="timeForm.workarea">
                           <option>Platform 1</option>
@@ -40,7 +40,7 @@
                           <option>Platform 4</option>
                         </select>
                       </div>
-                      <div class="col-xs-3">
+                      <div class="col-xs-4">
                         <label for="workorder">Work Order</label>
                         <select class="form-control-xs" id="workorder" name="workorder" ng-model="timeForm.workorder">
                           <option>Platform 1</option>
@@ -49,7 +49,9 @@
                           <option>Platform 4</option>
                         </select>
                       </div>
-                      <div class="col-xs-3">
+                  </div>
+                  <div class="form-group-xs">
+                      <div class="col-xs-4">
                         <label for="funcarea">Functional Area</label>
                         <select class="form-control-xs" id="funcarea" name="funcarea" ng-model="timeForm.funcarea">
                           <option>Platform 1</option>
@@ -58,15 +60,13 @@
                           <option>Platform 4</option>
                         </select>
                       </div>
-                  </div>
-                  <div class="form-group-xs">
-                      <div class="col-xs-3">
+                      <div class="col-xs-4">
                           <input type="text" class="form-control-xs" id="other" ng-model="trackForm.other"  placeholder="Other Category" />
                       </div>
                       <div class="col-xs-3">
                           <input type="text" class="form-control-xs" id="task" ng-model="trackForm.task"  placeholder="Task" />
                       </div>
-                      <div class="col-xs-3">
+                      <div class="col-xs-1">
                           <input type="text" class="form-control-xs" id="hours" ng-model="trackForm.hours"  placeholder="Hours" />
                       </div>
                   </div>
@@ -105,45 +105,6 @@
           </div>
         </div>
       </div>
-  </div>
-  <div class="modal fade" id="addServiceRequest" tabindex="-1" role="dialog" aria-labelledby="addServiceRequest" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title"><strong>Raise Service Request for {{serviceRequestForm.caseid}} in {{serviceRequestForm.casestatus}} status</strong></h5>
-          <button type="button" class="close trigbtn" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <form class="form-horizontal" novalidate ng-submit="submitServiceRequest()" name="serviceRequestForm">
-          <fieldset>
-            <div class="modal-body">
-              <div class="row">
-                <div class="col-xs-12">
-                  <h5></h5>
-                  <div class="form-group-xs row">
-                    <label for="comSummary" class="col-xs-12 control-label lft">Request Summary</label>
-                  </div>
-                  <div class="form-group-xs row">
-                    <input type="text" class="form-control prg3" id="reqSummary" ng-model="serviceRequestForm.reqSummary"  required/>
-                  </div>
-                  <div class="form-group-xs row">
-                    <label for="comComments" class="col-xs-12 control-label lft">Request Details</label>
-                  </div>
-                  <div class="form-group-xs row">
-                    <textarea class="form-control" rows="5" id="reqComments"  ng-model="serviceRequestForm.reqComments" required></textarea>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button id="btnCancel" type="button" class="btn btn-xs btn-primary trigbtn" data-dismiss="modal">Cancel</button>
-              <input id="btnSubComments" class="btn btn-xs btn-primary btns" type="submit" value="Submit" >
-            </div>
-          </fieldset>
-      </form>
-      </div>
-    </div>
   </div>
 </div>
 <!--/account.html-->
