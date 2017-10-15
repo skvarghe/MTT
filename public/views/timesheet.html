@@ -10,16 +10,17 @@
   <form class="form-inline timeform" novalidate ng-submit="getTimeForm()" name="timeForm">
     <fieldset>
       <div class="row">
-        <div class="col-xs-12">
-          <div class="form-group col-xs-5">
-              <label class="control-label-xs" for="weekending">Weekending Date</label>
-              <select class="form-control-xs w100" id="weekending" ng-model="timeForm.weekending">
-                <option>2017-01-01</option>
-                <option>2017-02-01</option>
-              </select>
-          </div>
+        <div class="col-xs-4">
+          <label class="control-label-xs" for="weekending">Weekending Date</label>
+          <select class="form-control-xs w100" id="weekending" ng-model="timeForm.weekending">
+            <option>2017-01-01</option>
+            <option>2017-02-01</option>
+            <option>2017-03-01</option>
+            <option>2017-04-01</option>
+          </select>
         </div>
       </div>
+      <hr />
       <div class="row">
         <div class="col-xs-12">
           <table class="table table-bordered table-condensed tbl">
@@ -216,8 +217,8 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>Total Hours</td>
-                <td>40</td>
+                <td><strong>Total Hours</strong></td>
+                <td class="hrs"><strong>40</strong></td>
               </tr>
             </tbody>
           </table>
