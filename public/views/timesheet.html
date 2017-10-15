@@ -11,22 +11,29 @@
     <fieldset>
       <div class="row">
           <div class="col-xs-12">
-            <div class="form-group">
-              <label class="sr-only" for="lplatform">Legacy Platform</label>
+            <div class="form-group col-xs-4 col-md-4">
+              <label class="control-label" for="lplatform">Legacy Platform</label>
               <select class="form-control" id="lplatform" ng-model="timeForm.lplatform">
                 <option>P1</option>
                 <option>P2</option>
               </select>
             </div>
-            <div class="form-group">
-              <label class="sr-only" for="workarea">Work Area</label>
+            <div class="form-group col-xs-4 col-md-4">
+              <label class="control-label" for="workarea">Work Area</label>
               <select class="form-control" id="workarea" ng-model="timeForm.workarea">
                 <option>A1</option>
                 <option>A2</option>
               </select>
             </div>
-            <div class="form-group">
-              <label class="sr-only" for="funcarea">Work Order</label>
+            <div class="form-group col-xs-4 col-md-4">
+              <label class="control-label" for="workorder">Work Order</label>
+              <select class="form-control" id="workorder" ng-model="timeForm.workorder">
+                <option>A1</option>
+                <option>A2</option>
+              </select>
+            </div>
+            <div class="form-group col-xs-4 col-md-4">
+              <label class="control-label" for="funcarea">Function Area</label>
               <select class="form-control" id="funcarea" ng-model="timeForm.funcarea">
                 <option>F1</option>
                 <option>F2</option>
