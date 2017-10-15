@@ -90,7 +90,9 @@ input.ng-invalid.ng-touched {
   padding-bottom: 2px !important;
   margin: 5px 0 2px !important;
 }
-
+.container {
+  width: 100% !important;
+}
 .loader {
   width: 100%;
   height: 100%;

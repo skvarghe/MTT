@@ -22,127 +22,61 @@
           </div>
         </div>
       </div>
-      <hr/>
       <div class="row">
         <div class="col-xs-12">
-          <div class="form-group col-xs-3">
-            <div class="input-group-xs">
-              <label class="control-label-xs" for="lplatform">Legacy Platform</label>
-              <select class="form-control-xs w100" id="lplatform" ng-model="timeForm.lplatform">
-                <option>Legacy p1</option>
-                <option>Legacy p2</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group col-xs-3">
-            <div class="input-group-xs">
-              <label class="control-label-xs" for="workarea">Work Area</label>
-              <select class="form-control-xs w100" id="workarea" ng-model="timeForm.workarea">
-                <option>Work Area A1</option>
-                <option>Work Area A2</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group col-xs-3">
-            <div class="input-group-xs">
-              <label class="control-label-xs" for="workorder">Work Order</label>
-              <select class="form-control-xs w100" id="workorder" ng-model="timeForm.workorder">
-                <option>Work Order O1</option>
-                <option>Work Order O2</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group col-xs-3">
-            <div class="input-group-xs">
-              <label class="control-label-xs" for="funcarea">Function Area</label>
-              <select class="form-control-xs w100" id="funcarea" ng-model="timeForm.funcarea">
-                <option>Function Area F1</option>
-                <option>Function Area F2</option>
-              </select>
-            </div>
-          </div>
+          <table class="table table-bordered table-condensed">
+            <thead>
+              <tr>
+                <th>Legacy Platform</th>
+                <th>Work Area</th>
+                <th>Work Order</th>
+                <th>Functional Area</th>
+                <th>Other Details</th>
+                <th>Task Details</th>
+                <th>Hours</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <select class="form-control-xs w100" id="lplatform" ng-model="timeForm.lplatform">
+                    <option>Legacy p1</option>
+                    <option>Legacy p2</option>
+                  </select>
+                </td>
+                <td>
+                  <select class="form-control-xs w100" id="workarea" ng-model="timeForm.workarea">
+                    <option>Work Area A1</option>
+                    <option>Work Area A2</option>
+                  </select>
+                </td>
+                <td>
+                  <select class="form-control-xs w100" id="workorder" ng-model="timeForm.workorder">
+                    <option>Work Order O1</option>
+                    <option>Work Order O2</option>
+                  </select>
+                </td>
+                <td>
+                  <select class="form-control-xs w100" id="funcarea" ng-model="timeForm.funcarea">
+                    <option>Function Area F1</option>
+                    <option>Function Area F2</option>
+                  </select>
+                </td>
+                <td>
+                  <input type="text" class="form-control-sm w100" ng-model="timeForm.other" >
+                </td>
+                <td>
+                  <input type="text" class="form-control-sm w100" ng-model="timeForm.taskdetails" >
+                </td>
+                <td>
+                  <input type="text" class="form-control-sm w100" ng-model="timeForm.hours" >
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="form-group col-xs-5">
-            <div class="input-group-xs">
-              <label class="control-label-xs" for="other">Other Details</label>
-              <input type="text" class="form-control-sm w100" ng-model="timeForm.other" >
-            </div>
-          </div>
-          <div class="form-group col-xs-5">
-            <div class="input-group-xs">
-              <label class="control-label-xs" for="taskdetails">Task Details</label>
-              <input type="text" class="form-control-sm w100" ng-model="timeForm.taskdetails" >
-            </div>
-          </div>
-          <div class="form-group col-xs-2">
-            <div class="input-group-xs">
-              <label class="control-label-xs" for="hours">Hours</label>
-              <input type="text" class="form-control-sm w100" ng-model="timeForm.hours" >
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <input type="button" class="btn btn-sm btn-primary pull-right mr10 btns" value="Add">
-        </div>
-      </div>
-      <hr/>
     </fieldset>
   </form>
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="tblContainer">
-        <h4>Timesheet details for weekending - {{timeForm.weekending}}</h4>
-        <div class="table-responsive">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Legacy Platform</th>
-              <th>Work Area</th>
-              <th>Work Order</th>
-              <th>Functional Area</th>
-              <th>Other Details</th>
-              <th>Task Details</th>
-              <th>Hours</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Legacy P1</td>
-              <td>Workarea W1</td>
-              <td>Workorder W2</td>
-              <td>Funcarea W3</td>
-              <td>Otherdetails W4</td>
-              <td>Task Details W5</td>
-              <td>40</td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>Total</td>
-              <td>40</td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td><button class="btn btn-sm btn-primary btns pull-right">Submit</button></td>
-            </tr>
-          </tbody>
-        </table>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 <!--/timesheet.html-->
