@@ -1,10 +1,19 @@
 <!--timesheet.html-->
 <div class="whitewalker">
   <div class="row">
-      <div class="col-xs-12">
+      <div class="col-xs-6">
           <div class="page-header">
               <h2>Timesheet</h2>
           </div>
+      </div>
+      <div class="col-xs-6">
+        <label for="weekending">Weekending</label>
+        <select class="form-control-xs" id="weekending" name="weekending" ng-model="timeForm.weekending">
+          <option>2017-01-01</option>
+          <option>2017-02-01</option>
+          <option>2017-03-01</option>
+          <option>2017-04-01</option>
+        </select>
       </div>
   </div>
   <div class="row">
@@ -14,52 +23,43 @@
               <fieldset>
                   <div class="form-group-xs">
                       <div class="col-xs-3">
-                          <div id="lplatform" class="selectContainer"  >
-                              <select class="custom-select form-control-xs" name="casetype" ng-model="timeForm.lplatform">
-                                  <option value="">Legacy Platform</option>
-                                  <option value="declaration">Declaration</option>
-                                  <option value="service request">Service Request</option>
-                              </select>
-                          </div>
+                        <label for="lplatform">Legacy Platform</label>
+                        <select class="form-control-xs" id="lplatform" name="lplatform" ng-model="timeForm.lplatform">
+                          <option>Platform 1</option>
+                          <option>Platform 2</option>
+                          <option>Platform 3</option>
+                          <option>Platform 4</option>
+                        </select>
                       </div>
                       <div class="col-xs-3">
-                          <div id="workarea" class="selectContainer"   >
-                              <select class="custom-select form-control-xs" name="status" ng-model="timeForm.workarea">
-                                  <option value="">Work Area</option>
-                                  <option value="draft">Draft</option>
-                                  <option value="submitted">Submitted</option>
-                                  <option value="rejected">Rejected</option>
-                                  <option value="hold">Hold</option>
-                                  <option value="returned">Returned</option>
-                                  <option value="inspect">Inspect</option>
-                                  <option value="approved">Approved</option>
-                                  <option value="closed">Closed</option>
-                              </select>
-                          </div>
+                        <label for="workarea">Work Area</label>
+                        <select class="form-control-xs" id="workarea" name="workarea" ng-model="timeForm.workarea">
+                          <option>Platform 1</option>
+                          <option>Platform 2</option>
+                          <option>Platform 3</option>
+                          <option>Platform 4</option>
+                        </select>
                       </div>
                       <div class="col-xs-3">
-                          <div id="workorder" class="selectContainer"   >
-                              <select class="custom-select form-control-xs" name="status" ng-model="timeForm.workorder">
-                                  <option value="">Work Area</option>
-                                  <option value="draft">Draft</option>
-                                  <option value="submitted">Submitted</option>
-                                  <option value="rejected">Rejected</option>
-                                  <option value="hold">Hold</option>
-                                  <option value="returned">Returned</option>
-                                  <option value="inspect">Inspect</option>
-                                  <option value="approved">Approved</option>
-                                  <option value="closed">Closed</option>
-                              </select>
-                          </div>
+                        <label for="workorder">Work Order</label>
+                        <select class="form-control-xs" id="workorder" name="workorder" ng-model="timeForm.workorder">
+                          <option>Platform 1</option>
+                          <option>Platform 2</option>
+                          <option>Platform 3</option>
+                          <option>Platform 4</option>
+                        </select>
                       </div>
                       <div class="col-xs-3">
-                          <div id="funcarea" class="selectContainer"   >
-                              <select class="custom-select form-control-xs" name="status" ng-model="timeForm.funcarea">
-                                  <option value="">Functional Area</option>
-                                  <option value="draft">Draft</option>
-                              </select>
-                          </div>
+                        <label for="funcarea">Functional Area</label>
+                        <select class="form-control-xs" id="funcarea" name="funcarea" ng-model="timeForm.funcarea">
+                          <option>Platform 1</option>
+                          <option>Platform 2</option>
+                          <option>Platform 3</option>
+                          <option>Platform 4</option>
+                        </select>
                       </div>
+                  </div>
+                  <div class="form-group-xs">
                       <div class="col-xs-3">
                           <input type="text" class="form-control-xs" id="other" ng-model="trackForm.other"  placeholder="Other Category" />
                       </div>
