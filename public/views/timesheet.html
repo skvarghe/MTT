@@ -87,10 +87,62 @@
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <input type="submit" class="btn btn-sm btn-primary pull-right" value="Submit">
+          <input type="button" class="btn btn-sm btn-primary pull-right mr10" value="Add">
         </div>
+      </div>
       <hr/>
     </fieldset>
   </form>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="tblContainer">
+        <h4>Timesheet for weekending {{timeForm.weekending}}</h4>
+        <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Legacy Platform</th>
+              <th>Work Area</th>
+              <th>Work Order</th>
+              <th>Functional Area</th>
+              <th>Other Details</th>
+              <th>Task Details</th>
+              <th>Hours</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Legacy P1</td>
+              <td>Workarea W1</td>
+              <td>Workorder W2</td>
+              <td>Funcarea W3</td>
+              <td>Otherdetails W4</td>
+              <td>Task Details W5</td>
+              <td>40</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>Total</td>
+              <td>40</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td><button class="btn btn-sm btn-primary btns">Submit</button></td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <!--/timesheet.html-->
