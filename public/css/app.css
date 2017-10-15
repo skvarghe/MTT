@@ -107,7 +107,7 @@ input.ng-invalid.ng-touched {
   line-height: 1 !important;
 }
 
-.tbltd {
+.tbl td {
   margin: 0 !important; padding: 2px 2px 2px 2px !important;
 }
 
