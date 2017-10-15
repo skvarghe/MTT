@@ -1,7 +1,7 @@
 <!--timesheet.html-->
 <div class="whitewalker">
   <div class="row">
-      <div class="col-xs-6">
+      <div class="col-xs-12">
           <div class="page-header">
               <h2>Timesheet</h2>
           </div>
@@ -11,35 +11,41 @@
     <fieldset>
       <div class="row">
           <div class="col-xs-12">
-            <div class="form-group col-xs-4 col-md-4">
-              <label class="control-label" for="lplatform">Legacy Platform</label>
+            <div class="form-group col-xs-3 col-md-3">
               <div class="input-group">
+                <label class="control-label" for="lplatform">Legacy Platform</label>
                 <select class="form-control" id="lplatform" ng-model="timeForm.lplatform">
                   <option>P1</option>
                   <option>P2</option>
                 </select>
               </div>
             </div>
-            <div class="form-group col-xs-4 col-md-4">
-              <label class="control-label" for="workarea">Work Area</label>
-              <select class="form-control" id="workarea" ng-model="timeForm.workarea">
-                <option>A1</option>
-                <option>A2</option>
-              </select>
+            <div class="form-group col-xs-3 col-md-3">
+              <div class="input-group">
+                <label class="control-label" for="workarea">Work Area</label>
+                <select class="form-control" id="workarea" ng-model="timeForm.workarea">
+                  <option>A1</option>
+                  <option>A2</option>
+                </select>
+              </div>
             </div>
-            <div class="form-group col-xs-4 col-md-4">
-              <label class="control-label" for="workorder">Work Order</label>
-              <select class="form-control" id="workorder" ng-model="timeForm.workorder">
-                <option>O1</option>
-                <option>O2</option>
-              </select>
+            <div class="form-group col-xs-3 col-md-3">
+              <div class="input-group">
+                <label class="control-label" for="workorder">Work Order</label>
+                <select class="form-control" id="workorder" ng-model="timeForm.workorder">
+                  <option>O1</option>
+                  <option>O2</option>
+                </select>
+              </div>
             </div>
-            <div class="form-group col-xs-4 col-md-4">
-              <label class="control-label" for="funcarea">Function Area</label>
-              <select class="form-control" id="funcarea" ng-model="timeForm.funcarea">
-                <option>F1</option>
-                <option>F2</option>
-              </select>
+            <div class="form-group col-xs-3 col-md-3">
+              <div class="input-group">
+                <label class="control-label" for="funcarea">Function Area</label>
+                <select class="form-control" id="funcarea" ng-model="timeForm.funcarea">
+                  <option>F1</option>
+                  <option>F2</option>
+                </select>
+              </div>
             </div>
           </div>
       </div>
