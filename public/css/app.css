@@ -93,6 +93,24 @@ input.ng-invalid.ng-touched {
 .container {
   width: 100% !important;
 }
+.hrs {
+  text-align: right;
+  width:5%;
+}
+.tblinp {
+  display: block !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  width: 100% !important;
+  border-radius: 0 !important;
+  line-height: 1 !important;
+}
+
+.tbltd {
+  margin: 0 !important; padding: 2px 2px 2px 2px !important;
+}
+
 .loader {
   width: 100%;
   height: 100%;
