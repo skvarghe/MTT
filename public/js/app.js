@@ -220,15 +220,22 @@ app.config(function($routeProvider) {
 
 function showMsg(msg, err) {
   if (err) {
-    $('#msgDiv').addClass('msgFail');
+    $('#msgDiv').addClass('alert-danger');
+    $('#msgDiv').removeClass('alert-success');
   } else {
-    $('#msgDiv').addClass('msgSuccess');
+    $('#msgDiv').removeClass('alert-danger');
+    $('#msgDiv').addClass('alert-success');
   }
   $('#msg').text(msg);
   $('#msgDiv').css("display","block");
+  $('html, body').animate({ scrollTop: $('body').offset().top }, 'slow');
 }
 
 function hideMsg() {
   $('#msg').text('');
   $('#msgDiv').css("display","none");
 }
+
+$('#btnXMsgDiv').click(function(){
+  hideMsg();
+});

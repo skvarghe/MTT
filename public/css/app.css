@@ -75,7 +75,16 @@ input.ng-invalid.ng-touched {
   background-color: #2b57a3 !important;
   border: #2b57a3 !important;
   cursor:pointer;
+  color:white;
 }
+
+.btns:hover {
+  background-color: #2b57a3 !important;
+  border: #2b57a3 !important;
+  cursor:pointer;
+  color:gray;
+}
+
 .pd {
   margin-right: 5px;
 }
@@ -145,20 +154,7 @@ input.ng-invalid.ng-touched {
   background-color: #1F57A4 !important;
   border-color: #1F57A4 !important;
 }
-.msgFail {
-  padding-top: 20px;
-  font-size: 12px;
-  color: red;
-  text-align: center;
-  display: block;
-}
-.msgSuccess {
-  padding-top: 20px;
-  font-size: 12px;
-  color: green;
-  text-align: center;
-  display: block;
-}
+
 .displayNone {
   display: none;
 }
@@ -199,4 +195,8 @@ input.ng-invalid.ng-touched {
 .datepicker {
   top: 200px !important;
   left: 120px !important;
+}
+#msgDiv {
+  margin-left: 1%;
+  margin-right: 1%;
 }
