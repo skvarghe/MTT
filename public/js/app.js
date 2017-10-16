@@ -125,7 +125,8 @@ app.controller('TimesheetController', function($scope, $localStorage, $sessionSt
         autoclose: true
       };
   date_input.datepicker(options);
-  $('input[type="date"]').height($('input').height());
+  $('.datepicker').addClass('anotdt');
+
   for (j=1;j<6;j++) {
     $("#lplatform"+j).empty();
     $("#workarea"+j).empty();

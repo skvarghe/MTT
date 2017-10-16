@@ -190,9 +190,13 @@ input.ng-invalid.ng-touched {
 }
 
 .inpgrpadd {
-    padding: 0 !important;
+    padding: 0 8px !important;
     font-size: 12px !important;
     color: #fff !important;
     background-color: #2b57a3 !important;
     border: 1px solid #2b57a3 !important;
+}
+.anotdt {
+  top: 200px !important;
+  left: 120px !important;
 }
