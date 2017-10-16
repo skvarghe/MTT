@@ -196,7 +196,7 @@ input.ng-invalid.ng-touched {
     background-color: #2b57a3 !important;
     border: 1px solid #2b57a3 !important;
 }
-.anotdt {
+.datepicker {
   top: 200px !important;
   left: 120px !important;
 }
