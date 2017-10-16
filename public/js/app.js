@@ -630,8 +630,30 @@ app.controller('TimesheetController', function($scope, $localStorage, $sessionSt
   $scope.user = $localStorage;
   $('#msgDiv').css("display","none");
   $scope.loading = false;
+  $http({
+      method: 'GET',
+      url: '/dropdowns',
+      headers: {'content-type': 'application/json; charset=UTF-8'}
+      }) //http End
+      .success(function(res){
+          $scope.loading = false;
+          if (res.body.appcode==100){
+
+          }
+          else {
+            $('#msgDiv').addClass('msgFail');
+            $('#msg').text('Error getting dropdown values!');
+          }
+      })
+      .error(function(res){
+        $scope.loading = false;
+        $('#msgDiv').addClass('msgFail');
+        $('#msg').text('Error getting dropdown values!');
+      });
 
 }); //Timesheet Controller END
+
+
 app.controller('AdminController', function($scope, $localStorage, $sessionStorage, $http, $location){
   $scope.user = $localStorage;
 

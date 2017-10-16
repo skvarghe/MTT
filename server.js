@@ -197,6 +197,44 @@ app.get('/validate', function (req, res){
   }) // End of getConnection
 }); // End of app.Get
 
+
+app.get('/dropdowns', function (req, res){
+  pool.getConnection(function(err,connection){
+    if (err) {
+      connection.release();
+      resp.appcode="900";
+      resp.appmsg="Connection to database failed";
+      res.status(500).send(resp);
+    } // End of if (err)
+    connection.query("select dtid, dropvalue from dropdowns",function(err,rows){
+      connection.release();
+      if (!err) {
+        if (rows.length>0) {
+              resp.appcode="100";
+              resp.appmsg="OK";
+              resp.body=rows[0];
+              res.status(200).send(resp);
+            } //End of if (rows.length>0)
+            else {
+              resp.appcode="300";
+              resp.appmsg="Dropdown query returned no records!";
+              res.status(200).send(resp);
+            } //End of else (compare passwords)
+        } //End of if (!err)
+      else {
+        resp.appcode="901";
+        resp.appmsg="DB query returned error";
+        res.status(500).send(resp);
+      } //End of else (!err)
+    }) //End of connection.query */
+    connection.on('error', function(err) {
+      connection.release();
+      resp.appcode="900";
+      resp.appmsg="Connection to database failed";
+      res.status(500).send(resp);
+    }) //End of connection.on('error')
+  }) // End of getConnection
+}); // End of app.Get
 /*
 // Home
 app.get('/query/dropdowns', dbOps.dropdowns());
