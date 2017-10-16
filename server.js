@@ -212,7 +212,7 @@ app.get('/dropdowns', function (req, res){
         if (rows.length>0) {
               resp.appcode="100";
               resp.appmsg="OK";
-              resp.body=rows[0];
+              resp.body=rows;
               res.status(200).send(resp);
             } //End of if (rows.length>0)
             else {

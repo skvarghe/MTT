@@ -593,9 +593,17 @@ app.controller('LoginController', function($scope, $localStorage, $sessionStorag
     })
       .success(function (data, status, headers, config) {
         $scope.loading = false;
+        $scope.user.id=data.body.id;
+        $scope.user.fullname=data.body.fullname;
+        $scope.user.userole=data.body.userole;
+        $scope.user.email=data.body.email;
+        $scope.loading = true;
+        $location.path('/timesheet');
       })
       .error(function (data, status, headers, config) {
         $scope.loading = false;
+        $('#msgDiv').addClass('msgFail');
+        $('#msg').text(data.appcode +' - '+ data.appmsg);
       });
   } // Submit Login END
 
@@ -637,7 +645,7 @@ app.controller('TimesheetController', function($scope, $localStorage, $sessionSt
       }) //http End
       .success(function(res){
           $scope.loading = false;
-          if (res.body.appcode==100){
+          if (res.appcode==100){
 
           }
           else {
