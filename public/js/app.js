@@ -48,6 +48,7 @@ app.controller('LoginController', function($scope, $localStorage, $sessionStorag
     $scope.user.loggedin=false;
   }
   $scope.submitLogin = function(){
+    $scope.loading = true;
     $http({
       method: 'GET',
       url: '/validate',
@@ -58,7 +59,6 @@ app.controller('LoginController', function($scope, $localStorage, $sessionStorag
 
     })
       .success(function (data, status, headers, config) {
-        $scope.loading = false;
         if (data.appcode==100) {
           $scope.user.id=data.body.id;
           $scope.user.fullname=data.body.fullname;
@@ -73,6 +73,7 @@ app.controller('LoginController', function($scope, $localStorage, $sessionStorag
           }
           $location.path('/timesheet');
         } else {
+          $scope.loading = false;
           showMsg(data.appcode +' - '+ data.appmsg,true);
         }
       })
@@ -114,7 +115,6 @@ app.controller('RegisterController', function($scope, $localStorage, $sessionSto
 app.controller('TimesheetController', function($scope, $localStorage, $sessionStorage, $http, $location){
   $scope.user = $localStorage;
   hideMsg();
-  $scope.loading = false;
   var date_input=$('#dtcont .input-group.date'); //our date input has the name "date"
       var container=$('.whitewalker form').length>0 ? $('.whitewalker form').parent() : "body";
       var options={
@@ -139,7 +139,6 @@ app.controller('TimesheetController', function($scope, $localStorage, $sessionSt
       headers: {'content-type': 'application/json; charset=UTF-8'}
       }) //http End
       .success(function(res){
-          $scope.loading = false;
           if (res.appcode==100){
             for (i=0;i<res.body.length;i++) {
               if(res.body[i].dtid==1) {
@@ -160,8 +159,10 @@ app.controller('TimesheetController', function($scope, $localStorage, $sessionSt
                 }
               }
             }
+            $scope.loading = false;
           }
           else {
+            $scope.loading = false;
             showMsg('Error getting dropdown values',true);
           }
       })
@@ -227,13 +228,13 @@ function showMsg(msg, err) {
     $('#msgDiv').addClass('alert-success');
   }
   $('#msg').text(msg);
-  $('#msgDiv').css("display","block");
+  $('#msgDiv').fadeIn(500);
   $('html, body').animate({ scrollTop: $('body').offset().top }, 'slow');
 }
 
 function hideMsg() {
   $('#msg').text('');
-  $('#msgDiv').css("display","none");
+  $('#msgDiv').fadeOut(500);
 }
 
 $('#btnXMsgDiv').click(function(){

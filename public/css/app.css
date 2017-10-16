@@ -82,7 +82,7 @@ input.ng-invalid.ng-touched {
   background-color: #2b57a3 !important;
   border: #2b57a3 !important;
   cursor:pointer;
-  color:gray;
+  color:whitesmoke;
 }
 
 .pd {
