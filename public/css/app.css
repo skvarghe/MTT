@@ -141,6 +141,10 @@ input.ng-invalid.ng-touched {
 .err {
   border-color: red;
 }
+.nvbr {
+  background-color: #1F57A4 !important;
+  border-color: #1F57A4 !important;
+}
 .msgFail {
   padding-top: 20px;
   font-size: 12px;

@@ -581,6 +581,11 @@ app.controller('LoginController', function($scope, $localStorage, $sessionStorag
   $scope.user = $localStorage;
   $('#msgDiv').css("display","none");
   $scope.loading = false;
+  if ($scope.user.loggedin==true) {
+    $location.path('/timesheet');
+  } else {
+    $scope.user=null;
+  }
   $scope.submitLogin = function(){
     $http({
       method: 'GET',
@@ -593,17 +598,30 @@ app.controller('LoginController', function($scope, $localStorage, $sessionStorag
     })
       .success(function (data, status, headers, config) {
         $scope.loading = false;
-        $scope.user.id=data.body.id;
-        $scope.user.fullname=data.body.fullname;
-        $scope.user.userole=data.body.userole;
-        $scope.user.email=data.body.email;
-        $scope.loading = true;
-        $location.path('/timesheet');
+        if (data.appcode==100) {
+          $scope.user.id=data.body.id;
+          $scope.user.fullname=data.body.fullname;
+          $scope.user.userole=data.body.userole;
+          $scope.user.email=data.body.email;
+          $scope.user.loggedin=true;
+          $scope.loading = true;
+          if data.body.userole=='admin' {
+            $scope.user.admin=true;
+          } else {
+            $scope.user.normal=true;
+          }
+          $location.path('/timesheet');
+        } else {
+          $('#msgDiv').addClass('msgFail');
+          $('#msg').text(data.appcode +' - '+ data.appmsg);
+          $('#msgDiv').css("display","block");
+        }
       })
       .error(function (data, status, headers, config) {
         $scope.loading = false;
         $('#msgDiv').addClass('msgFail');
         $('#msg').text(data.appcode +' - '+ data.appmsg);
+        $('#msgDiv').css("display","block");
       });
   } // Submit Login END
 
@@ -646,7 +664,11 @@ app.controller('TimesheetController', function($scope, $localStorage, $sessionSt
       .success(function(res){
           $scope.loading = false;
           if (res.appcode==100){
-
+            for (i=0;i<res.body.length;i++;) {
+              if(res.body.dtid==1) {
+                  console.log(res.body.did+'~'+res.body.dropvalue);
+              }
+            }
           }
           else {
             $('#msgDiv').addClass('msgFail');

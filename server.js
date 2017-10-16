@@ -206,7 +206,7 @@ app.get('/dropdowns', function (req, res){
       resp.appmsg="Connection to database failed";
       res.status(500).send(resp);
     } // End of if (err)
-    connection.query("select dtid, dropvalue from dropdowns",function(err,rows){
+    connection.query("select did, dtid, dropvalue from dropdowns",function(err,rows){
       connection.release();
       if (!err) {
         if (rows.length>0) {
