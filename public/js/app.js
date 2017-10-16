@@ -660,17 +660,17 @@ app.controller('TimesheetController', function($scope, $localStorage, $sessionSt
   $scope.user = $localStorage;
   $('#msgDiv').css("display","none");
   $scope.loading = false;
-  $("#weekending").options.length=0;
+  $("#weekending").empty();
   var dt=getNextFriday(Date());
   for (i=1;i<15;i++) {
-    dt=getNextFriday(dt+1);
     $("#weekending").append('<option value='+dt+'</option>');
+    dt=getNextFriday(dt+1);
   }
   for (j=1;j<6;j++) {
-    $("#lplatform"+j).options.length=0;
-    $("#workarea"+j).options.length=0;
-    $("#workorder"+j).options.length=0;
-    $("#funcarea"+j).options.length=0;
+    $("#lplatform"+j).empty();
+    $("#workarea"+j).empty();
+    $("#workorder"+j).empty();
+    $("#funcarea"+j).empty();
   }
   $http({
       method: 'GET',
