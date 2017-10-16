@@ -666,7 +666,7 @@ app.controller('TimesheetController', function($scope, $localStorage, $sessionSt
       headers: {'content-type': 'application/json; charset=UTF-8'}
       }) //http End
       .success(function(res){
-          var typ1=[];
+          var typ1={};
           $scope.loading = false;
           if (res.appcode==100){
             for (i=0;i<res.body.length;i++) {
