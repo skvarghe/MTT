@@ -123,7 +123,8 @@ app.controller('TimesheetController', function($scope, $localStorage, $sessionSt
         format: 'yyyy-mm-dd',
         container: container,
         todayHighlight: true,
-        autoclose: true,
+        daysOfWeekDisabled: "0,1,2,3,4,6",
+        autoclose: true
       };
   date_input.datepicker(options);
   for (j=1;j<6;j++) {
