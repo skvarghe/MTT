@@ -666,13 +666,25 @@ app.controller('TimesheetController', function($scope, $localStorage, $sessionSt
       headers: {'content-type': 'application/json; charset=UTF-8'}
       }) //http End
       .success(function(res){
-          var typ1={};
           $scope.loading = false;
           if (res.appcode==100){
             for (i=0;i<res.body.length;i++) {
               if(res.body[i].dtid==1) {
-                typ1[i].id=res.body[i].did;
-                typ1[i].dropvalue=res.body[i].dropvalue;
+                for (j=1;j<6;j++) {
+                  $("#lplatform"+j).append('<option value='+res.body[i].did+'>'+res.body[i].dropvalue+'</option>');
+                }
+              } else if(res.body[i].dtid==2) {
+                  for (j=1;j<6;j++) {
+                    $("#workarea"+j).append('<option value='+res.body[i].did+'>'+res.body[i].dropvalue+'</option>');
+                  }
+              } else if(res.body[i].dtid==3) {
+                for (j=1;j<6;j++) {
+                  $("#workorder"+j).append('<option value='+res.body[i].did+'>'+res.body[i].dropvalue+'</option>');
+                }
+              } else if(res.body[i].dtid==4) {
+                for (j=1;j<6;j++) {
+                  $("#funcarea"+j).append('<option value='+res.body[i].did+'>'+res.body[i].dropvalue+'</option>');
+                }
               }
             }
           }
