@@ -761,7 +761,7 @@ app.config(function($routeProvider) {
 
 function getNextFriday(curr) {
   var fridayDate=new Date();
-  var friday=5 - curr.getDay();
+  var friday=5 - Date(curr).getDay();
   if (friday==-1){friday=11};
   return fridayDate.setDate(fridayDate.getDate()+friday);
 }
