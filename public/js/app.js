@@ -666,11 +666,13 @@ app.controller('TimesheetController', function($scope, $localStorage, $sessionSt
       headers: {'content-type': 'application/json; charset=UTF-8'}
       }) //http End
       .success(function(res){
+          var typ1=[];
           $scope.loading = false;
           if (res.appcode==100){
             for (i=0;i<res.body.length;i++) {
               if(res.body[i].dtid==1) {
-                  console.log(res.body[i].did+'~'+res.body[i].dropvalue);
+                typ1[i].id=res.body[i].did;
+                typ1[i].dropvalue=res.body[i].dropvalue;
               }
             }
           }
