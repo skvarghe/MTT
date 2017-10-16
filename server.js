@@ -82,7 +82,7 @@ var resp = {};
 
 //Logout
 app.get('/logout', function(req, res) {
-  req.session.reset();
+//  req.session.reset();
   res.redirect('/login');
 });
 
@@ -163,7 +163,7 @@ app.get('/validate', function (req, res){
         if (rows.length>0) {
           bcrypt.compare(req.headers.password,  rows[0].password, function(err, val) {
            if (val===true) {
-              req.session.user = rows[0];
+              //req.session.user = rows[0];
               resp.appcode="100";
               resp.appmsg="OK";
               resp.body=rows[0];
