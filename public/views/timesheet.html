@@ -11,13 +11,10 @@
     <fieldset>
       <div class="row">
         <div class="col-xs-6">
-          <label class="control-label-xs col-xs-4" for="weekending">Weekending Date</label>
-          <select class="form-control-xs col-xs-4" id="weekending" ng-model="timeForm.weekending">
-            <option>2017-10-20</option>
-            <option>2017-10-13</option>
-            <option>2017-10-06</option>
-            <option>2017-09-29</option>
-          </select>
+          <div class="form-group"> <!-- Date input -->
+            <label class="control-label" for="weekending">Week Ending</label>
+            <input class="form-control" id="weekending" name="date" placeholder="YYYY-MM-DD" type="text"/>
+          </div>
         </div>
       </div>
       <hr />
