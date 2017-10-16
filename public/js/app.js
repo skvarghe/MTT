@@ -662,7 +662,7 @@ app.controller('TimesheetController', function($scope, $localStorage, $sessionSt
   $scope.loading = false;
   $("#weekending").options.length=0;
   var dt=getNextFriday(Date());
-  for (i=1;j<15;j++) {
+  for (i=1;i<15;i++) {
     dt=getNextFriday(dt+1);
     $("#weekending").append('<option value='+dt+'</option>');
   }
