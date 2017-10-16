@@ -584,7 +584,11 @@ app.controller('LoginController', function($scope, $localStorage, $sessionStorag
   if ($scope.user.loggedin==true) {
     $location.path('/timesheet');
   } else {
-    $scope.user=null;
+    $scope.user.id='';
+    $scope.user.fullname='';
+    $scope.user.userole='';
+    $scope.user.email='';
+    $scope.user.loggedin=false;
   }
   $scope.submitLogin = function(){
     $http({
