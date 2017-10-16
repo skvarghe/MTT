@@ -586,7 +586,7 @@ app.controller('LoginController', function($scope, $localStorage, $sessionStorag
   } else {
     $scope.user.id='';
     $scope.user.fullname='';
-    $scope.user.userole='';
+    $scope.user.userrole='';
     $scope.user.email='';
     $scope.user.loggedin=false;
   }
@@ -605,7 +605,7 @@ app.controller('LoginController', function($scope, $localStorage, $sessionStorag
         if (data.appcode==100) {
           $scope.user.id=data.body.id;
           $scope.user.fullname=data.body.fullname;
-          $scope.user.userole=data.body.userole;
+          $scope.user.userole=data.body.userrole;
           $scope.user.email=data.body.email;
           $scope.user.loggedin=true;
           $scope.loading = true;
@@ -669,8 +669,8 @@ app.controller('TimesheetController', function($scope, $localStorage, $sessionSt
           $scope.loading = false;
           if (res.appcode==100){
             for (i=0;i<res.body.length;i++) {
-              if(res.body.dtid==1) {
-                  console.log(res.body.did+'~'+res.body.dropvalue);
+              if(res.body[i].dtid==1) {
+                  console.log(res.body[i].did+'~'+res.body[i].dropvalue);
               }
             }
           }
