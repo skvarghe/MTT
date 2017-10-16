@@ -605,7 +605,7 @@ app.controller('LoginController', function($scope, $localStorage, $sessionStorag
           $scope.user.email=data.body.email;
           $scope.user.loggedin=true;
           $scope.loading = true;
-          if data.body.userole=='admin' {
+          if (data.body.userole=='admin') {
             $scope.user.admin=true;
           } else {
             $scope.user.normal=true;
