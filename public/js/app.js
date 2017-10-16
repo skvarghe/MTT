@@ -162,12 +162,12 @@ app.controller('TimesheetController', function($scope, $localStorage, $sessionSt
             }
           }
           else {
-            ShowMsg('Error getting dropdown values',true);
+            showMsg('Error getting dropdown values',true);
           }
       })
       .error(function(res){
         $scope.loading = false;
-        ShowMsg('Error getting dropdown values',true);
+        showMsg('Error getting dropdown values',true);
       });
 
 }); //Timesheet Controller END
@@ -218,7 +218,7 @@ app.config(function($routeProvider) {
 
 });
 
-function ShowMsg(msg, err) {
+function showMsg(msg, err) {
   if (err) {
     $('#msgDiv').addClass('msgFail');
   } else {
