@@ -676,8 +676,3 @@ app.config(function($routeProvider) {
         });
 
 });
-
-Date.prototype.getWeek = function() {
-  var onejan = new Date(this.getFullYea r(),0,1);
-  return Math.ceil((((this - onejan) / 86400000) + onejan.getDay()+1)/7);
-}
