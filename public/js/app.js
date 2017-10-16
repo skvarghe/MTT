@@ -73,16 +73,12 @@ app.controller('LoginController', function($scope, $localStorage, $sessionStorag
           }
           $location.path('/timesheet');
         } else {
-          $('#msgDiv').addClass('msgFail');
-          $('#msg').text(data.appcode +' - '+ data.appmsg);
-          $('#msgDiv').css("display","block");
+          showMsg(data.appcode +' - '+ data.appmsg,true);
         }
       })
       .error(function (data, status, headers, config) {
         $scope.loading = false;
-        $('#msgDiv').addClass('msgFail');
-        $('#msg').text(data.appcode +' - '+ data.appmsg);
-        $('#msgDiv').css("display","block");
+        showMsg(data.appcode +' - '+ data.appmsg,true);
       });
   } // Submit Login END
 
@@ -90,7 +86,7 @@ app.controller('LoginController', function($scope, $localStorage, $sessionStorag
 
 app.controller('RegisterController', function($scope, $localStorage, $sessionStorage, $http, $location){
   $scope.user = $localStorage;
-  $('#msgDiv').css("display","none");
+  hideMsg();
   $scope.loading = false;
   $scope.submitRegister = function(){
     $http({
@@ -105,9 +101,11 @@ app.controller('RegisterController', function($scope, $localStorage, $sessionSto
     })
       .success(function (data, status, headers, config) {
         $scope.loading = false;
+        $location.path('/timesheet');
       })
       .error(function (data, status, headers, config) {
         $scope.loading = false;
+        showMsg(data.appcode +' - '+ data.appmsg,true);
       });
   } // Submit Register END
 
@@ -115,7 +113,7 @@ app.controller('RegisterController', function($scope, $localStorage, $sessionSto
 
 app.controller('TimesheetController', function($scope, $localStorage, $sessionStorage, $http, $location){
   $scope.user = $localStorage;
-  $('#msgDiv').css("display","none");
+  hideMsg();
   $scope.loading = false;
   var date_input=$('#weekending'); //our date input has the name "date"
       var container=$('.whitewalker form').length>0 ? $('.whitewalker form').parent() : "body";
@@ -127,6 +125,7 @@ app.controller('TimesheetController', function($scope, $localStorage, $sessionSt
         autoclose: true
       };
   date_input.datepicker(options);
+  $('input[type="date"]').height($('input').height());
   for (j=1;j<6;j++) {
     $("#lplatform"+j).empty();
     $("#workarea"+j).empty();
@@ -162,14 +161,12 @@ app.controller('TimesheetController', function($scope, $localStorage, $sessionSt
             }
           }
           else {
-            $('#msgDiv').addClass('msgFail');
-            $('#msg').text('Error getting dropdown values!');
+            ShowMsg('Error getting dropdown values',true);
           }
       })
       .error(function(res){
         $scope.loading = false;
-        $('#msgDiv').addClass('msgFail');
-        $('#msg').text('Error getting dropdown values!');
+        ShowMsg('Error getting dropdown values',true);
       });
 
 }); //Timesheet Controller END
@@ -219,3 +216,18 @@ app.config(function($routeProvider) {
         });
 
 });
+
+function ShowMsg(msg, err) {
+  if (err) {
+    $('#msgDiv').addClass('msgFail');
+  } else {
+    $('#msgDiv').addClass('msgSuccess');
+  }
+  $('#msg').text(msg);
+  $('#msgDiv').css("display","block");
+}
+
+function hideMsg() {
+  $('#msg').text('');
+  $('#msgDiv').css("display","none");
+}
