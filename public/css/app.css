@@ -183,3 +183,16 @@ input.ng-invalid.ng-touched {
   box-shadow: 1px 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
   border-radius: 4px 4px 0 0;
 }
+.dt {
+  font-size: 12px;
+  padding: 1px 1px 1px 5px;
+  height: 30px;
+}
+
+.inpgrpadd {
+    padding: 0 !important;
+    font-size: 12px !important;
+    color: #fff !important;
+    background-color: #2b57a3 !important;
+    border: 1px solid #2b57a3 !important;
+}
