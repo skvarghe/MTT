@@ -664,7 +664,7 @@ app.controller('TimesheetController', function($scope, $localStorage, $sessionSt
       .success(function(res){
           $scope.loading = false;
           if (res.appcode==100){
-            for (i=0;i<res.body.length;i++;) {
+            for (i=0;i<res.body.length;i++) {
               if(res.body.dtid==1) {
                   console.log(res.body.did+'~'+res.body.dropvalue);
               }
