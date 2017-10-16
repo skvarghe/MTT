@@ -660,6 +660,18 @@ app.controller('TimesheetController', function($scope, $localStorage, $sessionSt
   $scope.user = $localStorage;
   $('#msgDiv').css("display","none");
   $scope.loading = false;
+  $("#weekending").options.length=0;
+  var dt=getNextFriday(Date());
+  for (i=1;j<15;j++) {
+    dt=getNextFriday(dt+1);
+    $("#weekending").append('<option value='+dt+'</option>');
+  }
+  for (j=1;j<6;j++) {
+    $("#lplatform"+j).options.length=0;
+    $("#workarea"+j).options.length=0;
+    $("#workorder"+j).options.length=0;
+    $("#funcarea"+j).options.length=0;
+  }
   $http({
       method: 'GET',
       url: '/dropdowns',
@@ -746,3 +758,10 @@ app.config(function($routeProvider) {
         });
 
 });
+
+function getNextFriday(curr) {
+  var fridayDate=new Date();
+  var friday=5 - curr.getDay();
+  if (friday==-1){friday=11};
+  return fridayDate.setDate(fridayDate.getDate()+friday);
+}
