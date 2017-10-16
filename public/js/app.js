@@ -115,7 +115,7 @@ app.controller('TimesheetController', function($scope, $localStorage, $sessionSt
   $scope.user = $localStorage;
   hideMsg();
   $scope.loading = false;
-  var date_input=$('#weekending'); //our date input has the name "date"
+  var date_input=$('#dtcont .input-group.date'); //our date input has the name "date"
       var container=$('.whitewalker form').length>0 ? $('.whitewalker form').parent() : "body";
       var options={
         format: 'yyyy-mm-dd',
