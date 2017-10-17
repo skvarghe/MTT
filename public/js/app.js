@@ -171,6 +171,18 @@ app.controller('TimesheetController', function($scope, $localStorage, $sessionSt
         showMsg('Error getting dropdown values',true);
       });
 
+      $scope.getTimeForm = function(){
+        var insrt='';
+        for (j=1;j<6;j++) {
+          if ($("#hours"+j).val()!='' && $("#hours"+j).val()!=0) {
+            if (insrt='') {
+              insrt=$scope.user.id+","+$('#lplatform'+j).val()+","+$('#workarea'+j).val()+","+$('#workorder'+j).val()+","+$('#funcarea'+j).val()+",'"+$('#other'+j).val()+"','"+$('#taskdetails'+j).val()+"',"+$('#hours'+j).val();
+            } else {
+              insrt=insrt+";"+$scope.user.id+","+$('#lplatform'+j).val()+","+$('#workarea'+j).val()+","+$('#workorder'+j).val()+","+$('#funcarea'+j).val()+",'"+$('#other'+j).val()+"','"+$('#taskdetails'+j).val()+"',"+$('#hours'+j).val();
+            }
+          }
+        }
+      }
 }); //Timesheet Controller END
 
 
@@ -233,8 +245,8 @@ function showMsg(msg, err) {
 }
 
 function hideMsg() {
-  $('#msg').text('');
   $('#msgDiv').fadeOut(500);
+  $('#msg').text('');
 }
 
 $('#btnXMsgDiv').click(function(){

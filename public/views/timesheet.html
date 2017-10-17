@@ -207,7 +207,7 @@
                   <input type="text" class="form-control-sm w100 tblinp" ng-model="timeForm.taskdetails5" id="taskdetails5">
                 </td>
                 <td class="hrs">
-                  <input type="text" class="form-control-sm w100 tblinp" ng-model="timeForm.hours5" id="hours5">
+                  <input type="text" class="form-control-sm w100 tblinp tots" ng-model="timeForm.hours5" id="hours5">
                 </td>
               </tr>
               <tr>
@@ -217,7 +217,7 @@
                 <td></td>
                 <td></td>
                 <td><strong>Total Hours</strong></td>
-                <td class="hrs"><strong>40</strong></td>
+                <td class="hrs"><strong>{{timeForm.total}}</strong></td>
               </tr>
             </tbody>
           </table>
