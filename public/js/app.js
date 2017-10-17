@@ -177,9 +177,9 @@ app.controller('TimesheetController', function($scope, $localStorage, $sessionSt
         for (j=1;j<6;j++) {
           if ($("#hours"+j).val()!='' && $("#hours"+j).val()!=0) {
             if (insrt=='') {
-              insrt='('+$scope.user.id+',"'+$("#weekending").val()+'",'+$("#lplatform"+j).val()+','+$("#workarea"+j).val()+','+$("#workorder"+j).val()+','+$("#funcarea"+j).val()+',"'+$("#other"+j).val()+'","'+$("#taskdetails"+j).val()+'",'+$("#hours"+j).val()+')';
+              insrt='('+$scope.user.id+','+j+',"'+$("#weekending").val()+'",'+$("#lplatform"+j).val()+','+$("#workarea"+j).val()+','+$("#workorder"+j).val()+','+$("#funcarea"+j).val()+',"'+$("#other"+j).val()+'","'+$("#taskdetails"+j).val()+'",'+$("#hours"+j).val()+')';
             } else {
-              insrt=insrt+',('+$scope.user.id+',"'+$("#weekending").val()+'",'+$("#lplatform"+j).val()+','+$("#workarea"+j).val()+','+$("#workorder"+j).val()+','+$("#funcarea"+j).val()+',"'+$("#other"+j).val()+'","'+$("#taskdetails"+j).val()+'",'+$("#hours"+j).val()+')';
+              insrt=insrt+',('+$scope.user.id+','+j+',"'+$("#weekending").val()+'",'+$("#lplatform"+j).val()+','+$("#workarea"+j).val()+','+$("#workorder"+j).val()+','+$("#funcarea"+j).val()+',"'+$("#other"+j).val()+'","'+$("#taskdetails"+j).val()+'",'+$("#hours"+j).val()+')';
             }
           }
         }
