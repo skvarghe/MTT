@@ -172,6 +172,7 @@ app.controller('TimesheetController', function($scope, $localStorage, $sessionSt
       });
 
       $scope.getTimeForm = function(){
+        $scope.loading = true;
         var insrt='';
         for (j=1;j<6;j++) {
           if ($("#hours"+j).val()!='' && $("#hours"+j).val()!=0) {
@@ -182,7 +183,24 @@ app.controller('TimesheetController', function($scope, $localStorage, $sessionSt
             }
           }
         }
-      }
+        $http({
+          method: 'POST',
+          url: '/submittime',
+          data:{'insert':insrt}
+        })
+        .success(function (data, status, headers, config) {
+          $scope.loading = false;
+          if (data.appcode==100){
+            showMsg('Successfully updated timesheet',false);
+          } else {
+            showMsg(data.appcode +' - '+ data.appmsg,true);
+          }
+        })
+        .error(function (data, status, headers, config) {
+          $scope.loading = false;
+          showMsg(data.appcode +' - '+ data.appmsg,true);
+        });
+      }// submit getTimeForm END
 }); //Timesheet Controller END
 
 

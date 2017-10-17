@@ -92,7 +92,6 @@ app.get('/', function (req, res){
 });
 
 app.post('/registration', function (req, res){
-
   pool.getConnection(function(err,connection){
     if (err) {
       connection.release();
@@ -146,8 +145,39 @@ app.post('/registration', function (req, res){
       res.status(500).send(resp);
     }) //End of connection.on('error')
   }) // End of getConnection
+}) // End of POST
 
-})
+app.post('/submittime', function (req, res){
+  pool.getConnection(function(err,connection){
+    if (err) {
+      connection.release();
+      resp.appcode="900";
+      resp.appmsg="Connection to database failed";
+      res.status(500).send(resp);
+    } // End of if (err)
+    var id=-1;
+    connection.query("INSERT INTO timesheets ('uid','weekending','d1','d2','d3','d4','other','task','hours') values " + req.body.insrt, function (err,rows) {
+      if (!err) {
+        connection.release();
+        resp.appcode="100";
+        resp.appmsg="Timesheet update successful";
+        res.status(200).send(resp);
+      }
+      else {
+        connection.release();
+        resp.appcode="400";
+        resp.appmsg="Insert timesheet query returned error";
+        res.status(500).send(resp);
+      }
+    })
+    connection.on('error', function(err) {
+      connection.release();
+      resp.appcode="900";
+      resp.appmsg="Connection to database failed";
+      res.status(500).send(resp);
+    }) //End of connection.on('error')
+  }) // End of getConnection
+}) // End of POST
 
 app.get('/validate', function (req, res){
   pool.getConnection(function(err,connection){
@@ -235,167 +265,7 @@ app.get('/dropdowns', function (req, res){
     }) //End of connection.on('error')
   }) // End of getConnection
 }); // End of app.Get
-/*
-// Home
-app.get('/query/dropdowns', dbOps.dropdowns());
-app.get('/query/codes', dbOps.codes());
 
-app.post('/update/addimportcode', dbOps.addimportcode());
-
-
-app.post('/create',function (req, res) {
-  console.log(JSON.stringify(req.body));
-  console.log(JSON.stringify(req.headers));
-  console.log(JSON.stringify('Z~~~~~~~~~~'+req.headers.userid));
-  request.post({
-    headers: {'content-type' : 'application/json',
-              'X-User-Id' : req.headers.userid
-    },
-    url:     'http://184.173.1.19:30055/v1/declaration/submit'+"?action="+req.headers.action,
-    body:    JSON.stringify(req.body),
-      }, function(error, response, body){
-        res.end(JSON.stringify(response));
-      });
-});
-
-app.put('/statusupdate',function (req, res) {
-  console.log(JSON.stringify(req.body));
-  console.log(JSON.stringify(req.headers));
-  request.put({
-    headers: {'content-type' : 'application/json'},
-    url:     'http://184.173.1.19:30055/v1/declaration/status/'+req.headers.caseid+"?status="+req.headers.status,
-    body:    JSON.stringify(req.body),
-      }, function(error, response, body){
-        res.end(JSON.stringify(response));
-      });
-});
-
-app.post('/srupdate',function (req, res) {
-  console.log(JSON.stringify(req.body));
-  console.log(JSON.stringify(req.headers));
-  request.post({
-    headers: {'content-type' : 'application/json'},
-    url:     'http://184.173.1.19:30055/v1/ServiceRequest',
-    body:    JSON.stringify(req.body),
-      }, function(error, response, body){
-        res.end(JSON.stringify(response));
-      });
-});
-
-
-app.get('/track',function (req, res) {
-  //var propertiesObject = {agent_id:req.headers.agentId, role:agent_id:req.headers.role};
-  console.log(JSON.stringify(req.headers));
-  console.log(JSON.stringify(req.headers.agentid));
-  console.log(JSON.stringify(req.headers.role));
-  request.get({
-    headers: {'content-type' : 'application/json'},
-    url:     'https://api.au.apiconnect.ibmcloud.com/senthilkumardinibmcom-dev/sb/v1/declaration/list'+'?agent_id='+req.headers.agentid+'&role='+req.headers.role}, function(error, response, body){
-    //url:     'http://184.173.1.19:30055/v1/declaration/list'+'?agent_id="'+req.headers.agentid+'"&role="'+req.headers.role+'"'}, function(error, response, body){
-        console.log(JSON.stringify(response));
-        res.end(JSON.stringify(response));
-      });
-});
-
-app.get('/caseview',function (req, res) {
-  //var propertiesObject = {agent_id:req.headers.agentId, role:agent_id:req.headers.role};
-  console.log(JSON.stringify(req.headers));
-  console.log(JSON.stringify(req.headers.caseid));
-  request.get({
-    headers: {'content-type' : 'application/json'},
-    url:     'http://173.193.102.125:30081/v1/declaration/'+req.headers.caseid+'?caseType="declaration"'}, function(error, response, body){
-        console.log(JSON.stringify(response));
-        res.end(JSON.stringify(response));
-      });
-});
-
-app.get('/comments',function (req, res) {
-  //var propertiesObject = {agent_id:req.headers.agentId, role:agent_id:req.headers.role};
-  console.log(JSON.stringify(req.headers));
-  console.log(JSON.stringify(req.headers.caseid));
-  request.get({
-    headers: {'content-type' : 'application/json'},
-    url:     'https://api.au.apiconnect.ibmcloud.com/senthilkumardinibmcom-dev/sb/v1/declaration/observations?caseId='+req.headers.caseid}, function(error, response, body){
-        console.log(JSON.stringify(response));
-        res.end(JSON.stringify(response));
-      });
-});
-
-app.post('/ChangeStatus',function (req, res) {
-  request.post({
-    headers: {'content-type' : 'application/json'},
-    url:     'http://184.173.1.19:30055/v1/declaration/submit', //Update change status URL zac TBD
-    body:    JSON.stringify(req.body),
-      }, function(error, response, body){
-        res.end(JSON.stringify(response));
-      });
-});
-
-
-// login
-app.get('/userlogin', function (req, res){performRequest(req.headers, function(data){
-    res.status(200).send(JSON.stringify(data));
-  })
-});
-
-function performRequest(data, success) {
-  //dbOps.getRestParms(data.cat_type,data.func_type);
-  var options = {
-    host : '184.173.1.19',
-    port : 30882,
-    path : '/caps/login/validate',
-    method : 'GET',
-    headers : {'userid':data.username,
-               'password':data.password}
-             };
-  var req = https.request(options, function(res) {
-    res.setEncoding('utf-8');
-    var responseString = '';
-    res.on('data', function(data) {
-      responseString += data;
-    });
-    res.on('end', function() {
-      var responseObject = JSON.parse(responseString);
-      success(responseObject);
-    });
-  });
-  req.write('ok');
-  req.end();
-}
-
-
-// Account logout
-app.get('/logout', function(req,res){
-
-    // Destroys user's session
-    if (!req.user)
-        res.status(400).send('User not logged in.');
-    else {
-        req.session.destroy(function(err) {
-            if(err){
-                res.status(500).send('Sorry. Server error in logout process.');
-                console.log("Error destroying session: " + err);
-                return;
-            }
-            res.status(200).send('Success logging user out!');
-        });
-    }
-});
-
-// Custom middleware to check if user is logged-in
-function authorizeRequest(req, res, next) {
-    if (req.user) {
-        next();
-    } else {
-        res.status(401).send('Unauthorized. Please login.');
-    }
-}
-
-// Protected route requiring authorization to access.
-app.get('/protected', authorizeRequest, function(req, res){
-    res.send("This is a protected route only visible to authenticated users.");
-});
-*/
 /********************************
 Ports
 ********************************/
