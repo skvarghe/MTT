@@ -167,6 +167,7 @@ app.post('/submittime', function (req, res){
         connection.release();
         resp.appcode="400";
         resp.appmsg="Insert timesheet query returned error";
+        console.log(err);
         res.status(500).send(resp);
       }
     })
