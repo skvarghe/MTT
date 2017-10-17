@@ -186,7 +186,7 @@ app.controller('TimesheetController', function($scope, $localStorage, $sessionSt
         $http({
           method: 'POST',
           url: '/submittime',
-          data:{'insert':insrt}
+          body:{'insert':insrt}
         })
         .success(function (data, status, headers, config) {
           $scope.loading = false;
