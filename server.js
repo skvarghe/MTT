@@ -156,7 +156,7 @@ app.post('/submittime', function (req, res){
       res.status(500).send(resp);
     } // End of if (err)
     var id=-1;
-    connection.query("INSERT INTO timesheets ('uid','weekending','d1','d2','d3','d4','other','task','hours') values " + req.body.insrt, function (err,rows) {
+    connection.query("INSERT INTO timesheets ('uid','weekending','d1','d2','d3','d4','other','task','hours') values " + req.body.insert, function (err,rows) {
       console.log("~~~~~~~~~~~~~INSERT INTO timesheets ('uid','weekending','d1','d2','d3','d4','other','task','hours') values " + JSON.stringify(req.body).insrt);
       console.log('~~~~~~~~~~~~~'+JSON.stringify(req.body).insrt);
       if (!err) {
