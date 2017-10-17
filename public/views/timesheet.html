@@ -14,7 +14,7 @@
           <div id="dtcont" class="form-group"> <!-- Date input -->
             <label class="control-label mr10" for="weekending">Week Ending</label>
             <div class="input-group date">
-              <input class="form-control dt" id="weekending" name="date" placeholder="YYYY-MM-DD" type="text" readonly/><span class="input-group-addon inpgrpadd"><i class="glyphicon glyphicon-th"></i></span>
+              <input class="form-control dt" id="weekending" name="date" ng-model="timeForm.weekending" placeholder="YYYY-MM-DD" type="text" readonly/><span class="input-group-addon inpgrpadd"><i class="glyphicon glyphicon-th"></i></span>
             </div>
           </div>
         </div>
@@ -223,7 +223,7 @@
           </table>
           <div class="row">
             <div class="col-xs-12">
-              <input type="button" class="btn btn-sm btn-primary pull-right mr10 btns" value="Submit">
+              <input type="submit" class="btn btn-sm btn-primary pull-right mr10 btns" value="Submit">
             </div>
           </div>
         </div>
